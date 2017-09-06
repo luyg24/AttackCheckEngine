@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+"""
+base64 convert to dict
+"""
+
+import base64
+
+
+def b64_convertdict(base64string):
+    base64string = base64string
+    string = base64.b64decode(base64string)
+    print string
+
+
+b64 = 'R0VUIC9EVldBL3Z1bG5lcmFiaWxpdGllcy9zcWxpLz9pZD0xK3VuaW9uK3NlbGVjdCsxJlN1Ym1pdD1TdWJtaXQgSFRUUC8xLjENCkhvc3Q6IDE\
+5Mi4xNjguMjQuMjUwDQpDb25uZWN0aW9uOiBrZWVwLWFsaXZlDQpVcGdyYWRlLUluc2VjdXJlLVJlcXVlc3RzOiAxDQpVc2VyLUFnZW50OiBNb3ppbGxhL\
+zUuMCAoTWFjaW50b3NoOyBJbnRlbCBNYWMgT1MgWCAxMF8xMF81KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNjAu\
+MC4zMTEyLjExMyBTYWZhcmkvNTM3LjM2DQpBY2NlcHQ6IHRleHQvaHRtbCxhcHBsaWNhdGlvbi94aHRtbCt4bWwsYXBwbGljYXRpb24veG1sO3E9MC45LGl\
+tYWdlL3dlYnAsaW1hZ2UvYXBuZywqLyo7cT0wLjgNClJlZmVyZXI6IGh0dHA6Ly8xOTIuMTY4LjI0LjI1MC9EVldBL3Z1bG5lcmFiaWxpdGllcy9zcWxpLw\
+0KQWNjZXB0LUVuY29kaW5nOiBnemlwLCBkZWZsYXRlDQpBY2NlcHQtTGFuZ3VhZ2U6IHpoLUNOLHpoO3E9MC44LGVuO3E9MC42DQpDb29raWU6IHNlY3Vya\
+XR5PWxvdzsgUEhQU0VTU0lEPWcxcDhqdTZsc2RzOWVhMWhwY3F2NmJ1am81DQoNCg=='
+b64_convertdict(b64)
