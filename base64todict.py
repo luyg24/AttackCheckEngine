@@ -5,6 +5,7 @@ base64 convert to dict
 """
 import base64
 import sys
+import create_requestheader
 
 
 def b64convertdict(base64string):
@@ -33,12 +34,16 @@ def b64convertdict(base64string):
                 value = tmp[1]
                 request_header[key] = value
         if method == 'POST' or method == 'GET':
+            # print type(request_header)
             return request_header
         else:
             return 'other method or error!'
     except Exception, e:
         print 'base64string: %s, string: %s' % (base64string, string)
-# 从命令行获取base64字符串
-b64 = sys.argv[1]
+# 从命令行获取base64字符串,注意一定是base64哦!
+# b64 = sys.argv[1]
+b64 = 'R0VUIC9teWFkbWluL3NjcmlwdHMvc2V0dXAucGhwIEhUVFAvMS4xDQpBY2NlcHQ6ICovKg0KQWNjZXB0LUxhbmd1YWdlOiBlbi11cw0KQWNjZXB0LUVuY29kaW5nOiBnemlwLCBkZWZsYXRlDQpVc2VyLUFnZW50OiBabUV1DQpIb3N0OiAxMjIuMTE1LjQ4LjU0DQpDb25uZWN0aW9uOiBDbG9zZQ0KWC1Gb3J3YXJkZWQtRm9yOiAxNDYuMTg1LjE2Ni4xMjcNCg0K'
 # print b64
-print b64convertdict(b64)
+request_header = b64convertdict(b64)
+# print request_header
+create_requestheader.createfile(request_header)
