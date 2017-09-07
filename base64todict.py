@@ -47,7 +47,7 @@ def b64convertdict(base64string):
         logfile = open('log.txt', 'a')
         # print Exception,':', e
         localtime = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
-        logfile.write('%s:%s:%s.ori_string:%s' %(localtime, Exception, e, request_header))
+        logfile.write('%s:%s:%s.ori_string:%s\n' %(localtime, Exception, e, request_header))
         fun_status = 0
         return fun_status
         logfile.close()
@@ -56,7 +56,7 @@ def b64convertdict(base64string):
 # 从命令行获取base64字符串,注意一定是base64哦!
 # b64 = sys.argv[1]
 b64 = 'R0VUIC9teWFkbWluL3NjcmlwdHMvc2V0dXAucGhwIEhUVFAvMS4xDQpBY2NlcHQ6ICovKg0KQWNjZXB0LUxhbmd1YWdlOiBlbi11cw0KQWNjZXB0LUVuY29kaW5nOiBnemlwLCBkZWZsYXRlDQpVc2VyLUFnZW50OiBabUV1DQpIb3N0OiAxMjIuMTE1LjQ4LjU0DQpDb25uZWN0aW9uOiBDbG9zZQ0KWC1Gb3J3YXJkZWQtRm9yOiAxNDYuMTg1LjE2Ni4xMjcNCg0K'
-b64 = 'hello'
+# b64 = 'hello'
 # print b64
 request_header = b64convertdict(b64)
 # print request_header
