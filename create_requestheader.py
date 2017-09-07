@@ -13,12 +13,24 @@ def createfile(request_header):
         filepath = '/data/tmp/attack_engine/'
         tmpname = ''.join(random.sample(string.ascii_letters + string.digits, 16))
         filename = filepath+tmpname
-        print request_header
         # 写文件
-        file = open(filename, 'a')
+        # file = open(filename, 'a')
+        method = request_header['method']
         line1 = request_header['method'] + ' ' + request_header['url'] + ' ' + request_header['protocol']
+        del request_header['method']
+        del request_header['url']
+        del request_header['protocol']
         print line1
         # file.write(line1)
+        # file.write('\n')
+        if method == 'POST':
+            postdata = request_header['postdata']
+            del request_header['postdata']
+        for k,v in request_header.items():
+            print '%s:%s' %(k, v)
+        if method == 'POST':
+            print '\n \n'
+            print postdata
         # file.close()
     except Exception, e:
         print 'error'

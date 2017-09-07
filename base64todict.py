@@ -27,6 +27,7 @@ def b64convertdict(base64string):
         if method == 'POST':
             post_data = b64list[len(b64list)-1]
             b64list.remove(post_data)
+            request_header['postdata'] = post_data
         for i in range(len(b64list)):
             if len(b64list[i])>= 3:
                 tmp = b64list[i].split(':')
