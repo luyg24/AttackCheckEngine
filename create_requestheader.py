@@ -32,7 +32,8 @@ def createfile(request_header):
             print '\n \n'
             print postdata
         # file.close()
-    except Exception, e:
+    except Exception as e:
+        print Exception, e
         print 'error'
 #获取request header 注意是dict格式
 # request_header = {'method': 'GET', 'test': ' df'}

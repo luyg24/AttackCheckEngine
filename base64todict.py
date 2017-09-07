@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-base64 convert to dict
+base64 convert to dict, default logfile 'log.txt'
 """
 import base64
 import sys
@@ -11,6 +11,8 @@ import create_requestheader
 def b64convertdict(base64string):
 
     try:
+        logfile = open('log.txt', 'a')
+        fun_status = 1
         request_header = {}
         post_data = ''
         base64string = base64string
@@ -38,13 +40,23 @@ def b64convertdict(base64string):
             # print type(request_header)
             return request_header
         else:
-            return 'other method or error!'
-    except Exception, e:
-        print 'base64string: %s, string: %s' % (base64string, string)
+            fun_status = 0
+            return fun_status
+    except Exception as e:
+        # print Exception,':', e
+        logfile.write('%s:%s' %(Exception, e))
+        fun_status = 0
+        return fun_status
+        # return 'program error!'
+        # print 'base64string: %s, string: %s' % (base64string, string)
 # 从命令行获取base64字符串,注意一定是base64哦!
 # b64 = sys.argv[1]
 b64 = 'R0VUIC9teWFkbWluL3NjcmlwdHMvc2V0dXAucGhwIEhUVFAvMS4xDQpBY2NlcHQ6ICovKg0KQWNjZXB0LUxhbmd1YWdlOiBlbi11cw0KQWNjZXB0LUVuY29kaW5nOiBnemlwLCBkZWZsYXRlDQpVc2VyLUFnZW50OiBabUV1DQpIb3N0OiAxMjIuMTE1LjQ4LjU0DQpDb25uZWN0aW9uOiBDbG9zZQ0KWC1Gb3J3YXJkZWQtRm9yOiAxNDYuMTg1LjE2Ni4xMjcNCg0K'
+b64 = 'hello'
 # print b64
 request_header = b64convertdict(b64)
 # print request_header
-create_requestheader.createfile(request_header)
+if request_header != 0 :
+    create_requestheader.createfile(request_header)
+else:
+    print 'last func errors!'
