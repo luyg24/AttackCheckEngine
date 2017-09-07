@@ -6,12 +6,12 @@ base64 convert to dict, default logfile 'log.txt'
 import base64
 import sys
 import create_requestheader
+import datetime
 
 
 def b64convertdict(base64string):
 
     try:
-        logfile = open('log.txt', 'a')
         fun_status = 1
         request_header = {}
         post_data = ''
@@ -43,10 +43,14 @@ def b64convertdict(base64string):
             fun_status = 0
             return fun_status
     except Exception as e:
+        request_header = base64string
+        logfile = open('log.txt', 'a')
         # print Exception,':', e
-        logfile.write('%s:%s' %(Exception, e))
+        localtime = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+        logfile.write('%s:%s:%s.ori_string:%s' %(localtime, Exception, e, request_header))
         fun_status = 0
         return fun_status
+        logfile.close()
         # return 'program error!'
         # print 'base64string: %s, string: %s' % (base64string, string)
 # 从命令行获取base64字符串,注意一定是base64哦!
@@ -56,7 +60,7 @@ b64 = 'hello'
 # print b64
 request_header = b64convertdict(b64)
 # print request_header
-if request_header != 0 :
+if request_header != 0:
     create_requestheader.createfile(request_header)
 else:
     print 'last func errors!'
