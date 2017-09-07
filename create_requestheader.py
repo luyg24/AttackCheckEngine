@@ -10,9 +10,16 @@ import random
 def createfile(request_header):
     try:
         #生成16位文件名
-        filename = ''.join(random.sample(string.ascii_letters + string.digits, 16))
-        print type(request_header)
-        print request_header['method']
+        filepath = '/data/tmp/attack_engine/'
+        tmpname = ''.join(random.sample(string.ascii_letters + string.digits, 16))
+        filename = filepath+tmpname
+        print request_header
+        # 写文件
+        file = open(filename, 'a')
+        line1 = request_header['method'] + ' ' + request_header['url'] + ' ' + request_header['protocol']
+        print line1
+        # file.write(line1)
+        # file.close()
     except Exception, e:
         print 'error'
 #获取request header 注意是dict格式
