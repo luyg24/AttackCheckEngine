@@ -47,4 +47,49 @@ def check_lines():
     #         ext = result[0][0]
     #         if ext in ['php', 'PHP', 'CGI', 'cgi', 'jsp', 'JSP', 'asp', 'ASP', 'aspx', 'ASPX']:
     #             check_record(i)
-check_lines()
+
+def get_sqlline(endline, startline = 1):
+    #控制次数
+    for i in range(endline):
+        startline += 1
+    print endline, startline
+    # data = ''
+    # post = ''
+    # checksql = 'select content_type  from capture where id = %d' % (number)
+    # checkmethod = 'select method from capture where id = %d' % (number)
+    # getsql = 'select method,url,host,request_header from capture where id = %d' % (number)
+    # postsql = 'select method,url,host,request_header,request_content from capture where id = %d' % (number)
+    # cursor.execute(checksql)
+    # content_type = cursor.fetchall()
+    # if content_type[0][0]:
+    #     if content_type[0][0] in ['text/html', 'application/octet-stream']:
+    #         cursor.execute(checkmethod)
+    #         method = cursor.fetchall()
+    #         method = method[0][0]
+    #         if method == 'GET':
+    #             cursor.execute(getsql)
+    #             data = cursor.fetchall()
+    #             data = data[0]
+    #         elif method == 'POST':
+    #             cursor.execute(postsql)
+    #             data = cursor.fetchall()
+    #             data = data[0]
+    #         else:
+    #             print 'maybe error'
+    # else:
+    #     print 'no match!'
+    # if len(data) > 0:
+    #     method = data[0]
+    #     url = data[1]
+    #     host = data[2]
+    #     header = data[3]
+    #     if len(data) > 4:
+    #         post = data[4]
+    #     print method, url, host, header, post
+    #     #create_request(method, url, host, header, post)
+    # else:
+    #     print 'no match'
+    # cursor.close()
+
+sql_count = check_lines()
+get_sqlline(sql_count, 1)
