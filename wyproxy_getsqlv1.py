@@ -54,7 +54,8 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
         cursor.execute(checkmethod)
         method = cursor.fetchall()
         # print method
-        method = method[0][0]
+        if len(method) > 0:
+            method = method[0][0]
         if method == 'GET':
             cursor.execute(getsql)
             data = cursor.fetchall()
