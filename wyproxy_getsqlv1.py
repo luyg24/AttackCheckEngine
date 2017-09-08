@@ -59,6 +59,7 @@ def get_sqlline(endline, startline = 1):
         postsql = 'select method,url,host,request_header,request_content from capture where id = %d' % (startline)
         cursor.execute(checksql)
         content_type = cursor.fetchall()
+        startline = startline + 1
         if len(content_type) == 0 :
             continue
         #print content_type
@@ -90,7 +91,6 @@ def get_sqlline(endline, startline = 1):
             #create_request(method, url, host, header, post)
         else:
             print 'no match'
-        startline += 1
     cursor.close()
     startline = startline - 1
     print endline, startline
