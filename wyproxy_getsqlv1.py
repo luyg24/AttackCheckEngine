@@ -71,7 +71,8 @@ def get_sqlline(endline, startline = 1):
         if method == 'GET':
             cursor.execute(getsql)
             data = cursor.fetchall()
-            data = data[0]
+            if len(data) > 0:
+                data = data[0]
 
         # elif method == 'POST':
         #     cursor.execute(postsql)
