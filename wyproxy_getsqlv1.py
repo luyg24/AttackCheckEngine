@@ -71,7 +71,8 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             header = data[3]
             if len(data) > 4:
                 post = data[4]
-            print method, url, host, header, post
+            # print method, url, host, header, post
+            print header
             #create_request(method, url, host, header, post)
         else:
             continue
