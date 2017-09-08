@@ -53,52 +53,42 @@ def get_sqlline(endline, startline = 1):
     for i in range(endline):
         data = ''
         post = ''
-        checksql = 'select content_type  from capture where id = %d' % (startline)
+        # checksql = 'select content_type  from capture where id = %d' % (startline)
         checkmethod = 'select method from capture where id = %d' % (startline)
-        getsql = 'select method,url,host,request_header from capture where id = %d' % (startline)
-        postsql = 'select method,url,host,request_header,request_content from capture where id = %d' % (startline)
+        getsql = 'select method,url,host,request_header from capture where (id = %d and content_type = "text/html")' \
+                % (startline)
+        postsql = 'select method,url,host,request_header,request_content from capture \
+                where (id = %d and content_type = "text/html")' % (startline)
         checkext = 'select extension from capture where id = %d' %(startline)
-        cursor.execute(checkext)
-        result = cursor.fetchall()
+        # cursor.execute(checkext)
+        # result = cursor.fetchall()
         startline += 1
         #过滤掉一些静态页面
-        if len(result) == 1:
-            ext = result[0][0]
-            if ext in ['php', 'PHP', 'CGI', 'cgi', 'jsp', 'JSP', 'asp', 'ASP', 'aspx', 'ASPX']:
-                cursor.execute(checksql)
-                content_type = cursor.fetchall()
-                if len(content_type) == 0 :
-                    continue
-                if content_type[0][0]:
-                    if content_type[0][0] in ['text/html', 'application/octet-stream']:
-                        cursor.execute(checkmethod)
-                        method = cursor.fetchall()
-                        method = method[0][0]
-                        if method == 'GET':
-                            cursor.execute(getsql)
-                            data = cursor.fetchall()
-                            data = data[0]
-                        elif method == 'POST':
-                            cursor.execute(postsql)
-                            data = cursor.fetchall()
-                            data = data[0]
-                        else:
-                            print 'maybe error'
-                else:
-                    print 'no match!'
-                if len(data) > 0:
-                    method = data[0]
-                    url = data[1]
-                    host = data[2]
-                    header = data[3]
-                    if len(data) > 4:
-                        post = data[4]
-                    print method, url, host, header, post
-                    #create_request(method, url, host, header, post)
-                else:
-                    continue
-            else:
-                continue
+        cursor.execute(checkmethod)
+        method = cursor.fetchall()
+        method = method[0][0]
+        if method == 'GET':
+            cursor.execute(getsql)
+            data = cursor.fetchall()
+            data = data[0]
+        elif method == 'POST':
+            cursor.execute(postsql)
+            data = cursor.fetchall()
+            data = data[0]
+        else:
+            print 'maybe error'
+
+        if len(data) > 0:
+            method = data[0]
+            url = data[1]
+            host = data[2]
+            header = data[3]
+            if len(data) > 4:
+                post = data[4]
+            print method, url, host, header, post
+            #create_request(method, url, host, header, post)
+        else:
+            continue
     cursor.close()
     startline = startline - 1
     print endline, startline
