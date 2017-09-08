@@ -9,7 +9,7 @@ import commands
 import re
 
 # connect
-conn = MySQLdb.connect(host = '127.0.0.1', user = 'root', passwd = 'wif83gjsfj24jf3' , db = 'wyproxy')
+conn = MySQLdb.connect(host = '127.0.0.1', user = 'xxxxxx', passwd = 'xxxxxx' , db = 'xxxxxxx')
 cursor = conn.cursor()
 
 # check lines
