@@ -47,3 +47,4 @@ def check_lines():
     #         ext = result[0][0]
     #         if ext in ['php', 'PHP', 'CGI', 'cgi', 'jsp', 'JSP', 'asp', 'ASP', 'aspx', 'ASPX']:
     #             check_record(i)
+check_lines()
