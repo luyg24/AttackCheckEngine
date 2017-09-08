@@ -78,7 +78,7 @@ def get_sqlline(endline, startline = 1):
             data = data[0]
         else:
             print 'maybe error'
-
+        print data
         if len(data) > 0:
             method = data[0]
             url = data[1]
