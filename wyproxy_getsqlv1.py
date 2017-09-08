@@ -67,29 +67,29 @@ def get_sqlline(endline, startline = 1):
         cursor.execute(checkmethod)
         method = cursor.fetchall()
         print method
-        method = method[0][0]
-        if method == 'GET':
-            cursor.execute(getsql)
-            data = cursor.fetchall()
-            data = data[0]
-        elif method == 'POST':
-            cursor.execute(postsql)
-            data = cursor.fetchall()
-            data = data[0]
-        else:
-            print 'maybe error'
-        print data
-        if len(data) > 0:
-            method = data[0]
-            url = data[1]
-            host = data[2]
-            header = data[3]
-            if len(data) > 4:
-                post = data[4]
-            print method, url, host, header, post
-            #create_request(method, url, host, header, post)
-        else:
-            continue
+        # method = method[0][0]
+        # if method == 'GET':
+        #     cursor.execute(getsql)
+        #     data = cursor.fetchall()
+        #     data = data[0]
+        # elif method == 'POST':
+        #     cursor.execute(postsql)
+        #     data = cursor.fetchall()
+        #     data = data[0]
+        # else:
+        #     print 'maybe error'
+        # print data
+        # if len(data) > 0:
+        #     method = data[0]
+        #     url = data[1]
+        #     host = data[2]
+        #     header = data[3]
+        #     if len(data) > 4:
+        #         post = data[4]
+        #     print method, url, host, header, post
+        #     #create_request(method, url, host, header, post)
+        # else:
+        #     continue
     cursor.close()
     startline = startline - 1
     print endline, startline
