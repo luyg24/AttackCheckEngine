@@ -59,6 +59,9 @@ def get_sqlline(endline, startline = 1):
         postsql = 'select method,url,host,request_header,request_content from capture where id = %d' % (startline)
         cursor.execute(checksql)
         content_type = cursor.fetchall()
+        if len(content_type) == 0 :
+            continue
+        #print content_type
         if content_type[0][0]:
             if content_type[0][0] in ['text/html', 'application/octet-stream']:
                 cursor.execute(checkmethod)
