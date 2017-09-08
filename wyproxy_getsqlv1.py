@@ -7,6 +7,7 @@ import string
 import random
 import commands
 import re
+import time
 
 #获取mysql参数
 file = open('mysql.conf','r')
@@ -91,7 +92,11 @@ def get_sqlline(endline, startline = 1):
             continue
     cursor.close()
     startline = startline - 1
-    print endline, startline
+    return startline
 
 sql_count = check_lines()
-get_sqlline(sql_count, 1)
+startline = get_sqlline(sql_count, 1)
+while 1:
+    sql_count = check_lines()
+    startline = get_sqlline(sql_count, startline)
+    time.sleep(3)
