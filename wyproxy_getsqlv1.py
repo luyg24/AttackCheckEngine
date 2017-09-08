@@ -9,32 +9,12 @@ import commands
 import re
 import time
 
-#获取mysql参数
-file = open('mysql.conf','r')
-content = file.read()
-content = content.split('\n')
 
-# print content, len(content)
-for i in range(len(content)):
-    if i > 3:
-        break
-    else:
-        tmp = content[i].split(':')
-        if tmp[0] == 'host':
-            host = tmp[1]
-        elif tmp[0] == 'user':
-            user = tmp[1]
-        elif tmp[0] == 'pass':
-            passwd = tmp[1]
-        elif tmp[0] == 'db':
-            db = tmp[1]
-        else:
-            'error'
 # connect
 # conn = MySQLdb.connect(host = host, user = user, passwd = passwd , db = db)
 # cursor = conn.cursor()
 
-def check_lines():
+def check_lines(host, user, passwd, db):
     conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
     cursor = conn.cursor()
     sql = 'select count(*) from capture '
@@ -53,7 +33,7 @@ def check_lines():
     #         if ext in ['php', 'PHP', 'CGI', 'cgi', 'jsp', 'JSP', 'asp', 'ASP', 'aspx', 'ASPX']:
     #             check_record(i)
 
-def get_sqlline(endline, startline = 1):
+def get_sqlline(host, user, passwd, db, endline, startline = 1):
     conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
     cursor = conn.cursor()
     #控制次数
@@ -101,9 +81,30 @@ def get_sqlline(endline, startline = 1):
     startline = startline - 1
     return startline
 
-sql_count = check_lines()
-startline = get_sqlline(sql_count, 1)
+#获取mysql参数
+file = open('mysql.conf','r')
+content = file.read()
+content = content.split('\n')
+
+# print content, len(content)
+for i in range(len(content)):
+    if i > 3:
+        break
+    else:
+        tmp = content[i].split(':')
+        if tmp[0] == 'host':
+            host = tmp[1]
+        elif tmp[0] == 'user':
+            user = tmp[1]
+        elif tmp[0] == 'pass':
+            passwd = tmp[1]
+        elif tmp[0] == 'db':
+            db = tmp[1]
+        else:
+            'error'
+sql_count = check_lines(host, user, passwd, db)
+startline = get_sqlline(host, user, passwd, db, sql_count, 1)
 while 1:
-    sql_count = check_lines()
-    startline = get_sqlline(sql_count, startline)
+    sql_count = check_lines(host, user, passwd, db)
+    startline = get_sqlline(host, user, passwd, db, sql_count, startline)
     time.sleep(3)
