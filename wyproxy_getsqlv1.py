@@ -37,7 +37,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
     conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
     cursor = conn.cursor()
     #控制次数
-    for i in range(endline):
+    for i in range(endline - startline + 1):
         data = ''
         post = ''
         # checksql = 'select content_type  from capture where id = %d' % (startline)
