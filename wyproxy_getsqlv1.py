@@ -31,10 +31,12 @@ for i in range(len(content)):
         else:
             'error'
 # connect
-conn = MySQLdb.connect(host = host, user = user, passwd = passwd , db = db)
-cursor = conn.cursor()
+# conn = MySQLdb.connect(host = host, user = user, passwd = passwd , db = db)
+# cursor = conn.cursor()
 
 def check_lines():
+    conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
+    cursor = conn.cursor()
     sql = 'select count(*) from capture '
     cursor.execute(sql)
     result = cursor.fetchall()
