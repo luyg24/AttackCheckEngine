@@ -38,7 +38,7 @@ def check_lines():
     cursor.execute(sql)
     result = cursor.fetchall()
     result = int(result[0][0])
-    print result
+    return result
     # for i in range(result):
     #     sql = 'select extension from capture where id = %d' %i
     #     cursor.execute(sql)
