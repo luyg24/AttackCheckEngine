@@ -87,8 +87,8 @@ def get_sqlline(endline, startline = 1):
             #create_request(method, url, host, header, post)
         else:
             print 'no match'
-        cursor.close()
         startline += 1
+    cursor.close()
     startline = startline - 1
     print endline, startline
 
