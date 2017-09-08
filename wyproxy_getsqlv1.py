@@ -66,6 +66,7 @@ def get_sqlline(endline, startline = 1):
         #过滤掉一些静态页面
         cursor.execute(checkmethod)
         method = cursor.fetchall()
+        print method
         method = method[0][0]
         if method == 'GET':
             cursor.execute(getsql)
