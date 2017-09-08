@@ -47,8 +47,6 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
         postsql = 'select method,url,host,request_header,request_content from capture \
                 where (id = %d and content_type = "text/html")' % (startline)
         checkext = 'select extension from capture where id = %d' %(startline)
-        # cursor.execute(checkext)
-        # result = cursor.fetchall()
         startline += 1
         #过滤掉一些静态页面
         cursor.execute(checkmethod)
@@ -104,8 +102,10 @@ for i in range(len(content)):
         else:
             'error'
 sql_count = check_lines(host, user, passwd, db)
-startline = get_sqlline(host, user, passwd, db, sql_count, 1)
+startcount = get_sqlline(host, user, passwd, db, sql_count, 1)
 while 1:
     sql_count = check_lines(host, user, passwd, db)
-    startline = get_sqlline(host, user, passwd, db, sql_count, startline)
+    print sql_count, startcount
+    if sql_count > startcount:
+        startcount = get_sqlline(host, user, passwd, db, sql_count, startcount + 1)
     time.sleep(3)
