@@ -41,6 +41,8 @@ def check_lines():
     cursor.execute(sql)
     result = cursor.fetchall()
     result = int(result[0][0])
+    cursor.close()
+    conn.close()
     return result
     # for i in range(result):
     #     sql = 'select extension from capture where id = %d' %i
@@ -52,6 +54,8 @@ def check_lines():
     #             check_record(i)
 
 def get_sqlline(endline, startline = 1):
+    conn = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
+    cursor = conn.cursor()
     #控制次数
     for i in range(endline):
         data = ''
@@ -93,6 +97,7 @@ def get_sqlline(endline, startline = 1):
         else:
             continue
     cursor.close()
+    conn.close()
     startline = startline - 1
     return startline
 
