@@ -65,6 +65,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             data = cursor.fetchall()
             if len(data) > 0:
                 data = data[0]
+                print data
         if len(data) > 0:
             method = data[0]
             url = data[1]
