@@ -109,7 +109,7 @@ for i in range(len(content)):
         else:
             'error'
 sql_count = check_lines(host, user, passwd, db)
-startcount = get_sqlline(host, user, passwd, db, sql_count, 77)
+startcount = get_sqlline(host, user, passwd, db, sql_count, 118)
 while 1:
     sql_count = check_lines(host, user, passwd, db)
     print sql_count, startcount
