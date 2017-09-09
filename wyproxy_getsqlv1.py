@@ -8,6 +8,7 @@ import random
 import commands
 import re
 import time
+import create_requestheader
 
 
 # connect
@@ -78,7 +79,9 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             if len(data) > 0:
                 post = data[0][0]
                 request_header['postdata'] = post
-        print request_header
+        if len(request_header)> 0:
+            # print request_header
+            create_requestheader(request_header)
     cursor.close()
     conn.close()
     startline = startline - 1
