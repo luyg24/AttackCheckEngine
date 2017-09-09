@@ -43,10 +43,9 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
         request_header = {}
         # checksql = 'select content_type  from capture where id = %d' % (startline)
         checkmethod = 'select method from capture where id = %d' % (startline)
-        getsql = 'select method,url,host,request_header from capture where (id = %d and content_type = "text/html")' \
+        reqsql = 'select method,url,host,request_header from capture where (id = %d and content_type = "text/html")' \
                 % (startline)
-        postsql = 'select method,url,host,request_header,request_content from capture \
-                where (id = %d and content_type = "text/html")' % (startline)
+        postsql = 'select request_content from capture where (id = %d and content_type = "text/html")' % (startline)
         checkext = 'select extension from capture where id = %d' %(startline)
         startline += 1
         #过滤掉一些静态页面
@@ -55,17 +54,10 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
         # print method
         if len(method) > 0:
             method = method[0][0]
-        if method == 'GET':
-            cursor.execute(getsql)
+            cursor.execute(reqsql)
             data = cursor.fetchall()
             if len(data) > 0:
                 data = data[0]
-        elif method == 'POST':
-            cursor.execute(postsql)
-            data = cursor.fetchall()
-            if len(data) > 0:
-                data = data[0]
-                print data
         if len(data) > 0:
             method = data[0]
             url = data[1]
@@ -79,10 +71,14 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             request_header['method'] = method
             request_header['url'] = url
             request_header['protocol'] = 'HTTP/1.1'
-            print request_header, type(request_header)
             #create_request(method, url, host, header, post)
-        else:
-            continue
+        if method == 'POST':
+            cursor.execute(postsql)
+            data = cursor.fetchall()
+            if len(data) > 0:
+                post = data[0]
+                request_header['postdata'] = post
+        print request_header
     cursor.close()
     conn.close()
     startline = startline - 1
