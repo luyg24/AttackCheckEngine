@@ -9,7 +9,7 @@ import commands
 
 
 def runsqlmap(filepath):
-    sqlcheck = 'python /home/program/github/sqlmap/sqlmap.py -r' + filepath + ' --level=3 --dbs \
+    sqlcheck = 'python /home/program/github/sqlmap/sqlmap.py -r ' + filepath + ' --level=3 --dbs \
      --answers="quit=N,follow=N"  --batch --flush-session --purge-output'
     sqlfile = open('sqlresult.txt', 'a')
     sqlresult = 'available databases'
