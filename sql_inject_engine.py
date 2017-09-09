@@ -9,8 +9,8 @@ import commands
 
 
 def runsqlmap(filepath):
-    sqlcheck = 'python /data/github/sqlmap/sqlmap.py -r' + filepath + ' --level=3 --dbs  --answers="quit=N,follow=N"  \
-    --batch --flush-session --purge-output'
+    sqlcheck = 'python /home/program/github/sqlmap/sqlmap.py -r' + filepath + ' --level=3 --dbs \
+     --answers="quit=N,follow=N"  --batch --flush-session --purge-output'
     sqlfile = open('sqlresult.txt', 'a')
     sqlresult = 'available databases'
     (status, output) = commands.getstatusoutput(sqlcheck)
