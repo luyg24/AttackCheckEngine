@@ -33,7 +33,7 @@ def createfile(request_header):
             file.write('\n')
             file.write(postdata)
         file.close()
-        sql_inject_engine.runsqlmap(filepath)
+        sql_inject_engine.runsqlmap(filename)
     except Exception as e:
         print Exception, e
         print 'error'
