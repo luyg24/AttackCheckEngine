@@ -73,7 +73,12 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             if len(data) > 4:
                 post = data[4]
             # print method, url, host, header, post
-            print header, type(header)
+            # 字符串转换成dict,组装成新的dict
+            request_header = json.loads(header)
+            request_header['method'] = method
+            request_header['url'] = url
+            request_header['protocol'] = 'HTTP/1.1'
+            print request_header, type(request_header)
             #create_request(method, url, host, header, post)
         else:
             continue
