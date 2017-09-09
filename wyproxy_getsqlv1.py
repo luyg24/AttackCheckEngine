@@ -81,7 +81,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
                 request_header['postdata'] = post
         if len(request_header)> 0:
             # print request_header
-            create_requestheader(request_header)
+            create_requestheader.createfile(request_header)
     cursor.close()
     conn.close()
     startline = startline - 1
