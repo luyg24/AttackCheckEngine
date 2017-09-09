@@ -63,8 +63,8 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             url = data[1]
             host = data[2]
             header = data[3]
-            if len(data) > 4:
-                post = data[4]
+            # if len(data) > 4:
+            #     post = data[4]
             # print method, url, host, header, post
             # 字符串转换成dict,组装成新的dict
             request_header = json.loads(header)
@@ -76,7 +76,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             cursor.execute(postsql)
             data = cursor.fetchall()
             if len(data) > 0:
-                post = data[0]
+                post = data[0][0]
                 request_header['postdata'] = post
         print request_header
     cursor.close()
