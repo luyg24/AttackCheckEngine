@@ -40,6 +40,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
     for i in range(endline - startline + 1):
         data = ''
         post = ''
+        request_header = {}
         # checksql = 'select content_type  from capture where id = %d' % (startline)
         checkmethod = 'select method from capture where id = %d' % (startline)
         getsql = 'select method,url,host,request_header from capture where (id = %d and content_type = "text/html")' \
@@ -72,7 +73,7 @@ def get_sqlline(host, user, passwd, db, endline, startline = 1):
             if len(data) > 4:
                 post = data[4]
             # print method, url, host, header, post
-            print header
+            print header, type(header)
             #create_request(method, url, host, header, post)
         else:
             continue
@@ -103,7 +104,7 @@ for i in range(len(content)):
         else:
             'error'
 sql_count = check_lines(host, user, passwd, db)
-startcount = get_sqlline(host, user, passwd, db, sql_count, 1)
+startcount = get_sqlline(host, user, passwd, db, sql_count, 77)
 while 1:
     sql_count = check_lines(host, user, passwd, db)
     print sql_count, startcount
