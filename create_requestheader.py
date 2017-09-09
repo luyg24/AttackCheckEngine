@@ -6,6 +6,7 @@ create request header file, default path: "/data/tmp/attack_engine"
 import sys
 import string
 import random
+import sql_inject_engine
 
 def createfile(request_header):
     try:
@@ -32,6 +33,7 @@ def createfile(request_header):
             file.write('\n')
             file.write(postdata)
         file.close()
+        sql_inject_engine.runsqlmap(filepath)
     except Exception as e:
         print Exception, e
         print 'error'
