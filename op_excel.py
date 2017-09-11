@@ -8,7 +8,7 @@ import xlwt
 import xlrd
 
 
-wbk = xlrd.open_workbook('guanxing_result.txt')
+wbk = xlrd.open_workbook('test.xls')
 worksheet = wbk.sheet_by_name('test')
 num_rows = worksheet.nrows
 print num_rows
