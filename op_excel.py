@@ -8,6 +8,7 @@ import xlrd
 import commands
 import datetime
 from xlutils.copy import copy
+import sendmail
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -49,5 +50,6 @@ line = output.split()
 line =  int(line[0])
 if line > 0:
     create_excel('guanxing_result.txt')
+    sendmail.my.send()
 else:
     print 'nothing!'
