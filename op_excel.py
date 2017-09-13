@@ -44,5 +44,10 @@ def create_excel(filename):
         row += 1
     newwb.save(date_filename)
 
-
-create_excel('guanxing_result.txt')
+status, output = commands.getstatusoutput('wc -l guanxing_result.txt')
+line = output.split()
+line =  int(line[0])
+if line > 0:
+    create_excel('guanxing_result.txt')
+else:
+    print 'nothing!'

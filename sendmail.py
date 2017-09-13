@@ -101,5 +101,6 @@ if __name__=="__main__":
     print type(my.cc_list)
     print my.user, type(my.user)
     my.msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
+    my.doc = ['']
     # my.doc = ['abc.doc','bcd.doc']
     my.send()
