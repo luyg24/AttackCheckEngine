@@ -2,3 +2,8 @@
 *.conf
 *.txt
 *.bak
+*.gz
+*.tar
+*.doc
+*.rar
+*.zip

@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-process excel
+可以提前做好一个excel模版, 基于这个模版填充要写的excel数据
 """
 import xlwt
 import xlrd
@@ -34,7 +34,7 @@ def create_excel(filename):
         news.write(row, 0, ip)
         news.write(row, 1, bus)
         news.write(row, 2, addr)
-        if add_red == 'out':
+        if add_red == 'add':
             news.write(row, 3, port)
         elif add_red == 'red':
             news.write(row, 4, port)
