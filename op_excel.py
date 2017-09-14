@@ -21,6 +21,7 @@ def create_excel(filename):
     news = newwb.get_sheet(0);
     file = open(filename, 'r')
     content = file.readlines()
+    ncontent = []
     #print content
     row = 2
     for i in range(len(content)):
@@ -44,8 +45,10 @@ def create_excel(filename):
             pass
         news.write(row, 7, in_out)
         row += 1
+        if in_out.lower() != 'out':
+            ncontent.append(content)
     newwb.save(date_filename)
-    content = '\n'.join(content)
+    content = '\n'.join(ncontent)
     return(content, date_filename)
 
 status, output = commands.getstatusoutput('wc -l guanxing_result.txt')
