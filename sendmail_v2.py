@@ -16,13 +16,16 @@ def send(user, password, to_list, cc_list, tag, msg, doc):
     发送邮件
     '''
     try:
+        result = 0
         server = smtplib.SMTP_SSL("smtp.exmail.qq.com", port=465)
         server.login(user, password)
         server.sendmail("<%s>" % user, to_list + cc_list, get_attach(user, password, to_list, cc_list, tag, msg, doc))
         server.close()
-        print "send email successful"
+        #print "send email successful"
     except Exception, e:
-        print "send email failed %s" % e
+        #print "send email failed %s" % e
+        result = 1
+    return(result)
 
 
 def get_attach(user, password, to_list, cc_list, tag, msg, doc):
@@ -51,7 +54,6 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
         # 文件名汉字用gbk编码代替
         for i in range(len(doc)):
             file = doc[i]
-            print file
             name = os.path.basename(file).encode("gbk")
             f = open(file, "rb")
             doc = MIMEText(f.read(), "base64", "gb2312")
@@ -62,6 +64,7 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
     return attach.as_string()
 
 def get_conf(tag = None, message = None, filename = None):
+    # filename这里是附件的文件名，如果是多个','隔开即可，下面会自动放在list中
     file = open('mail.conf','r')
     content = file.readlines()
     to_list = []
@@ -94,8 +97,10 @@ def get_conf(tag = None, message = None, filename = None):
     #tag = "个人测试"
     #msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
     msg = MIMEText(message, 'plain', 'utf-8')
-    doc = []
+    #doc = []
+    doc = filename.split(',')
     #doc = ['2017-09-13']
     # my.doc = ['abc.doc','bcd.doc']
-    doc.append(filename)
-    send(user, password, to_list, cc_list, tag, msg, doc)
+    #doc.append(filename)
+    result = send(user, password, to_list, cc_list, tag, msg, doc)
+    return(result)

@@ -57,7 +57,7 @@ line =  int(line[0])
 if line > 0:
     content, filename = create_excel('guanxing_result.txt')
     mail_subject = u'观星台审计'
-    sendmail_v2.get_conf(mail_subject, content, filename)
-
+    result = sendmail_v2.get_conf(mail_subject, content, filename)
+    print result
 else:
     print 'nothing!'
