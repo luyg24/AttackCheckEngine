@@ -31,8 +31,9 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
     '''
     attach = MIMEMultipart()
     # mail_txt = MIMEText("你好,a test mail!")
-    mail_txt = MIMEText(msg)
-    attach.attach(mail_txt)
+    #mail_txt = MIMEText(msg)
+    #attach.attach(mail_txt)
+    attach.attach(msg)
     if tag is not None:
         # 主题,最上面的一行
         attach["Subject"] = tag
