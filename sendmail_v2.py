@@ -93,7 +93,7 @@ def get_conf(message = None, filename = None):
     cc_list = cc_list
     tag = "个人测试"
     #msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
-    msg = MIMEText(u'%s', 'plain', 'utf-8') %message
+    msg = MIMEText(message, 'plain', 'utf-8')
     doc = []
     #doc = ['2017-09-13']
     # my.doc = ['abc.doc','bcd.doc']
