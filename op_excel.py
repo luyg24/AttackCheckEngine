@@ -21,7 +21,6 @@ def create_excel(filename):
     news = newwb.get_sheet(0);
     file = open(filename, 'r')
     content = file.readlines()
-    print content
     row = 2
     for i in range(len(content)):
         tmp = content[i].split('$$')
@@ -45,14 +44,14 @@ def create_excel(filename):
         news.write(row, 7, in_out)
         row += 1
     newwb.save(date_filename)
-    return(date_filename)
+    return(content, date_filename)
 
 status, output = commands.getstatusoutput('wc -l guanxing_result.txt')
 line = output.split()
 line =  int(line[0])
 if line > 0:
-    filename = create_excel('guanxing_result.txt')
-    sendmail_v2.get_conf(filename)
+    content, filename = create_excel('guanxing_result.txt')
+    sendmail_v2.get_conf(content, filename)
 
 else:
     print 'nothing!'
