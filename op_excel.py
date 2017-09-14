@@ -45,7 +45,8 @@ def create_excel(filename):
         news.write(row, 7, in_out)
         row += 1
     newwb.save(date_filename)
-    return(content[0], date_filename)
+    content = '\n'.join(content)
+    return(content, date_filename)
 
 status, output = commands.getstatusoutput('wc -l guanxing_result.txt')
 line = output.split()
