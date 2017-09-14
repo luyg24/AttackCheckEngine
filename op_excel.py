@@ -46,7 +46,7 @@ def create_excel(filename):
         news.write(row, 7, in_out)
         row += 1
         if in_out.lower() != 'out':
-            ncontent.append(content)
+            ncontent.append(content[i])
     newwb.save(date_filename)
     content = '\n'.join(ncontent)
     return(content, date_filename)
