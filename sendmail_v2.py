@@ -93,4 +93,5 @@ def get_conf(doc = None):
     msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
     #doc = ['2017-09-13']
     # my.doc = ['abc.doc','bcd.doc']
+    print doc
     send(user, password, to_list, cc_list, tag, msg, doc)
