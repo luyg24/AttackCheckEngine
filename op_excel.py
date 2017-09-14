@@ -21,6 +21,7 @@ def create_excel(filename):
     news = newwb.get_sheet(0);
     file = open(filename, 'r')
     content = file.readlines()
+    print content
     row = 2
     for i in range(len(content)):
         tmp = content[i].split('$$')
