@@ -30,7 +30,8 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
     构造邮件内容
     '''
     attach = MIMEMultipart()
-    mail_txt = MIMEText("你好,a test mail!")
+    # mail_txt = MIMEText("你好,a test mail!")
+    mail_txt = MIMEText(msg)
     attach.attach(mail_txt)
     if tag is not None:
         # 主题,最上面的一行
