@@ -8,7 +8,7 @@ import xlrd
 import commands
 import datetime
 from xlutils.copy import copy
-import sendmail
+import sendmail_v2
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -44,12 +44,14 @@ def create_excel(filename):
         news.write(row, 7, in_out)
         row += 1
     newwb.save(date_filename)
+    return(date_filename)
 
 status, output = commands.getstatusoutput('wc -l guanxing_result.txt')
 line = output.split()
 line =  int(line[0])
 if line > 0:
-    create_excel('guanxing_result.txt')
+    filename = create_excel('guanxing_result.txt')
+    sendmail_v2.get_conf(doc = filename)
 
 else:
     print 'nothing!'

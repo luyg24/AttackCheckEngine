@@ -59,38 +59,38 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
             f.close()
     return attach.as_string()
 
+def get_conf(doc = None):
+    file = open('mail.conf','r')
+    content = file.readlines()
+    to_list = []
+    cc_list = []
+    tmp = [1, 2, 3, 4]
+    for i in range(len(content)):
+        # print content[i]
+        tmp1 = content[i].split('=')
+        tmp[i] = tmp1[1]
+        #tmp[i] = tmp1[1]
+        #print tmp[i]
+    tmp_tolist = tmp[0].split(',')
+    if len(tmp_tolist) == 1:
+        to_list.append(tmp[0].strip())
+    else:
+        for i in range(len(tmp_tolist)):
+            to_list.append(tmp_tolist[i].strip())
+    tmp_cclist = tmp[1].split(',')
+    if len(tmp_cclist) == 1:
+        cc_list.append(tmp[1].strip())
+    else:
+        for i in range(len(tmp_cclist)):
+            cc_list.append(tmp_cclist[i].strip())
+            #print tmp_tolist
 
-file = open('mail.conf','r')
-content = file.readlines()
-to_list = []
-cc_list = []
-tmp = [1, 2, 3, 4]
-for i in range(len(content)):
-    # print content[i]
-    tmp1 = content[i].split('=')
-    tmp[i] = tmp1[1]
-    #tmp[i] = tmp1[1]
-    #print tmp[i]
-tmp_tolist = tmp[0].split(',')
-if len(tmp_tolist) == 1:
-    to_list.append(tmp[0].strip())
-else:
-    for i in range(len(tmp_tolist)):
-        to_list.append(tmp_tolist[i].strip())
-tmp_cclist = tmp[1].split(',')
-if len(tmp_cclist) == 1:
-    cc_list.append(tmp[1].strip())
-else:
-    for i in range(len(tmp_cclist)):
-        cc_list.append(tmp_cclist[i].strip())
-        #print tmp_tolist
-
-user = tmp[2].strip()
-password = tmp[3].strip()
-to_list = to_list
-cc_list = cc_list
-tag = "个人测试"
-msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
-#doc = ['2017-09-13']
-# my.doc = ['abc.doc','bcd.doc']
-send(user, password, to_list, cc_list, tag, msg, doc = None)
+    user = tmp[2].strip()
+    password = tmp[3].strip()
+    to_list = to_list
+    cc_list = cc_list
+    tag = "个人测试"
+    msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
+    #doc = ['2017-09-13']
+    # my.doc = ['abc.doc','bcd.doc']
+    send(user, password, to_list, cc_list, tag, msg, doc = None)
