@@ -59,7 +59,7 @@ def get_attach(user, password, to_list, cc_list, tag, msg, doc):
             f.close()
     return attach.as_string()
 
-def get_conf(doc = None):
+def get_conf(filename = None):
     file = open('mail.conf','r')
     content = file.readlines()
     to_list = []
@@ -91,7 +91,8 @@ def get_conf(doc = None):
     cc_list = cc_list
     tag = "个人测试"
     msg = MIMEText(u'hello你好,send by Python...', 'plain', 'utf-8')
+    doc = []
     #doc = ['2017-09-13']
     # my.doc = ['abc.doc','bcd.doc']
-    print doc
+    doc.append(filename)
     send(user, password, to_list, cc_list, tag, msg, doc)
