@@ -22,7 +22,7 @@ def logging():
         status, output = commands.getstatusoutput('touch logs/%s' %date)
     status, output = commands.getstatusoutput('pwd')
 
-    logfile = output + 'logs/' + date
+    logfile = output + '/logs/' + date
     return(logfile)
     # create log file , named by date
 

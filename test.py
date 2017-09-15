@@ -12,6 +12,7 @@ def test():
         print 'hello'
     except Exception as e:
         logfile = record_err.logging()
+        print logfile
         reclog = open(logfile, 'a')
         localtime = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
         reclog.write('%s  %s, %s\n' %(localtime, Exception, e))
