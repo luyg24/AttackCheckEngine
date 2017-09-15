@@ -27,8 +27,7 @@ def getlogfile():
     return(logfile)
 
 def logrecord():
-    logfile = getlogfile()
-    reclog = open(logfile, 'a')
+    reclog = open(getlogfile(), 'a')
     localtime = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
     # reclog.write('%s  %s, %s\n' %(localtime, Exception, e))
     reclog.write('%s  reason:%s\n' % (localtime, traceback.format_exc()))
