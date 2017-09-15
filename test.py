@@ -17,4 +17,5 @@ def test():
         print ae
     except Exception as e:
         record_err.logrecord()
+        test2()
 test()
