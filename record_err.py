@@ -27,4 +27,3 @@ def logging():
     # create log file , named by date
 
     status, output = commands.getstatusoutput('')
-print logging()
