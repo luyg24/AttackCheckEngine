@@ -6,8 +6,9 @@
 import commands
 import datetime
 import re
+import traceback
 
-def logging():
+def getlogfile():
     result = ''
     date = datetime.datetime.now().strftime('%Y-%m-%d')
     #check if exists logs folder
@@ -24,6 +25,11 @@ def logging():
 
     logfile = output + '/logs/' + date
     return(logfile)
-    # create log file , named by date
 
-    status, output = commands.getstatusoutput('')
+def logrecord():
+    logfile = getlogfile()
+    reclog = open(logfile, 'a')
+    localtime = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+    # reclog.write('%s  %s, %s\n' %(localtime, Exception, e))
+    reclog.write('%s  reason:%s\n' % (localtime, traceback.format_exc()))
+    reclog.close()
