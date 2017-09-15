@@ -20,7 +20,9 @@ def logging():
     result = re.search('No such file', output)
     if result is not None:
         status, output = commands.getstatusoutput('touch logs/%s' %date)
-    logfile = 'logs/' + date
+    status, output = commands.getstatusoutput('pwd')
+
+    logfile = output + 'logs/' + date
     return(logfile)
     # create log file , named by date
 
