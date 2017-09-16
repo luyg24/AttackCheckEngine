@@ -14,7 +14,13 @@ def test2():
 def test():
     try:
         print 'hello'
-        print ae
+        print '似懂非懂分sdfdfdf' \
+            'sabc', \
+            'sdf'
+        content = ('hello sdfsdf'
+                   '2sdf')
+        print content
+
     except Exception as e:
         record_err.logrecord()
         test2()
