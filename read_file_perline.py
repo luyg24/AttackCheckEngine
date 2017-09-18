@@ -49,13 +49,13 @@ def fileinfo(logfile, start_line=1):
         file_count = filecount(logfile)
         processed_line = filename(logfile, file_count, start_line)
         while 1:
-            file_record = open('file_no.txt', 'w')
+            file_record = open('file_no.txt', 'a')
             file_count = filecount(logfile)
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line+1)
+                print processed_line
                 file_record.write(str(processed_line))
                 file_record.close()
-
             time.sleep(3)
     except Exception as e:
         record_err.logrecord()
