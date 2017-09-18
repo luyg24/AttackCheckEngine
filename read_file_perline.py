@@ -7,15 +7,32 @@ fileinfo(filename, startline)
 """
 
 import record_err
+import attack_deliver
 import linecache
 import commands
 import time
+import json
 import datetime
 
 
 def readfile(content):
+    # change str to dict
     try:
-        print content
+        new_dict = {}
+        # if content is json str, convert to dict
+        con_dict = json.loads(content)
+        # get http attack type and info
+        if con_dict[u'subproto'] :
+            if con_dict[u'subproto'] == 'http':
+                new_dict[u'attack_type'] = con_dict[u'attack_type']
+                new_dict[u'hostname'] = con_dict[u'hostname']
+                new_dict[u'url'] = con_dict[u'url']
+                new_dict[u'method'] = con_dict[u'method']
+                new_dict[u'status'] = con_dict[u'status']
+                if con_dict[u'method'] == 'POST':
+                    new_dict[u'post'] = con_dict[u'postdata']
+        attack_deliver.catagory(new_dict)
+        # else , pass
     except Exception as e:
         record_err.logrecord()
 
@@ -53,7 +70,7 @@ def fileinfo(logfile, start_line=1):
             file_count = filecount(logfile)
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line+1)
-                print processed_line
+                # record the last processed line number
                 file_record.write(str(processed_line))
                 file_record.close()
             time.sleep(3)
