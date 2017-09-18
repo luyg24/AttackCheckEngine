@@ -14,7 +14,10 @@ import datetime
 
 
 def readfile(content):
-    print content
+    try:
+        print content
+    except Exception as e:
+        record_err.logrecord()
 
 
 def filename(logfile, file_count, startline):
@@ -32,21 +35,29 @@ def filename(logfile, file_count, startline):
 
 
 def filecount(logfile):
-    stats, output = commands.getstatusoutput('wc -l %s' % (logfile))
-    count = int(output.split()[0])
-    return count
+    try:
+        stats, output = commands.getstatusoutput('wc -l %s' % (logfile))
+        count = int(output.split()[0])
+        return count
+    except Exception as e:
+        record_err.logrecord()
 
 
 def fileinfo(logfile, start_line=1):
+    try:
     # 获取文件行数
-    file_count = filecount(logfile)
-    processed_line = filename(logfile, file_count, start_line)
-    while 1:
         file_count = filecount(logfile)
-        if file_count > processed_line:
-            processed_line = filename(logfile, file_count, processed_line+1)
+        processed_line = filename(logfile, file_count, start_line)
+        while 1:
+            file_record = open('file_no.txt', 'w')
+            file_count = filecount(logfile)
+            if file_count > processed_line:
+                processed_line = filename(logfile, file_count, processed_line+1)
+                file_record.write(processed_line)
 
-        time.sleep(3)
+            time.sleep(3)
+    except Exception as e:
+        record_err.logrecord()
 
 
 fileinfo('abc.txt', 2)
