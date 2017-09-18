@@ -22,7 +22,7 @@ def readfile(content):
         # if content is json str, convert to dict
         con_dict = json.loads(content)
         # get http attack type and info
-        if con_dict[u'subproto'] :
+        if con_dict[u'subproto']:
             if con_dict[u'subproto'] == 'http':
                 new_dict[u'attack_type'] = con_dict[u'attack_type']
                 new_dict[u'hostname'] = con_dict[u'hostname']
