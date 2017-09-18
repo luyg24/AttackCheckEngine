@@ -18,7 +18,7 @@ def readfile(line):
 def filename(logfile, file_count, startline):
     try:
         # 控制读取次数
-        for i in range(file_count- startline + 1):
+        for i in range(file_count-startline+1):
             print linecache.getline(logfile, startline)
             startline += 1
         # 已处理到多少行
@@ -34,8 +34,7 @@ def filecount(logfile):
     return count
 
 
-def fileinfo(filename, start_line=1):
-    logfile = filename
+def fileinfo(logfile, start_line=1):
     # 获取文件行数
     file_count = filecount(logfile)
     processed_line = filename(logfile, file_count, start_line)
