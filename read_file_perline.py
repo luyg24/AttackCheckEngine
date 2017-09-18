@@ -53,7 +53,8 @@ def fileinfo(logfile, start_line=1):
             file_count = filecount(logfile)
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line+1)
-                file_record.write(processed_line)
+                file_record.write(str(processed_line))
+                file_record.close()
 
             time.sleep(3)
     except Exception as e:
