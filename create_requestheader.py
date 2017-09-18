@@ -27,7 +27,7 @@ def createfile(request_header):
         if method == 'POST':
             postdata = request_header['postdata']
             del request_header['postdata']
-        for k,v in request_header.items():
+        for k, v in request_header.items():
             file.write('%s:%s\n' %(k, v))
         if method == 'POST':
             file.write('\n')
