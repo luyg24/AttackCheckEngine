@@ -45,4 +45,4 @@ def fileinfo(logfile, start_line=1):
         time.sleep(3)
 
 
-fileinfo('abc.txt', 1)
+fileinfo('abc.txt', 2)
