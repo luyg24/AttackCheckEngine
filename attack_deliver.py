@@ -26,6 +26,11 @@ def catagory(attack_data):
             if attack_data not in xsslist:
                 xsslist.append(attack_data)
                 count += 1
+        elif attack_data[u'attack_type'] == u'SQL注入' :
+            global xsslist
+            if attack_data not in xsslist:
+                xsslist.append(attack_data)
+                count += 1
         else:
             pass
         if count > 0:
