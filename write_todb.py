@@ -22,7 +22,8 @@ def getinfo(filename):
         tmp = content[i].split(':')
         key = tmp[0]
         value = tmp[1].split('\n')[0]
-        print key, value
+        config[key] = value
+    print config
     # print content
 
 
