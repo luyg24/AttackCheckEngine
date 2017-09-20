@@ -10,7 +10,8 @@ import linecache
 import commands
 import time
 
-def writedb(conf)
+def writedb(conf):
+    pass
 
 
 def getinfo(filename):
