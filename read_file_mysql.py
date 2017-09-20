@@ -13,6 +13,9 @@ import commands
 import time
 import json
 import datetime
+import read_file_mysql_delsame
+
+
 
 
 def readfile(content):
@@ -20,10 +23,8 @@ def readfile(content):
     try:
         # print content, type(content)
         dict_content = eval(content)
-        print dict_content, type(dict_content)
-        # dict_cont = json.loads(content)
-        # attack_deliver.catagory(new_dict)
-        # else , pass
+        read_file_mysql_delsame(dict_content)
+
     except Exception as e:
         record_err.logrecord()
 
