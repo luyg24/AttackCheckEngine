@@ -20,7 +20,9 @@ def getinfo(filename):
     content = file.readlines()
     for i in range(len(content)):
         tmp = content[i].split(':')
-        print tmp
+        key = tmp[0]
+        value = tmp[1].split('\n')[0]
+        print key, value
     # print content
 
 
