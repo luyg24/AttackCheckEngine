@@ -10,7 +10,7 @@ import linecache
 import commands
 import time
 
-def writedb(filename):
+def writedb(filename, data):
     try:
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)

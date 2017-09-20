@@ -5,6 +5,7 @@ attack catagory and delete the same line
 """
 
 import record_err
+import write_todb
 import linecache
 import commands
 import time
