@@ -23,7 +23,7 @@ def readfile(content):
     try:
         # print content, type(content)
         dict_content = eval(content)
-        read_file_mysql_delsame(dict_content)
+        read_file_mysql_delsame.catagory(dict_content)
 
     except Exception as e:
         record_err.logrecord()
