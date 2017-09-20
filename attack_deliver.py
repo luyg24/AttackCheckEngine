@@ -37,6 +37,8 @@ def catagory(attack_data):
             file.write(str(attack_data))
             file.write('\n')
             file.close()
-
     except Exception as e:
         record_err.logrecord()
+
+if __name__ == '__main__':
+    print __name__
