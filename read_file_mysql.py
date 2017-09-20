@@ -18,8 +18,8 @@ import datetime
 def readfile(content):
     # change str to dict
     try:
-        dict_cont = json.loads(content)
-        print dict_cont
+        print content, type(content)
+        # dict_cont = json.loads(content)
         # attack_deliver.catagory(new_dict)
         # else , pass
     except Exception as e:
