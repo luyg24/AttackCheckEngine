@@ -12,6 +12,7 @@ import time
 
 filereadlist = []
 xsslist = []
+sqlinject = []
 def catagory(attack_data):
     try:
         count = 0
@@ -29,9 +30,9 @@ def catagory(attack_data):
                 xsslist.append(tmp)
                 count += 1
         elif attack_data[u'attack_type'] == u'SQL注入' :
-            global xsslist
-            if tmp not in xsslist:
-                xsslist.append(tmp)
+            global sqlinject
+            if tmp not in sqlinject
+                sqlinject.append(tmp)
                 count += 1
         else:
             pass
