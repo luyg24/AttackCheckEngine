@@ -80,4 +80,4 @@ def fileinfo(logfile, start_line=1):
 
 
 if __name__ == '__main__':
-    fileinfo('abc.txt', 2)
+    fileinfo('/tmp/attackinfo.txt', 1)
