@@ -15,7 +15,6 @@ xsslist = []
 sqlinject = []
 def catagory(attack_data):
     try:
-        print attack_data
         count = 0
         # tmp means hostname and url
         tmp = attack_data[u'url'] + attack_data[u'hostname']
