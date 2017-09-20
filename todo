@@ -1,1 +1,2 @@
 1. url和参数去重.
+2. 写入去重数据到mysql, 需要对url和post进行base64加密
