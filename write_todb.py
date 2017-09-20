@@ -10,23 +10,34 @@ import linecache
 import commands
 import time
 
-def writedb(conf):
-    pass
+def writedb(filename):
+    try:
+        config = getinfo(filename)
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+        sql = 'desc ids_info'
+        cur.execute(sql)
+        result_set = cur.fetchall()
+        print result_set
+    except Exception as e:
+        record_err.logrecord()
 
 
 def getinfo(filename):
-    file = open(filename, 'r')
-    config = {}
-    content = file.readlines()
-    for i in range(len(content)):
-        tmp = content[i].split(':')
-        key = tmp[0]
-        value = tmp[1].split('\n')[0]
-        config[key] = value
-    print config
-    # print content
+    try:
+        file = open(filename, 'r')
+        config = {}
+        content = file.readlines()
+        for i in range(len(content)):
+            tmp = content[i].split(':')
+            key = tmp[0]
+            value = tmp[1].split('\n')[0]
+            config[key] = value
+        return config
+    except Exception as e:
+        record_err.logrecord()
 
 
 if __name__ == '__main__':
     # print __name__
-    getinfo('ids_mysql.conf')
+    writedb('ids_mysql.conf')
