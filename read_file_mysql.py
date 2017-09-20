@@ -18,6 +18,7 @@ import datetime
 def readfile(content):
     # change str to dict
     try:
+        print content
         new_dict = {}
         # if content is json str, convert to dict
         con_dict = json.loads(content)
