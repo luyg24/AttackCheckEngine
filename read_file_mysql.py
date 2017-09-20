@@ -18,7 +18,9 @@ import datetime
 def readfile(content):
     # change str to dict
     try:
-        print content, type(content)
+        # print content, type(content)
+        dict_content = eval(content)
+        print dict_content, type(dict_content)
         # dict_cont = json.loads(content)
         # attack_deliver.catagory(new_dict)
         # else , pass
