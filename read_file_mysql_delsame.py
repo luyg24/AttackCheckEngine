@@ -31,7 +31,7 @@ def catagory(attack_data):
                 count += 1
         elif attack_data[u'attack_type'] == u'SQL注入' :
             global sqlinject
-            if tmp not in sqlinject
+            if tmp not in sqlinject:
                 sqlinject.append(tmp)
                 count += 1
         else:
