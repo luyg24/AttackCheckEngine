@@ -59,9 +59,9 @@ def writelist(readfilelist, xsslist, sqlilist):
         if i == 0:
             file1.write(str(readfilelist))
         elif i == 1:
-            file1.write(str(readfilelist))
+            file1.write(str(xsslist))
         elif i == 2:
-            file1.write(str(readfilelist))
+            file1.write(str(sqlilist))
         else:
             pass
     # print content
