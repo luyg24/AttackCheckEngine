@@ -58,7 +58,7 @@ def getuntestline():
         readsql = 'select id from ids_info where vul is NULL limit 0,1'
         cur.execute(readsql)
         result = cur.fetchall()
-        print result
+        print result, type(result)
         cur.close()
         conn.close()
     except Exception as e:
