@@ -32,18 +32,16 @@ def writedb(data):
             basepost = base64.b64encode(post)
         # write to db
         if method.lower() == 'get':
-            insertsql1 = 'insert into table ids_info("attack_type", "hostname", "status", "method", "url" ) ' \
-                         'values("%s", "%s", %d, "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
-            print insertsql1
+            insertsql1 = 'insert into  ids_info(attack_type, hostname, status, method, url ) ' \
+                         'values("%s", "%s", %d, "%d", "%s")' % (attacktype, hostname, status, method, baseurl)
             cur.execute(insertsql1)
             conn.commit()
         elif method.lower() == 'post':
-            print basepost
-            insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) ' \
-                         'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
+            insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
+                         'values(%s, %s, %s, %d, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
             # print insertsql2
-            # cur.execute(insertsql2)
-            # conn.commit()
+            cur.execute(insertsql2)
+            conn.commit()
         else:
             print 'what?'
         # result_set = cur.fetchall()
