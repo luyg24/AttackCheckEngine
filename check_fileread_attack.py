@@ -16,7 +16,7 @@ def check(id, hostname, url, method, status, postdata):
         postdata = base64.b64decode(postdata)
         # print postdata
     if method.lower() == 'get':
-        print url
+        print hostname, url
         r = requests.get(url, headers)
         print r.text
 
