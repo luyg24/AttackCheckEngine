@@ -43,6 +43,8 @@ def writedb(data):
             print insertsql2
             cur.execute(insertsql2)
             conn.commit()
+        else:
+            print 'what?'
         # result_set = cur.fetchall()
         # print result_set
         conn.close()
