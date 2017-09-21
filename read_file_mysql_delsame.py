@@ -5,6 +5,7 @@ attack catagory and delete the same line, the list write to file!
 """
 
 import record_err
+import load_write_listfile
 import write_todb
 import linecache
 import commands
@@ -15,6 +16,9 @@ xsslist = []
 sqlinject = []
 def catagory(attack_data):
     try:
+        # load list
+        filereadlist, xsslist, sqlinject = load_write_listfile.checkfile()
+        print filereadlist, xsslist, sqlinject
         count = 0
         # tmp means hostname and url
         tmp = attack_data[u'url'] + attack_data[u'hostname']
@@ -42,7 +46,7 @@ def catagory(attack_data):
             # file.write(str(attack_data))
             # file.write('\n')
             # file.close()
-        print filereadlist, xsslist, sqlinject
+        # print filereadlist, xsslist, sqlinject
     except Exception as e:
         record_err.logrecord()
 

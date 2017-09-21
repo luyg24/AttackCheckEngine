@@ -54,7 +54,7 @@ def loadlist(filelist):
                 sqlilist = urllist
             else:
                 pass
-    print readfilelist, xsslist, sqlilist
+    return readfilelist, xsslist, sqlilist
 
     # print content
 
