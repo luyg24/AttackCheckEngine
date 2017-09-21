@@ -30,7 +30,9 @@ def readfile(startline = 1):
         readsql = 'select * from ids_info'
         cur.execute(readsql)
         result = cur.fetchall()
-        print result
+        print result, type(result)
+        id = result[0][0]
+        print id, type(id)
     except Exception as e:
         record_err.logrecord()
 
