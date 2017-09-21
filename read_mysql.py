@@ -25,7 +25,15 @@ def readfile(startid = 1):
         cur.execute(readsql)
         # get info
         result = cur.fetchall()
-        print result
+        if len(result) > 0:
+            attack_type = result[0][0]
+            print attack_type
+        else:
+            break
+        if attack_type == u'文件读取':
+            print result
+        else:
+            print result
 
     except Exception as e:
         record_err.logrecord()
