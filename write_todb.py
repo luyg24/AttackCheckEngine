@@ -31,13 +31,13 @@ def writedb(data):
             post = data[u'post']
             basepost = base64.b64encode(post)
         # write to db
-        insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) ' \
-                     'values(%s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl)
-        insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) '\
-                     'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
         if method.lower == 'get':
+            insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) ' \
+                         'values(%s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl)
             cur.execute(insertsql1)
         elif method.lower == 'post':
+            insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) ' \
+                         'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
             cur.execute(insertsql2)
         print insertsql1
         conn.commit()
