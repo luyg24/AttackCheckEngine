@@ -10,28 +10,23 @@ import base64
 
 
 filename = 'ids_mysql.conf'
-def countsql():
-    try:
-        config = getinfo(filename)
-        conn = mysql.connector.connect(**config)
-        cur = conn.cursor()
-        count = 'select count(*) from ids_info'
-        cur.execute(count)
-        linenumber = cur.fetchall()
-        print linenumber
-    except Exception as e:
-        record_err.logrecord()
+
+
+def catfileread():
+    pass
+
 
 def readfile(startid = 1):
     try:
-        print startid
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        readsql = 'select  hostname, url, method, status, postdata from  ids_info where id = %d' % startid
+        readsql = 'select  attack_type, hostname, url, method, status, postdata from  ids_info where id = %d' % startid
         cur.execute(readsql)
+        # get info
         result = cur.fetchall()
         print result
+
     except Exception as e:
         record_err.logrecord()
 
