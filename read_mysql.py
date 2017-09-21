@@ -5,6 +5,7 @@ read from mysql
 """
 
 import update_msyql_vul
+import check_fileread_attack
 import mysql.connector
 import record_err
 import base64
@@ -16,6 +17,7 @@ filename = 'ids_mysql.conf'
 def catfileread(id, hostname, url, method, status, postdata):
     if status == 200:
         print 'need check!'
+        check_fileread_attack.check(id, hostname, url, method, status, postdata)
         # status is 200 check or no check!
     elif status != 200:
         print status
