@@ -59,6 +59,8 @@ def getuntestline():
         cur.execute(readsql)
         result = cur.fetchall()
         print result
+        cur.close()
+        conn.close()
     except Exception as e:
         record_err.logrecord()
 
