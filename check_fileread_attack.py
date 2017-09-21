@@ -9,6 +9,7 @@ import requests
 
 def check(id, hostname, url, method, status, postdata):
     url = base64.b64decode(url)
+    print method
     headers = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
     # print hostname, url, status, method
     if method.lower() == 'post':
