@@ -29,7 +29,7 @@ def readfile(startid = 1):
             attack_type = result[0][0]
             print attack_type
         else:
-            break
+            print 'mysql info error'
         if attack_type == u'文件读取':
             print result
         else:
