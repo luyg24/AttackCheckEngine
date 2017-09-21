@@ -39,9 +39,11 @@ def writedb(data):
             cur.execute(insertsql1)
         elif method.lower == 'post':
             cur.execute(insertsql2)
+        print insertsql1
         conn.commit()
-        result_set = cur.fetchall()
-        print result_set
+        # result_set = cur.fetchall()
+        # print result_set
+        conn.close()
     except Exception as e:
         record_err.logrecord()
 
