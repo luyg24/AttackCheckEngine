@@ -34,14 +34,15 @@ def writedb(data):
         if method.lower == 'get':
             insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) ' \
                          'values(%s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl)
-            cur.execute(insertsql1)
             print insertsql1
+            cur.execute(insertsql1)
+            conn.commit()
         elif method.lower == 'post':
             insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) ' \
                          'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
-            cur.execute(insertsql2)
             print insertsql2
-        conn.commit()
+            cur.execute(insertsql2)
+            conn.commit()
         # result_set = cur.fetchall()
         # print result_set
         conn.close()
