@@ -31,8 +31,6 @@ def readfile(startline = 1):
         cur.execute(readsql)
         result = cur.fetchall()
         print result, type(result)
-        id = result[0][0]
-        print id, type(id)
     except Exception as e:
         record_err.logrecord()
 
@@ -70,5 +68,6 @@ def getuntestline():
 if __name__ == '__main__':
     # print __name__
     startid = getuntestline()
-    print startid
-    
+    getinfo(startid)
+    # print startid
+
