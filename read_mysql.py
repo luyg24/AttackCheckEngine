@@ -24,6 +24,7 @@ def countsql():
 
 def readfile(startid = 1):
     try:
+        print startid
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
