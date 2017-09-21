@@ -22,7 +22,7 @@ def countsql():
     except Exception as e:
         record_err.logrecord()
 
-def readfile(startline = 1):
+def readfile(startid = 1):
     try:
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
