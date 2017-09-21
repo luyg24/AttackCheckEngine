@@ -23,7 +23,7 @@ def writedb(data):
         # sql = 'desc ids_info'
         attacktype = data[u'attack_type']
         hostname = data[u'hostname']
-        status = data[u'status']
+        status = int(data[u'status'])
         method = data[u'method']
         url = data[u'url']
         baseurl = base64.b64encode(url)
