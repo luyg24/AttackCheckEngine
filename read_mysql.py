@@ -52,13 +52,15 @@ def getinfo(filename):
 
 def getuntestline():
     try:
+        # get the untest id
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         readsql = 'select id from ids_info where vul is NULL limit 0,1'
         cur.execute(readsql)
         result = cur.fetchall()
-        print result, type(result)
+        id = result[0][0]
+        return id
         cur.close()
         conn.close()
     except Exception as e:
@@ -67,4 +69,6 @@ def getuntestline():
 
 if __name__ == '__main__':
     # print __name__
-    getuntestline()
+    startid = getuntestline()
+    print startid
+    
