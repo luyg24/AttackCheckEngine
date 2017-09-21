@@ -33,7 +33,7 @@ def writedb(data):
         # write to db
         if method.lower() == 'get':
             insertsql1 = 'insert into table ids_info("attack_type", "hostname", "status", "method", "url" ) ' \
-                         'values("%s", "%s", "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
+                         'values("%s", "%s", %d, "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
             print insertsql1
             cur.execute(insertsql1)
             conn.commit()
