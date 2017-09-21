@@ -37,7 +37,8 @@ def catagory(attack_data):
         else:
             pass
         if count > 0:
-            print attack_data
+            pass
+            # print attack_data
             # file.write(str(attack_data))
             # file.write('\n')
             # file.close()
