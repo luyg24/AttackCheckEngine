@@ -18,11 +18,9 @@ def catagory(attack_data):
     try:
         # load list
         # print load_write_listfile.checkfile()
-        filereadlist, xsslist, sqlinject = load_write_listfile.checkfile()
-        print filereadlist, xsslist, sqlinject
-        print 'the return'
+        filereadlist, xsslist, sqlilist = load_write_listfile.checkfile()
         count = 0
-        # tmp means hostname and url
+        # tmp means hostname and url, join the new url+host and match if it is in the loaded list
         tmp = attack_data[u'url'] + attack_data[u'hostname']
         if attack_data[u'attack_type'] == u'文件读取' and attack_data[u'status'] == 200:
             # global filereadlist
@@ -37,19 +35,14 @@ def catagory(attack_data):
                 count += 1
         elif attack_data[u'attack_type'] == u'SQL注入' :
             # global sqlinject
-            if tmp not in sqlinject:
-                sqlinject.append(tmp)
+            if tmp not in sqlilist:
+                sqlilist.append(tmp)
                 count += 1
         else:
             pass
         if count > 0:
-            print filereadlist, xsslist, sqlinject
-            pass
-            # print attack_data
-            # file.write(str(attack_data))
-            # file.write('\n')
-            # file.close()
-        # print filereadlist, xsslist, sqlinject
+            # write the new list to file
+            load_write_listfile.writelist(filereadlist, xsslist, sqlilist)
     except Exception as e:
         record_err.logrecord()
 

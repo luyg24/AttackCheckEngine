@@ -7,22 +7,15 @@ import os
 import commands
 
 
+readfilepath = '/tmp/readfile.txt'
+xssfilepath = '/tmp/xss.txt'
+sqlfilepath = '/tmp/sqli.txt'
+filelist = [readfilepath, xssfilepath, sqlfilepath]
+
+
 def checkfile():
-    readfilepath = '/tmp/readfile.txt'
-    xssfilepath = '/tmp/xss.txt'
-    sqlfilepath = '/tmp/sqli.txt'
-    filelist = [readfilepath, xssfilepath, sqlfilepath]
     count = 0
     filecount = len(filelist)
-    # a = ['abc', 'def']
-    # file1 = open('/tmp/testttt.txt', 'w')
-    # file1.write(str(a))
-    # file1.close()
-    # file1 = open('/tmp/testttt.txt', 'r')
-    # content = file1.readlines()
-    # list1 = content[0]
-    # list2 = eval(list1)
-    # print list2, type(list2)
     for i in range(len(filelist)):
         result = os.path.exists(filelist[i])
         if result is False:
@@ -56,6 +49,21 @@ def loadlist(filelist):
                 pass
     return readfilelist, xsslist, sqlilist
 
+
+def writelist(readfilelist, xsslist, sqlilist):
+    """
+    write the new list to file!
+    """
+    for i in range(len(filelist)):
+        file1 = open(filelist[i], 'w')
+        if i == 0:
+            file1.write(str(readfilelist))
+        elif i == 1:
+            file1.write(str(readfilelist))
+        elif i == 2:
+            file1.write(str(readfilelist))
+        else:
+            pass
     # print content
 
 
