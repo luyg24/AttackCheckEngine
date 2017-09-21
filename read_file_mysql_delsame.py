@@ -41,6 +41,7 @@ def catagory(attack_data):
             # file.write(str(attack_data))
             # file.write('\n')
             # file.close()
+        print filereadlist, xsslist, sqlinject
     except Exception as e:
         record_err.logrecord()
 
