@@ -30,10 +30,10 @@ def writedb(data):
         status = data[u'status']
         method = data[u'method']
         url = data[u'url']
-        baseurl = base64.encode(url)
+        baseurl = base64.b64encode(url)
         if method.lower == 'post':
             post = data[u'post']
-            basepost = base64.encode(post)
+            basepost = base64.b64encode(post)
         # write to db
         if method.lower == 'get':
             cur.execute(insertsql1)
