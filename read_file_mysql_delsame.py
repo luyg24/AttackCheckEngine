@@ -19,6 +19,7 @@ def catagory(attack_data):
         # load list
         filereadlist, xsslist, sqlinject = load_write_listfile.checkfile()
         print filereadlist, xsslist, sqlinject
+        print 'the return'
         count = 0
         # tmp means hostname and url
         tmp = attack_data[u'url'] + attack_data[u'hostname']
