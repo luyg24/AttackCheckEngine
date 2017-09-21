@@ -28,10 +28,10 @@ def readfile(startid = 1):
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        readsql = 'select * from ids_info where id = %d' % startid
+        readsql = 'select  hostname, url, method, status, postdata from  ids_info where id = %d' % startid
         cur.execute(readsql)
         result = cur.fetchall()
-        print result, type(result)
+        print result
     except Exception as e:
         record_err.logrecord()
 
