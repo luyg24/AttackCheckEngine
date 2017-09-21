@@ -27,17 +27,17 @@ def writedb(data):
         method = data[u'method']
         url = data[u'url']
         baseurl = base64.b64encode(url)
-        if method.lower == 'post':
+        if method.lower() == 'post':
             post = data[u'post']
             basepost = base64.b64encode(post)
         # write to db
-        if method.lower == 'get':
+        if method.lower() == 'get':
             insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) ' \
                          'values(%s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl)
             print insertsql1
             cur.execute(insertsql1)
             conn.commit()
-        elif method.lower == 'post':
+        elif method.lower() == 'post':
             insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) ' \
                          'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
             print insertsql2
