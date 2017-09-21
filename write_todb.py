@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-write info to db
+write info to db, url and post convert to base64 before write
 """
 
 import mysql.connector
@@ -20,7 +20,14 @@ def writedb(data):
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         sql = 'desc ids_info'
-        print data
+        attacktype = data[u'attack_type']
+        hostname = data[u'hostname']
+        status = data[u'status']
+        method = data[u'method']
+        url = data[u'url']
+        if method.lower == 'post':
+            post = data[u'post']
+        print attacktype, hostname, status, method, url
         cur.execute(sql)
         result_set = cur.fetchall()
         # print result_set
