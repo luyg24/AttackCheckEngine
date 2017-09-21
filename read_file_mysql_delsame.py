@@ -16,6 +16,8 @@ import time
 # sqlinject = []
 def catagory(attack_data):
     try:
+        duplicatedfile = '/tmp/duplicate_attack.txt'
+        dupfile = open(duplicatedfile, 'a')
         # load list
         # print load_write_listfile.checkfile()
         filereadlist, xsslist, sqlilist = load_write_listfile.checkfile()
@@ -26,22 +28,26 @@ def catagory(attack_data):
             # global filereadlist
             if tmp not in filereadlist:
                 filereadlist.append(tmp)
+                dupfile.write(str(attack_data))
                 count += 1
             # print attack_data
         elif attack_data[u'attack_type'] == u'XSS攻击' and attack_data[u'status'] == 200:
             # global xsslist
             if tmp not in xsslist:
                 xsslist.append(tmp)
+                dupfile.write(str(attack_data))
                 count += 1
         elif attack_data[u'attack_type'] == u'SQL注入' :
             # global sqlinject
             if tmp not in sqlilist:
                 sqlilist.append(tmp)
+                dupfile.write(str(attack_data))
                 count += 1
         else:
             pass
         if count > 0:
             # write the new list to file
+            dupfile.close()
             load_write_listfile.writelist(filereadlist, xsslist, sqlilist)
     except Exception as e:
         record_err.logrecord()
