@@ -33,7 +33,7 @@ def checkfile():
         elif result is True:
             count += 1
     if count == filecount:
-        print loadlist(filelist)
+        return loadlist(filelist)
 
 def loadlist(filelist):
     readfilelist = []
