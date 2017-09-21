@@ -25,6 +25,7 @@ def writedb(data):
         hostname = data[u'hostname']
         status = int(data[u'status'])
         method = data[u'method']
+        print method, type(method)
         url = data[u'url']
         baseurl = base64.b64encode(url)
         if method.lower() == 'post':
