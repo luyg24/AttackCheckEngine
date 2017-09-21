@@ -38,7 +38,7 @@ def writedb(data):
             conn.commit()
         elif method.lower() == 'post':
             insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
-                         'values(%s, %s, %d, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
+                         'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
             # print insertsql2
             cur.execute(insertsql2)
             conn.commit()
