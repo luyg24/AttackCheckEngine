@@ -21,10 +21,6 @@ def writedb(data):
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         # sql = 'desc ids_info'
-        insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) \
-                     values("%s","%s", "%s", "%s", "%s" %(attcktype, hostname, status, method, baseurl))'
-        insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) \
-                     values("%s","%s", "%s", "%s", "%s", "%s" % (attcktype, hostname, status, method, baseurl, basepost))'
         attacktype = data[u'attack_type']
         hostname = data[u'hostname']
         status = data[u'status']
@@ -35,6 +31,10 @@ def writedb(data):
             post = data[u'post']
             basepost = base64.b64encode(post)
         # write to db
+        insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) ' \
+                     'values(%s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl)
+        insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) '\
+                     'values(%s, %s, %s, %s, %s, %s)' % (attacktype, hostname, status, method, baseurl, basepost)
         if method.lower == 'get':
             cur.execute(insertsql1)
         elif method.lower == 'post':
