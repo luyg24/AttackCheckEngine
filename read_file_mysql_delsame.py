@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-attack catagory and delete the same line
+attack catagory and delete the same line, the list write to file!
 """
 
 import record_err
