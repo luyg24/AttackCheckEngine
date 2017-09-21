@@ -17,7 +17,7 @@ import time
 def catagory(attack_data):
     try:
         # load list
-        print load_write_listfile()
+        print load_write_listfile.checkfile()
         filereadlist, xsslist, sqlinject = load_write_listfile.checkfile()
         print filereadlist, xsslist, sqlinject
         print 'the return'
