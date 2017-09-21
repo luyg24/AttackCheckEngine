@@ -27,7 +27,7 @@ def readfile(startline = 1):
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        readsql = 'select * from ids_info'
+        readsql = 'select * from ids_info where id = %d' % startid
         cur.execute(readsql)
         result = cur.fetchall()
         print result, type(result)
