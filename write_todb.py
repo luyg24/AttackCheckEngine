@@ -10,15 +10,20 @@ import linecache
 import commands
 import time
 
-def writedb(filename, data):
+
+filename = 'ids_mysql.conf'
+
+
+def writedb(data):
     try:
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         sql = 'desc ids_info'
+        print data
         cur.execute(sql)
         result_set = cur.fetchall()
-        print result_set
+        # print result_set
     except Exception as e:
         record_err.logrecord()
 

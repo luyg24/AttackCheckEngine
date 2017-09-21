@@ -28,6 +28,7 @@ def catagory(attack_data):
             # global filereadlist
             if tmp not in filereadlist:
                 filereadlist.append(tmp)
+                write_todb.writedb(attack_data)
                 dupfile.write(str(attack_data))
                 count += 1
             # print attack_data
@@ -35,12 +36,14 @@ def catagory(attack_data):
             # global xsslist
             if tmp not in xsslist:
                 xsslist.append(tmp)
+                write_todb.writedb(attack_data)
                 dupfile.write(str(attack_data))
                 count += 1
         elif attack_data[u'attack_type'] == u'SQL注入' :
             # global sqlinject
             if tmp not in sqlilist:
                 sqlilist.append(tmp)
+                write_todb.writedb(attack_data)
                 dupfile.write(str(attack_data))
                 count += 1
         else:
