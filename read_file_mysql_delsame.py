@@ -43,6 +43,7 @@ def catagory(attack_data):
         else:
             pass
         if count > 0:
+            print filereadlist, xsslist, sqlinject
             pass
             # print attack_data
             # file.write(str(attack_data))
