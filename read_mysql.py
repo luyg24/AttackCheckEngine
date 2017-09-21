@@ -69,6 +69,6 @@ def getuntestline():
 if __name__ == '__main__':
     # print __name__
     startid = getuntestline()
-    getinfo(startid)
+    readfile(startid)
     # print startid
 
