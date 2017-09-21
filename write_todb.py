@@ -6,6 +6,7 @@ write info to db, url and post convert to base64 before write
 
 import mysql.connector
 import record_err
+import base64
 import linecache
 import commands
 import time
@@ -19,18 +20,27 @@ def writedb(data):
         config = getinfo(filename)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        sql = 'desc ids_info'
+        # sql = 'desc ids_info'
+        insertsql1 = 'insert into table ids_info(attack_type, hostname, status, method, url ) \
+                     values("%s","%s", "%s", "%s", "%s" %(attcktype, hostname, status, method, baseurl))'
+        insertsql2 = 'insert into table ids_info(attack_type, hostname, status, method, url, postdata ) \
+                     values("%s","%s", "%s", "%s", "%s", "%s" % (attcktype, hostname, status, method, baseurl, basepost))'
         attacktype = data[u'attack_type']
         hostname = data[u'hostname']
         status = data[u'status']
         method = data[u'method']
         url = data[u'url']
+        baseurl = base64.encode(url)
         if method.lower == 'post':
             post = data[u'post']
-        print attacktype, hostname, status, method, url
-        cur.execute(sql)
+            basepost = base64.encode(post)
+        # write to db
+        if method.lower == 'get':
+            cur.execute(insertsql1)
+        elif method.lower == 'post':
+            cur.execute(insertsql2)
         result_set = cur.fetchall()
-        # print result_set
+        print result_set
     except Exception as e:
         record_err.logrecord()
 
