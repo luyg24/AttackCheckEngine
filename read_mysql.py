@@ -82,7 +82,7 @@ def getcount():
         linecount = 'select count(id) from ids_info '
         cur.execute(linecount)
         result = cur.fetchall()
-        print result[0][0]
+        return int(result[0][0])
         cur.close()
         conn.close()
     except Exception as e:
@@ -92,24 +92,25 @@ def getcount():
 def getuntestline():
     try:
         # get the untest id
-        config = getinfo(filename)
-        conn = mysql.connector.connect(**config)
-        cur = conn.cursor()
-        readsql = 'select id from ids_info where vul is NULL limit 0,1'
-        cur.execute(readsql)
-        result = cur.fetchall()
-        id = result[0][0]
-        return id
-        cur.close()
-        conn.close()
+        count = getcount()
+        for i in range(count):
+            config = getinfo(filename)
+            conn = mysql.connector.connect(**config)
+            cur = conn.cursor()
+            readsql = 'select id from ids_info where vul is NULL limit %d,1' % i
+            cur.execute(readsql)
+            result = cur.fetchall()
+            id = result[0][0]
+            # return id
+            cur.close()
+            conn.close()
+            readfile(id)
     except Exception as e:
         record_err.logrecord()
 
 
 if __name__ == '__main__':
     # print __name__
-    getcount()
-    # startid = getuntestline()
-    # readfile(startid)
+    getuntestline()
     # print startid
 
