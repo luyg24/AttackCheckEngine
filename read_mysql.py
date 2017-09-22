@@ -22,6 +22,7 @@ def catfileread(id, hostname, url, method, status, postdata):
     postdata = str(postdata)
     if status == 200:
         print 'need check!'
+        print url
         check_fileread_attack.check(id, hostname, url, method, status, postdata)
         # status is 200 check or no check!
     elif status != 200:
