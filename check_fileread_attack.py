@@ -56,6 +56,7 @@ def check(id, hostname, url, method, status, postdata):
 
 def content_process(id, content):
     try:
+        print content
         if len(content) == 0:
             result = 'N'
             print 'no vul'
