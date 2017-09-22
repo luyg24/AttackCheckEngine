@@ -73,6 +73,22 @@ def getinfo(filename):
     except Exception as e:
         record_err.logrecord()
 
+def getcount():
+    try:
+        # get msyql line number
+        config = getinfo(filename)
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+        linecount = 'select count(id) from ids_info '
+        cur.execute(linecount)
+        result = cur.fetchall()
+        print result[0][0]
+        cur.close()
+        conn.close()
+    except Exception as e:
+        record_err.logrecord()
+
+
 def getuntestline():
     try:
         # get the untest id
@@ -92,7 +108,8 @@ def getuntestline():
 
 if __name__ == '__main__':
     # print __name__
-    startid = getuntestline()
-    readfile(startid)
+    getcount()
+    # startid = getuntestline()
+    # readfile(startid)
     # print startid
 
