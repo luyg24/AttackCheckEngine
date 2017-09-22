@@ -27,7 +27,8 @@ def check(id, hostname, url, method, status, postdata):
             tmp = str(r1)
             tmp1 = tmp.split()
             print tmp1
-            if re.search('200', tmp1[1]):
+            print re.search('200', tmp1[1])
+            if re.search('200',tmp1[1]):
                 httpcontent = r1.text
                 print httpcontent
                 content_process(httpcontent)
