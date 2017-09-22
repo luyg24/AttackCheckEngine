@@ -17,7 +17,8 @@ def check(id, hostname, url, method, status, postdata):
         # print postdata
     if method.lower() == 'get':
         print hostname, url
-        url = 'http://' + hostname + url
+        httpurl = 'http://' + hostname + url
+        httpsurl = 'https://' + hostname + url
         r = requests.get(url, headers)
         print r.text
 
