@@ -22,6 +22,7 @@ def check(id, hostname, url, method, status, postdata):
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
             r1 = requests.get(httpurl, headers = headers)
+            print httpurl
             print r1
             tmp = str(r1)
             tmp1 = tmp.split()
