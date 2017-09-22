@@ -65,7 +65,6 @@ def content_process(id, content):
         print content, len(content)
         if len(content) < 10:
             result = 'N'
-            print 'no vul'
             return id, result
         else:
             print content
