@@ -30,6 +30,7 @@ def check(id, hostname, url, method, status, postdata):
             print re.search('200', tmp1[1])
             if re.search('200',tmp1[1]):
                 httpcontent = r1.text
+                print 'httpcontent'
                 print httpcontent
                 content_process(httpcontent)
             r2 = requests.get(httpsurl, headers = headers, verify = False)
