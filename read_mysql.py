@@ -17,7 +17,7 @@ filename = 'ids_mysql.conf'
 def catfileread(id, hostname, url, method, status, postdata):
     # unicode change to str
     hostname = str(hostname)
-    url = str(hostname)
+    url = str(url)
     method = str(method)
     postdata = str(postdata)
     if status == 200:
