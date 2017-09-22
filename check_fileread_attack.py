@@ -22,7 +22,9 @@ def check(id, hostname, url, method, status, postdata):
             httpsurl = 'https://' + hostname + url
             r = requests.get(httpurl, headers)
             httpcontent = r.text
+            print httpurl
             httpscontent = requests.get(httpsurl, headers)
+            print httpsurl
             httpscontent = r.text
             content_process(httpcontent, httpscontent)
             print len(httpcontent), len(httpscontent)
