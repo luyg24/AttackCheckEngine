@@ -49,8 +49,14 @@ def check(id, hostname, url, method, status, postdata):
                     if re.search('200', httpsstatus):
                         httpscontent = r2.text
                         id, result2 = content_process(id, httpscontent)
-        print id, result1, result2
-
+        if result1 is not '':
+            print id, result1
+        elif result2 is not '':
+            print id, result2
+        elif result1 is '' and result2 is '':
+            print id, 'cannot open!'
+        else:
+            pass
     except Exception as e:
         record_err.logrecord()
 
