@@ -54,7 +54,9 @@ def readfile(startid = 1):
         if attack_type == u'文件读取':
             catfileread(id, hostname, url, method, status, postdata)
         else:
-            print result
+            # process other attack_type
+            pass
+
 
     except Exception as e:
         record_err.logrecord()
