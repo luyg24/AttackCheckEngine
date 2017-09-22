@@ -62,13 +62,13 @@ def check(id, hostname, url, method, status, postdata):
 
 def content_process(id, content):
     try:
-        print content
+        print content, len(content)
         if len(content) == 0:
             result = 'N'
             print 'no vul'
             return id, result
         else:
-            return id, 'M'
+            print content
     except Exception as e:
         record_err.logrecord()
 
