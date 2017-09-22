@@ -61,7 +61,7 @@ def content_process(id, content):
             print 'no vul'
             return id, result
         else:
-            pass
+            return id, 'M'
     except Exception as e:
         record_err.logrecord()
 
