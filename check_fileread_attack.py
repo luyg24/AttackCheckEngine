@@ -22,12 +22,14 @@ def check(id, hostname, url, method, status, postdata):
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
             r1 = requests.get(httpurl, headers = headers)
+            print r1
             tmp = str(r1)
             tmp1 = tmp.split()
             if re.search('200', tmp1[1]):
                 httpcontent = r1.text
                 content_process(httpcontent)
             r2 = requests.get(httpsurl, headers = headers, verify = False)
+            print r2
             tmp = str(r1)
             tmp1 = tmp.split()
             if re.search('200', tmp1[1]):
