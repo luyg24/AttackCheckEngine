@@ -21,31 +21,34 @@ def check(id, hostname, url, method, status, postdata):
         if method.lower() == 'get':
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
-            r1 = requests.get(httpurl, headers = headers)
-            print httpurl
-            print r1
-            tmp = str(r1)
-            tmp1 = tmp.split()
-            print tmp1
-            print re.search('200', tmp1[1])
-            if re.search('200',tmp1[1]):
-                httpcontent = r1.text
-                print 'httpcontent'
-                print httpcontent
-                content_process(httpcontent)
-            r2 = requests.get(httpsurl, headers = headers, verify = False)
-            print r2
-            tmp = str(r1)
-            tmp1 = tmp.split()
-            if re.search('200', tmp1[1]):
-                httpscontent = r2.text
-                content_process(httpscontent)
+            r1 = requests.get(httpsurl, headers = headers)
+            tmp1 = str(r1)
+            tmp2 = tmp1.split()
+            r2 = requests.get(httpurl, headers = headers, verify = False)
+            tmp3 = str(r2)
+            tmp4 = tmp3.split()
+            httpstatus = tmp2[1]
+            httpsstatus = tmp2[1]
+            if re.search('200', httpstatus):
+                httpscontent = r1.text
+                id, result = content_process(id, httpscontent)
+            elif re.search('200', httpsstatus):
+                httpcontent = r2.text
+                id, result = content_process(id, httpcontent)
+            else:
+                print 'may be cannot open'
+
     except Exception as e:
         record_err.logrecord()
 
-def content_process(content):
+def content_process(id, content):
     try:
-        print content
+        if len(content) == 0:
+            result = 'N'
+            print 'no vul'
+            return id, result
+        else:
+            pass
     except Exception as e:
         record_err.logrecord()
 
