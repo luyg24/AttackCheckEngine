@@ -11,6 +11,6 @@ import time
 import datetime
 
 
-def Check_fileread():
+def Check_fileread(content):
     pass
 

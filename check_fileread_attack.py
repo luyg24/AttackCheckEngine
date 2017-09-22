@@ -7,6 +7,7 @@ check file reading type attack! return id and vul
 import base64
 import requests
 import record_err
+import re
 
 def check(id, hostname, url, method, status, postdata):
     try:
@@ -20,21 +21,24 @@ def check(id, hostname, url, method, status, postdata):
         if method.lower() == 'get':
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
-            r = requests.get(httpurl, headers)
-            httpcontent = r.text
-            print httpurl
-            httpscontent = requests.get(httpsurl, headers)
-            print httpsurl
-            httpscontent = r.text
-            content_process(httpcontent, httpscontent)
-            print len(httpcontent), len(httpscontent)
+            r1 = requests.get(httpurl, headers = headers)
+            tmp = str(r1)
+            tmp1 = tmp.split()
+            if re.search('200', tmp1[1]):
+                httpcontent = r1.text
+                content_process(httpcontent)
+            r2 = requests.get(httpsurl, headers = headers, verify = False)
+            tmp = str(r1)
+            tmp1 = tmp.split()
+            if re.search('200', tmp1[1]):
+                httpscontent = r2.text
+                content_process(httpscontent)
     except Exception as e:
         record_err.logrecord()
 
-def content_process(httpcontent = '', httpscontent = '' ):
+def content_process(content):
     try:
-        print len(httpcontent), len(httpscontent)
-        print httpcontent, httpscontent
+        print content
     except Exception as e:
         record_err.logrecord()
 

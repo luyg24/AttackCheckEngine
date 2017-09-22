@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-write info to db, url and post convert to base64 before write, if vul Y not N
+write info to db, url and post convert to base64 before write, if vul Y not N, not sure M
 """
 
 import mysql.connector
