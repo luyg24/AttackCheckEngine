@@ -21,20 +21,22 @@ def check(id, hostname, url, method, status, postdata):
         if method.lower() == 'get':
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
-            r1 = requests.get(httpsurl, headers = headers)
+            r1 = requests.get(httpurl, headers = headers)
+            print r1
             tmp1 = str(r1)
             tmp2 = tmp1.split()
             r2 = requests.get(httpurl, headers = headers, verify = False)
+            print r2
             tmp3 = str(r2)
             tmp4 = tmp3.split()
             httpstatus = tmp2[1]
-            httpsstatus = tmp2[1]
+            httpsstatus = tmp4[1]
             if re.search('200', httpstatus):
-                httpscontent = r1.text
-                id, result = content_process(id, httpscontent)
-            elif re.search('200', httpsstatus):
-                httpcontent = r2.text
+                httpcontent = r1.text
                 id, result = content_process(id, httpcontent)
+            elif re.search('200', httpsstatus):
+                httpscontent = r2.text
+                id, result = content_process(id, httpscontent)
             else:
                 print 'may be cannot open'
 
