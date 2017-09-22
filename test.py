@@ -24,4 +24,14 @@ def test():
     except Exception as e:
         record_err.logrecord()
         test2()
-test()
+
+def test3():
+    try:
+        try:
+            b = a
+        except:
+            b = ''
+        print b
+    except Exception as e:
+        print 'error', e
+test3()

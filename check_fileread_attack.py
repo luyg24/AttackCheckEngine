@@ -11,6 +11,8 @@ import re
 
 def check(id, hostname, url, method, status, postdata):
     try:
+        result1 = ''
+        result2 = ''
         # print id, hostname, url, method, status, postdata
         # print type(id), type(hostname), type(url), type(method), type(status), type(postdata)
         url = base64.b64decode(url)
@@ -21,24 +23,33 @@ def check(id, hostname, url, method, status, postdata):
         if method.lower() == 'get':
             httpurl = 'http://' + hostname + url
             httpsurl = 'https://' + hostname + url
-            r1 = requests.get(httpurl, headers = headers)
-            print r1
-            tmp1 = str(r1)
-            tmp2 = tmp1.split()
-            r2 = requests.get(httpsurl, headers = headers, verify = False)
-            print r2
-            tmp3 = str(r2)
-            tmp4 = tmp3.split()
-            httpstatus = tmp2[1]
-            httpsstatus = tmp4[1]
-            if re.search('200', httpstatus):
-                httpcontent = r1.text
-                id, result = content_process(id, httpcontent)
-            elif re.search('200', httpsstatus):
-                httpscontent = r2.text
-                id, result = content_process(id, httpscontent)
-            else:
-                print 'may be cannot open'
+            try:
+                r1 = requests.get(httpurl, headers = headers)
+            except:
+                r1 = ''
+            if r1 is not '':
+                tmp1 = str(r1)
+                tmp2 = tmp1.split()
+                httpstatus = tmp2[1]
+                if httpstatus:
+                    if re.search('200', httpstatus):
+                        httpcontent = r1.text
+                        id, result1 = content_process(id, httpcontent)
+            try:
+                r2 = requests.get(httpsurl, headers = headers, verify = False)
+            except:
+                r2 = ''
+            if r2 is not '':
+                print r2
+                result = ''
+                tmp3 = str(r2)
+                tmp4 = tmp3.split()
+                httpsstatus = tmp4[1]
+                if httpsstatus:
+                    if re.search('200', httpsstatus):
+                        httpscontent = r2.text
+                        id, result2 = content_process(id, httpscontent)
+        print id, result1, result2
 
     except Exception as e:
         record_err.logrecord()
