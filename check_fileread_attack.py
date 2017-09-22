@@ -25,11 +25,13 @@ def check(id, hostname, url, method, status, postdata):
             httpscontent = requests.get(httpsurl, headers)
             httpscontent = r.text
             content_process(httpcontent, httpscontent)
+            print len(httpcontent), len(httpscontent)
     except Exception as e:
         record_err.logrecord()
 
-def content_process(httpcontent = '', httpscontent = ''):
+def content_process(httpcontent = '', httpscontent = '' ):
     try:
+        print len(httpcontent), len(httpscontent)
         print httpcontent, httpscontent
     except Exception as e:
         record_err.logrecord()
