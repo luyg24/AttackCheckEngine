@@ -15,6 +15,11 @@ filename = 'ids_mysql.conf'
 
 
 def catfileread(id, hostname, url, method, status, postdata):
+    # unicode change to str
+    hostname = str(hostname)
+    url = str(hostname)
+    method = str(method)
+    postdata = str(postdata)
     if status == 200:
         print 'need check!'
         check_fileread_attack.check(id, hostname, url, method, status, postdata)
