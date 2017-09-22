@@ -15,6 +15,7 @@ def check(id, hostname, url, method, status, postdata):
         url = base64.b64decode(url)
         headers = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
         # print hostname, url, status, method
+        print method.lower
         if method.lower() == 'post':
             postdata = base64.b64decode(postdata)
             # print postdata
