@@ -9,14 +9,14 @@ import requests
 
 def check(id, hostname, url, method, status, postdata):
     url = base64.b64decode(url)
-    print method
+    print method, type(method)
     headers = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
     # print hostname, url, status, method
     if method.lower() == 'post':
         postdata = base64.b64decode(postdata)
         # print postdata
     if method.lower() == 'get':
-        # print hostname, url
+        print hostname, url
         httpurl = 'http://' + hostname + url
         httpsurl = 'https://' + hostname + url
         r = requests.get(httpurl, headers)
