@@ -25,7 +25,7 @@ def check(id, hostname, url, method, status, postdata):
             print r1
             tmp1 = str(r1)
             tmp2 = tmp1.split()
-            r2 = requests.get(httpurl, headers = headers, verify = False)
+            r2 = requests.get(httpsurl, headers = headers, verify = False)
             print r2
             tmp3 = str(r2)
             tmp4 = tmp3.split()
