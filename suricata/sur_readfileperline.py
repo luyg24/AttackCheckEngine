@@ -23,19 +23,18 @@ def readfile(content):
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
-            print 'http attack'
             if u'src_ip':
-                new_dict['src_ip'] = conkey[u'src_ip']
+                new_dict['src_ip'] = con_dict[u'src_ip']
             if u'src_port' in conkey:
-                new_dict['src_port'] = conkey[u'src_port']
+                new_dict['src_port'] = con_dict[u'src_port']
             if u'dest_ip' in conkey:
-                new_dict['dest_ip'] = conkey[u'dest_ip']
+                new_dict['dest_ip'] = con_dict[u'dest_ip']
             if u'dest_port' in conkey:
-                new_dict['dest_port'] = conkey[u'dest_port']
+                new_dict['dest_port'] = con_dict[u'dest_port']
             if u'timestamp' in conkey:
-                new_dict['datetime'] = conkey[u'timestamp']
+                new_dict['datetime'] = con_dict[u'timestamp']
             if u'alert' in conkey:
-                new_dict['alert'] = conkey[u'alert']
+                new_dict['alert'] = con_dict[u'alert']
             print new_dict
         else:
             print conkey
