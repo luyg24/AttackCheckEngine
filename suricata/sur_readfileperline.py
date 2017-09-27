@@ -20,7 +20,7 @@ def readfile(content):
         new_dict = {}
         # if content is json str, convert to dict
         con_dict = json.loads(content)
-        print con_dict
+        print con_dict.keys()
         # get http attack type and info
         if con_dict[u'subproto']:
             if con_dict[u'subproto'] == 'http':
@@ -54,7 +54,6 @@ def filename(logfile, file_count, startline):
 def filecount(logfile):
     try:
         stats, output = commands.getstatusoutput('wc -l %s' % (logfile))
-        print output
         count = int(output.split()[0])
         return count
     except Exception as e:
@@ -69,7 +68,6 @@ def fileinfo(logfile, start_line=1):
         while 1:
             file_record = open('file_no.txt', 'w')
             file_count = filecount(logfile)
-            print file_count
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line+1)
                 # record the last processed line number
