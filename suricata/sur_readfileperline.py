@@ -31,7 +31,6 @@ def readfile(content):
                 new_dict[u'status'] = con_dict[u'status']
                 if con_dict[u'method'] == 'POST':
                     new_dict[u'post'] = con_dict[u'postdata']
-        print con_dict
         # attack_deliver.catagory(new_dict)
         # else , pass
     except Exception as e:
@@ -67,8 +66,9 @@ def fileinfo(logfile, start_line=1):
         file_count = filecount(logfile)
         processed_line = filename(logfile, file_count, start_line)
         while 1:
-            file_record = open('file_no.txt', 'a')
+            file_record = open('file_no.txt', 'w')
             file_count = filecount(logfile)
+            print file_count
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line+1)
                 # record the last processed line number
