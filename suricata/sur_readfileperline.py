@@ -79,5 +79,5 @@ def fileinfo(logfile, start_line=1):
     except Exception as e:
         record_err.logrecord()
 
-
-fileinfo('abc.txt', 2)
+if __name__ == '__main__':
+    fileinfo('abc.txt', 2)
