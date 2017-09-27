@@ -7,7 +7,6 @@ fileinfo(filename, startline)
 """
 
 import record_err
-import attack_deliver
 import linecache
 import commands
 import time
