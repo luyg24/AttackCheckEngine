@@ -34,7 +34,7 @@ def readfile(content):
             if u'timestamp' in conkey:
                 new_dict['datetime'] = con_dict[u'timestamp']
             if u'alert' in conkey:
-                new_dict['alert'] = con_dict[u'alert']
+                new_dict['alert'] = con_dict[u'alert'][u'signature']
             print new_dict
         else:
             print conkey
