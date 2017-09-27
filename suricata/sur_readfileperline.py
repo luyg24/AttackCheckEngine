@@ -20,7 +20,25 @@ def readfile(content):
         new_dict = {}
         # if content is json str, convert to dict
         con_dict = json.loads(content)
-        print con_dict.keys()
+        # check if content is http or not
+        conkey = con_dict.keys()
+        if u'http' in conkey:
+            print 'http attack'
+            if u'src_ip':
+                new_dict['src_ip'] = conkey[u'src_ip']
+            if u'src_port' in conkey:
+                new_dict['src_port'] = conkey[u'src_port']
+            if u'dest_ip' in conkey:
+                new_dict['dest_ip'] = conkey[u'dest_ip']
+            if u'dest_port' in conkey:
+                new_dict['dest_port'] = conkey[u'dest_port']
+            if u'timestamp' in conkey:
+                new_dict['datetime'] = conkey[u'timestamp']
+            if u'alert' in conkey:
+                new_dict['alert'] = conkey[u'alert']
+            print new_dict
+        else:
+            print conkey
         # get http attack type and info
         if con_dict[u'subproto']:
             if con_dict[u'subproto'] == 'http':
