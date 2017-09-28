@@ -37,14 +37,14 @@ def deldupl(idsdata):
             if tmp not in filereadlist:
                 filereadlist.append(tmp)
                 # write_todb.writedb(attack_data)
-                dupedfile.write(str(idsdata))
+                dupedfile.write(str(idsdata) + '\n')
                 count += 1
         elif idsdata['catagory'] == 'xss_attack' and idsdata['status'] == '200':
             # global filereadlist
             if tmp not in xsslist:
                 xsslist.append(tmp)
                 # write_todb.writedb(attack_data)
-                dupedfile.write(str(idsdata))
+                dupedfile.write(str(idsdata) + '\n')
                 count += 1
 
         # can not use status check attack is success or not
@@ -53,7 +53,7 @@ def deldupl(idsdata):
             if tmp not in sqlilist:
                 sqlilist.append(tmp)
                 # write_todb.writedb(attack_data)
-                dupedfile.write(str(idsdata))
+                dupedfile.write(str(idsdata) + '\n')
                 count += 1
         else:
             pass
