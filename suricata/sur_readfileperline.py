@@ -24,7 +24,10 @@ def deldupl(idsdata):
         filereadlist, xsslist, sqlilist = sur_load_listfile.checkfile()
         count = 0
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
-        tmp = idsdata['url'] + idsdata['hostname']
+        if idsdata['hostname']:
+            tmp = idsdata['url'] + idsdata['hostname']
+        else:
+            print idsdata
         if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
             # global filereadlist
             if tmp not in filereadlist:
