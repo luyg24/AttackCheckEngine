@@ -87,6 +87,11 @@ def catagory(idsdata):
             idsdata['catagory'] = 'read_file'
         elif '.idq access' in alert:
             idsdata['catagory'] = 'read_file'
+        elif 'idq attempt' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'ida attempt' in alert:
+            idsdata['catagory'] = 'read_file'
+
         elif '.asa access' in alert:
             idsdata['catagory'] = 'read_file'
         elif 'viewcode access' in alert:
@@ -97,6 +102,12 @@ def catagory(idsdata):
             idsdata['catagory'] = 'read_file'
         elif 'mod_gzip_status access' in alert:
             idsdata['catagory'] = 'read_file'
+        elif 'executable downloader high likelihood' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif '.cnf access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'Tomcat directory traversal attempt' in alert:
+            idsdata['catagory'] = 'read_file'
         # xxe
         elif 'XXE' in alert:
             idsdata['catagory'] = 'xxe_attack'
@@ -104,6 +115,8 @@ def catagory(idsdata):
         elif 'EXPLOIT iisadmpwd' in alert:
             idsdata['catagory'] = 'iis_attack'
         elif 'iissamples access' in alert:
+            idsdata['catagory'] = 'iis_attack'
+        elif 'ASP file access' in alert:
             idsdata['catagory'] = 'iis_attack'
         # xss
         elif 'Cross Site Scripting' in alert:
@@ -124,9 +137,13 @@ def catagory(idsdata):
             idsdata['catagory'] = 'cmd_execute'
         elif 'PHP tags in HTTP' in alert:
             idsdata['catagory'] = 'cmd_execute'
+        elif 'perl command attempt' in alert:
+            idsdata['catagory'] = 'cmd_execute'
         # scanner
         elif 'SCAN Nessus' in alert:
             idsdata['catagory'] = 'scanner'
+
+
         else:
             other_alert.write(str(idsdata))
             other_alert.write('\n')
