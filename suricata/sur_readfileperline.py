@@ -184,7 +184,8 @@ def readfile(content):
             new_dict.pop('http')
             catagory(new_dict)
         else:
-            otherattackfile.write(str(new_dict))
+            print con_dict
+            otherattackfile.write(str(con_dict))
             otherattackfile.write('\n')
             otherattackfile.close()
             return
