@@ -116,7 +116,7 @@ def catagory(idsdata):
             idsdata['catagory'] = 'sql_inject'
 
         # command execute
-        elif 'Access to /phppath/php':
+        elif 'Access to /phppath/php' in alert:
             idsdata['catagory'] = 'cmd_execute'
         elif 'System Command' in alert:
             idsdata['catagory'] = 'cmd_execute'
@@ -130,6 +130,7 @@ def catagory(idsdata):
         else:
             other_alert.write(str(idsdata))
             other_alert.write('\n')
+            return
             # here need back to the next line
         deldupl(idsdata)
 
