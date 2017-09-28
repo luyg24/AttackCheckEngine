@@ -143,7 +143,7 @@ def readfile(content):
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
-            new_dict['http'] = str(con_dict[u'http'])
+            new_dict['http'] = (con_dict[u'http'])
             if u'status' in new_dict['http'].keys():
                 new_dict['status'] = str(new_dict[u'http'][u'status'])
             if u'http_user_agent' in new_dict['http'].keys():
