@@ -209,6 +209,7 @@ def filecount(logfile):
     try:
         stats, output = commands.getstatusoutput('wc -l %s' % (logfile))
         count = int(output.split()[0])
+        print count
         return count
     except Exception as e:
         record_err.logrecord()
@@ -226,6 +227,7 @@ def fileinfo(logfile, start_line=1):
                 processed_line = filename(logfile, file_count, processed_line + 1)
                 # record the last processed line number
                 file_record.write(str(processed_line))
+                file_record.write('\n')
                 file_record.close()
             time.sleep(3)
     except Exception as e:
