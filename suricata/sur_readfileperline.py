@@ -27,10 +27,11 @@ def deldupl(idsdata):
         filereadlist, xsslist, sqlilist = sur_load_listfile.checkfile()
         count = 0
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
-        if 'hostname' in idsdata.keys():
+        if 'hostname' in idsdata.keys() and 'url' in idsdata.keys():
             tmp = idsdata['url'] + idsdata['hostname']
         else:
             print idsdata
+        # use status check success is success or not
         if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
             # global filereadlist
             if tmp not in filereadlist:
@@ -46,7 +47,8 @@ def deldupl(idsdata):
                 dupedfile.write(str(idsdata))
                 count += 1
 
-        if idsdata['catagory'] == 'sql_inject' and idsdata['status'] == '200':
+        # can not use status check attack is success or not
+        elif idsdata['catagory'] == 'sql_inject' :
             # global filereadlist
             if tmp not in sqlilist:
                 sqlilist.append(tmp)
@@ -218,7 +220,7 @@ def fileinfo(logfile, start_line=1):
         file_count = filecount(logfile)
         processed_line = filename(logfile, file_count, start_line)
         while 1:
-            file_record = open('file_no.txt', 'w')
+            file_record = open('logs/file_no.txt', 'a')
             file_count = filecount(logfile)
             if file_count > processed_line:
                 processed_line = filename(logfile, file_count, processed_line + 1)
