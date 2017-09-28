@@ -14,6 +14,49 @@ import json
 import datetime
 
 
+def catagory(idsdata):
+    try:
+        idsdata['catagory'] = ''
+        alert = idsdata['alert']
+        # CVE
+        if 'CVE' in alert:
+            idsdata['catagory'] = 'cve_attack'
+        # read file
+        elif 'read File' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'aexp2.htr access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'EXPLOIT .htr access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif '.htaccess access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif '.idq access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif '.idq access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif '.asa access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'viewcode access' in alert:
+            idsdata['catagory'] = 'read_file'
+        # xxe
+        elif 'XXE' in alert:
+            idsdata['catagory'] = 'xxe_attack'
+        # iis
+        elif 'EXPLOIT iisadmpwd' in alert:
+            idsdata['catagory'] = 'iis_attack'
+        elif 'Cross Site Scripting' in alert:
+            idsdata['catagory'] = 'xss_attack'
+        # url scan
+        elif 'administrator access' in alert:
+            idsdata['catagory'] = 'url_scan'
+        else:
+            print alert
+
+
+    except Exception as e:
+        record_err.logrecord()
+
+
 def readfile(content):
     # change str to dict
     try:
@@ -58,8 +101,7 @@ def readfile(content):
             if u'payload' in conkey:
                 new_dict['payload'] = con_dict[u'payload']
             new_dict.pop('http')
-
-            print new_dict['alert']
+            catagory(new_dict)
         else:
             otherattackfile.write(str(new_dict))
             otherattackfile.write('\n')
