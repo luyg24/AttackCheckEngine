@@ -209,7 +209,6 @@ def filecount(logfile):
     try:
         stats, output = commands.getstatusoutput('wc -l %s' % (logfile))
         count = int(output.split()[0])
-        print count
         return count
     except Exception as e:
         record_err.logrecord()
