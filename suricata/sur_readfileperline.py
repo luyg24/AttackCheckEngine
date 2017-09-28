@@ -17,7 +17,7 @@ import datetime
 
 def deldupl(idsdata):
     try:
-        duplicatedfile = '/logs/duplicate_attack.txt'
+        duplicatedfile = 'logs/duplicate_attack.txt'
         dupedfile = open(duplicatedfile, 'a')
         # load list
         # print load_write_listfile.checkfile()
