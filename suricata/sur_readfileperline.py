@@ -30,7 +30,7 @@ def catagory(idsdata):
             idsdata['catagory'] = 'read_file'
         elif '.htaccess access' in alert:
             idsdata['catagory'] = 'read_file'
-        elif '.idq access' in alert:
+        elif '.ida access' in alert:
             idsdata['catagory'] = 'read_file'
         elif '.idq access' in alert:
             idsdata['catagory'] = 'read_file'
@@ -38,19 +38,47 @@ def catagory(idsdata):
             idsdata['catagory'] = 'read_file'
         elif 'viewcode access' in alert:
             idsdata['catagory'] = 'read_file'
+        elif 'printenv access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'fpcount access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'mod_gzip_status access' in alert:
+            idsdata['catagory'] = 'read_file'
         # xxe
         elif 'XXE' in alert:
             idsdata['catagory'] = 'xxe_attack'
         # iis
         elif 'EXPLOIT iisadmpwd' in alert:
             idsdata['catagory'] = 'iis_attack'
+        elif 'iissamples access' in alert:
+            idsdata['catagory'] = 'iis_attack'
+        # xss
         elif 'Cross Site Scripting' in alert:
             idsdata['catagory'] = 'xss_attack'
         # url scan
         elif 'administrator access' in alert:
             idsdata['catagory'] = 'url_scan'
+        # sql inject
+        elif 'SQL Errors in HTTP 200' in alert:
+            idsdata['catagory'] = 'sql_inject'
+
+        # command execute
+        elif 'Access to /phppath/php':
+            idsdata['catagory'] = 'cmd_execute'
+        elif 'System Command' in alert:
+            idsdata['catagory'] = 'cmd_execute'
+        elif 'PHP config option' in alert:
+            idsdata['catagory'] = 'cmd_execute'
+        elif 'PHP tags in HTTP' in alert:
+            idsdata['catagory'] = 'cmd_execute'
+        # scanner
+        elif 'SCAN Nessus' in alert:
+            idsdata['catagory'] = 'scanner'
+
+
         else:
             print alert
+
 
 
     except Exception as e:
