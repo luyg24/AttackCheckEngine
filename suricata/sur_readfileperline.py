@@ -7,6 +7,7 @@ fileinfo(filename, startline)
 """
 
 import record_err
+import sur_load_listfile
 import linecache
 import commands
 import time
@@ -15,7 +16,46 @@ import datetime
 
 
 def deldupl(idsdata):
-    print idsdata
+    try:
+        duplicatedfile = '/logs/duplicate_attack.txt'
+        dupedfile = open(duplicatedfile, 'a')
+        # load list
+        # print load_write_listfile.checkfile()
+        filereadlist, xsslist, sqlilist = sur_load_listfile.checkfile()
+        count = 0
+        # tmp means hostname and url, join the new url+host and match if it is in the loaded list
+        tmp = idsdata['url'] + idsdata['hostname']
+        if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
+            # global filereadlist
+            if tmp not in filereadlist:
+                filereadlist.append(tmp)
+                # write_todb.writedb(attack_data)
+                dupedfile.write(str(idsdata))
+                count += 1
+        elif idsdata['catagory'] == 'xss_attack' and idsdata['status'] == '200':
+            # global filereadlist
+            if tmp not in xsslist:
+                xsslist.append(tmp)
+                # write_todb.writedb(attack_data)
+                dupedfile.write(str(idsdata))
+                count += 1
+
+        if idsdata['catagory'] == 'sql_inject' and idsdata['status'] == '200':
+            # global filereadlist
+            if tmp not in sqlilist:
+                sqlilist.append(tmp)
+                # write_todb.writedb(attack_data)
+                dupedfile.write(str(idsdata))
+                count += 1
+        else:
+            pass
+        if count > 0:
+            # write the new list to file
+            dupedfile.close()
+            sur_load_listfile.writelist(filereadlist, xsslist, sqlilist)
+
+    except Exception as e:
+        record_err.logrecord()
 
 
 def catagory(idsdata):
@@ -103,35 +143,35 @@ def readfile(content):
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
-            new_dict['http'] = con_dict[u'http']
+            new_dict['http'] = str(con_dict[u'http'])
             if u'status' in new_dict['http'].keys():
-                new_dict['status'] = new_dict[u'http'][u'status']
+                new_dict['status'] = str(new_dict[u'http'][u'status'])
             if u'http_user_agent' in new_dict['http'].keys():
-                new_dict['useragent'] = new_dict[u'http'][u'http_user_agent']
+                new_dict['useragent'] = str(new_dict[u'http'][u'http_user_agent'])
             if u'url' in new_dict['http'].keys():
-                new_dict['url'] = new_dict[u'http'][u'url']
+                new_dict['url'] = str(new_dict[u'http'][u'url'])
             if u'hostname' in new_dict['http'].keys():
-                new_dict['hostname'] = new_dict[u'http'][u'hostname']
+                new_dict['hostname'] = str(new_dict[u'http'][u'hostname'])
             if u'xff' in new_dict['http'].keys():
-                new_dict['xff'] = new_dict[u'http'][u'xff']
+                new_dict['xff'] = str(new_dict[u'http'][u'xff'])
             if u'http_method' in new_dict['http'].keys():
-                new_dict['method'] = new_dict[u'http'][u'http_method']
+                new_dict['method'] = str(new_dict[u'http'][u'http_method'])
             if u'request_body' in new_dict['http'].keys():
-                new_dict['postdata'] = new_dict[u'http'][u'request_body']
+                new_dict['postdata'] = str(new_dict[u'http'][u'request_body'])
             if u'src_ip' in conkey:
-                new_dict['src_ip'] = con_dict[u'src_ip']
+                new_dict['src_ip'] = str(con_dict[u'src_ip'])
             if u'src_port' in conkey:
-                new_dict['src_port'] = con_dict[u'src_port']
+                new_dict['src_port'] = str(con_dict[u'src_port'])
             if u'dest_ip' in conkey:
-                new_dict['dest_ip'] = con_dict[u'dest_ip']
+                new_dict['dest_ip'] = str(con_dict[u'dest_ip'])
             if u'dest_port' in conkey:
-                new_dict['dest_port'] = con_dict[u'dest_port']
+                new_dict['dest_port'] = str(con_dict[u'dest_port'])
             if u'timestamp' in conkey:
-                new_dict['datetime'] = con_dict[u'timestamp']
+                new_dict['datetime'] = str(con_dict[u'timestamp'])
             if u'alert' in conkey:
-                new_dict['alert'] = con_dict[u'alert'][u'signature']
+                new_dict['alert'] = str(con_dict[u'alert'][u'signature'])
             if u'payload' in conkey:
-                new_dict['payload'] = con_dict[u'payload']
+                new_dict['payload'] = str(con_dict[u'payload'])
             new_dict.pop('http')
             catagory(new_dict)
         else:
