@@ -16,5 +16,5 @@ def getlog():
 
 if __name__ == '__main__':
     idslog_path = '/data/public/suricata/log/eve-httpids.json'
-    sur_readfileperline.fileinfo(idslog_path, 4983890)
+    sur_readfileperline.fileinfo(idslog_path, 4995110)
     # print 'hello'

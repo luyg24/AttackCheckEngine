@@ -17,6 +17,7 @@ import datetime
 def readfile(content):
     # change str to dict
     try:
+        otherattackfile = open('logs/other_attack.txt', 'a')
         new_dict = {}
         # if content is json str, convert to dict
         con_dict = json.loads(content)
@@ -39,7 +40,9 @@ def readfile(content):
 
             print new_dict
         else:
-            print conkey
+            otherattackfile.write(str(new_dict))
+            otherattackfile.write('\n')
+            otherattackfile.close()
         # get http attack type and info
         if con_dict[u'subproto']:
             if con_dict[u'subproto'] == 'http':
