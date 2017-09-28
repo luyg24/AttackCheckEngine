@@ -25,6 +25,7 @@ def readfile(content):
         conkey = con_dict.keys()
         if u'http' in conkey:
             new_dict['http'] = con_dict[u'http']
+            print new_dict['http'].keys()
             if u'src_ip':
                 new_dict['src_ip'] = con_dict[u'src_ip']
             if u'src_port' in conkey:
@@ -38,7 +39,7 @@ def readfile(content):
             if u'alert' in conkey:
                 new_dict['alert'] = con_dict[u'alert'][u'signature']
 
-            print new_dict
+            # print new_dict
         else:
             otherattackfile.write(str(new_dict))
             otherattackfile.write('\n')
