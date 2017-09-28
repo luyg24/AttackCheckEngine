@@ -59,7 +59,7 @@ def readfile(content):
                 new_dict['payload'] = con_dict[u'payload']
             new_dict.pop('http')
 
-            print new_dict
+            print new_dict['alert']
         else:
             otherattackfile.write(str(new_dict))
             otherattackfile.write('\n')
