@@ -7,6 +7,10 @@ import commands
 import datetime
 import re
 import traceback
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 
 def getlogfile():
     result = ''

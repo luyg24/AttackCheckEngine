@@ -9,6 +9,9 @@ import record_err
 import commands
 import time
 import datetime
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 def getlog():

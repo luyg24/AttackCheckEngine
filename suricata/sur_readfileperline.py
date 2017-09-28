@@ -13,6 +13,9 @@ import commands
 import time
 import json
 import datetime
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 def deldupl(idsdata):
@@ -24,7 +27,7 @@ def deldupl(idsdata):
         filereadlist, xsslist, sqlilist = sur_load_listfile.checkfile()
         count = 0
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
-        if idsdata['hostname']:
+        if 'hostname' in idsdata.keys():
             tmp = idsdata['url'] + idsdata['hostname']
         else:
             print idsdata
@@ -218,7 +221,7 @@ def fileinfo(logfile, start_line=1):
             file_record = open('file_no.txt', 'w')
             file_count = filecount(logfile)
             if file_count > processed_line:
-                processed_line = filename(logfile, file_count, processed_line+1)
+                processed_line = filename(logfile, file_count, processed_line + 1)
                 # record the last processed line number
                 file_record.write(str(processed_line))
                 file_record.close()

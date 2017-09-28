@@ -6,6 +6,9 @@ test file
 import record_err
 import os
 import commands
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')  
 
 
 readfilepath = 'logs/readfile.txt'
