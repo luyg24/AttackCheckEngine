@@ -14,8 +14,13 @@ import json
 import datetime
 
 
+def deldupl(idsdata):
+    print idsdata
+
+
 def catagory(idsdata):
     try:
+        other_alert = open('logs/other_alert.txt', 'a')
         idsdata['catagory'] = ''
         alert = idsdata['alert']
         # CVE
@@ -74,11 +79,11 @@ def catagory(idsdata):
         # scanner
         elif 'SCAN Nessus' in alert:
             idsdata['catagory'] = 'scanner'
-
         else:
-            print alert
-        print idsdata['catagory']
-
+            other_alert.write(str(idsdata))
+            other_alert.write('\n')
+            # here need back to the next line
+        deldupl(idsdata)
 
     except Exception as e:
         record_err.logrecord()
