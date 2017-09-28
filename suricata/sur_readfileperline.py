@@ -57,6 +57,7 @@ def readfile(content):
                 new_dict['alert'] = con_dict[u'alert'][u'signature']
             if u'payload' in conkey:
                 new_dict['payload'] = con_dict[u'payload']
+            new_dict.pop('http')
 
             print new_dict
         else:
