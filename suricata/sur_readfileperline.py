@@ -19,14 +19,31 @@ def readfile(content):
     try:
         otherattackfile = open('logs/other_attack.txt', 'a')
         new_dict = {}
+        new_dict['status'] = ''
+        new_dict['postdata'] = ''
+        new_dict['payload'] = ''
+        new_dict['method'] = ''
         # if content is json str, convert to dict
         con_dict = json.loads(content)
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
             new_dict['http'] = con_dict[u'http']
-            print new_dict['http'].keys()
-            if u'src_ip':
+            if u'status' in new_dict['http'].keys():
+                new_dict['status'] = new_dict[u'http'][u'status']
+            if u'http_user_agent' in new_dict['http'].keys():
+                new_dict['useragent'] = new_dict[u'http'][u'http_user_agent']
+            if u'url' in new_dict['http'].keys():
+                new_dict['url'] = new_dict[u'http'][u'url']
+            if u'hostname' in new_dict['http'].keys():
+                new_dict['hostname'] = new_dict[u'http'][u'hostname']
+            if u'xff' in new_dict['http'].keys():
+                new_dict['xff'] = new_dict[u'http'][u'xff']
+            if u'http_method' in new_dict['http'].keys():
+                new_dict['method'] = new_dict[u'http'][u'http_method']
+            if u'request_body' in new_dict['http'].keys():
+                new_dict['postdata'] = new_dict[u'http'][u'request_body']
+            if u'src_ip' in conkey:
                 new_dict['src_ip'] = con_dict[u'src_ip']
             if u'src_port' in conkey:
                 new_dict['src_port'] = con_dict[u'src_port']
@@ -38,22 +55,24 @@ def readfile(content):
                 new_dict['datetime'] = con_dict[u'timestamp']
             if u'alert' in conkey:
                 new_dict['alert'] = con_dict[u'alert'][u'signature']
+            if u'payload' in conkey:
+                new_dict['payload'] = con_dict[u'payload']
 
-            # print new_dict
+            print new_dict
         else:
             otherattackfile.write(str(new_dict))
             otherattackfile.write('\n')
             otherattackfile.close()
         # get http attack type and info
-        if con_dict[u'subproto']:
-            if con_dict[u'subproto'] == 'http':
-                new_dict[u'attack_type'] = con_dict[u'attack_type']
-                new_dict[u'hostname'] = con_dict[u'hostname']
-                new_dict[u'url'] = con_dict[u'url']
-                new_dict[u'method'] = con_dict[u'method']
-                new_dict[u'status'] = con_dict[u'status']
-                if con_dict[u'method'] == 'POST':
-                    new_dict[u'post'] = con_dict[u'postdata']
+        # if con_dict[u'subproto']:
+        #     if con_dict[u'subproto'] == 'http':
+        #         new_dict[u'attack_type'] = con_dict[u'attack_type']
+        #         new_dict[u'hostname'] = con_dict[u'hostname']
+        #         new_dict[u'url'] = con_dict[u'url']
+        #         new_dict[u'method'] = con_dict[u'method']
+        #         new_dict[u'status'] = con_dict[u'status']
+        #         if con_dict[u'method'] == 'POST':
+        #             new_dict[u'post'] = con_dict[u'postdata']
         # attack_deliver.catagory(new_dict)
         # else , pass
     except Exception as e:
