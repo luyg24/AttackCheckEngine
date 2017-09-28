@@ -75,10 +75,9 @@ def catagory(idsdata):
         elif 'SCAN Nessus' in alert:
             idsdata['catagory'] = 'scanner'
 
-
         else:
             print alert
-
+        print idsdata['catagory']
 
 
     except Exception as e:
