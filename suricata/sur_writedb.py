@@ -26,20 +26,24 @@ def writedb(data):
         # url, useragent, postdata, need base64code
         status = data['status']
         catagory = data['catagory']
+        alert = data['alert']
         postdata = base64.b64encode(data['postdata'])
         url = base64.b64encode(data['url'])
         hostname = data['hostname']
-        datetime = data['datetime']
+        # datetime = data['datetime']
         method = data['method']
-        srcip = data['src_ip']
-        srcport = data['src_port']
-        dstip = data['dest_ip']
+        # srcip = data['src_ip']
+        # srcport = data['src_port']
+        # dstip = data['dest_ip']
         dstport = data['dest_port']
         length = data['length']
         useragent = base64.b64encode(data['useragent'])
         xff = data['xff']
         payload = data['payload']
-        print catagory, postdata, url, useragent
+        insertsql = 'insert into httpattack(catagory, alert, dstport, hostname, url, method, length, useragent, \
+        postdata, payload, status),  values("%s","%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
+        %(catagory, alert, dstport, hostname, url, method, length, useragent, postdata, payload, status)
+        print insertsql
         # if method.lower() == 'post':
         #     post = data[u'post']
         #     basepost = base64.b64encode(post)
