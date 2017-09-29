@@ -44,15 +44,8 @@ def writedb(data):
         postdata, payload, status),  values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
         %(catagory, dstport, hostname, url, method, length, useragent, postdata, payload, status)
         print insertsql
-        # if method.lower() == 'post':
-        #     post = data[u'post']
-        #     basepost = base64.b64encode(post)
-        # # write to db
-        # if method.lower() == 'get':
-        #     insertsql1 = 'insert into  ids_info(attack_type, hostname, status, method, url ) ' \
-        #                  'values("%s", "%s", %d, "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
-        #     cur.execute(insertsql1)
-        #     conn.commit()
+        cur.execute(insertsql)
+        conn.commit()
         # elif method.lower() == 'post':
         #     insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
         #                  'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
@@ -63,7 +56,7 @@ def writedb(data):
         #     print 'what?'
         # # result_set = cur.fetchall()
         # # print result_set
-        # conn.close()
+        conn.close()
     except Exception as e:
         record_err.logrecord()
 
