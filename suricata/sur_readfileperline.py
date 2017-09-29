@@ -202,10 +202,12 @@ def readfile(content):
                 new_dict['alert'] = str(con_dict[u'alert'][u'signature'])
             if u'payload' in conkey:
                 new_dict['payload'] = str(con_dict[u'payload'])
+            if u'length' in conkey:
+                new_dict['payload'] = str(con_dict[u'length'])
             new_dict.pop('http')
             catagory(new_dict)
         else:
-            print con_dict
+            # print con_dict
             otherattackfile.write(str(con_dict))
             otherattackfile.write('\n')
             otherattackfile.close()
