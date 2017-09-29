@@ -97,6 +97,7 @@ def fileinfo(logfile, start_line=1):
     try:
         # 获取文件行数
         file_count = filecount(logfile)
+        print file_count
         processed_line = filename(logfile, file_count, start_line)
         while 1:
             file_record = open('logs/file_dbno.txt', 'a')
@@ -114,7 +115,7 @@ def fileinfo(logfile, start_line=1):
 
 if __name__ == '__main__':
     # print __name__
-    filename = 'ids_mysql.conf'
+    # filename = 'ids_mysql.conf'
     logfile = 'logs/duplicate_attack.txt'
     fileinfo(logfile, 1)
 
