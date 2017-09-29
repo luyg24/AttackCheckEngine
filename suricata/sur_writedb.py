@@ -41,7 +41,7 @@ def writedb(data):
         xff = data['xff']
         payload = data['payload']
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
-        postdata, payload, status),  values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
+        postdata, payload, status) values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
         %(catagory, dstport, hostname, url, method, length, useragent, postdata, payload, status)
         print insertsql
         # cur.execute(insertsql)
