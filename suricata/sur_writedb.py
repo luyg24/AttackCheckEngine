@@ -10,6 +10,7 @@ import base64
 import linecache
 import commands
 import time
+import json
 
 
 
@@ -17,7 +18,7 @@ import time
 
 def writedb(data):
     try:
-        print data
+        data = json.loads(data)
         config = getinfo(myfile)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
