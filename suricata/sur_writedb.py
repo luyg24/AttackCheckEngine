@@ -18,6 +18,7 @@ import time
 def writedb(data):
     try:
         config = getinfo(myfile)
+        print config
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         # sql = 'desc ids_info'
