@@ -29,7 +29,7 @@ def writedb(data):
         alert = data['alert']
         postdata = base64.b64encode(data['postdata'])
         url = base64.b64encode(data['url'])
-        hostname = base64.b64decode(data['hostname'])
+        hostname = base64.b64encode(data['hostname'])
         # datetime = data['datetime']
         method = data['method']
         # srcip = data['src_ip']
