@@ -43,8 +43,9 @@ def writedb(data):
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
         postdata, payload, status),  values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
         %(catagory, dstport, hostname, url, method, length, useragent, postdata, payload, status)
-        cur.execute(insertsql)
-        conn.commit()
+        print insertsql
+        # cur.execute(insertsql)
+        # conn.commit()
         # elif method.lower() == 'post':
         #     insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
         #                  'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
