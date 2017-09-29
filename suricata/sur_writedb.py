@@ -18,7 +18,7 @@ import json
 
 def writedb(data):
     try:
-        data = json.loads(data)
+        data = eval(data)
         config = getinfo(myfile)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
