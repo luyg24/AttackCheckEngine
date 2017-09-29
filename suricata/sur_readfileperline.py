@@ -28,7 +28,7 @@ def deldupl(idsdata):
         count = 0
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
         if 'hostname' in idsdata.keys() and 'url' in idsdata.keys():
-            tmp = idsdata['url'] + idsdata['hostname']
+            tmp = idsdata['hostname'] + idsdata['url']
         else:
             print idsdata
         # use status check success is success or not
@@ -107,6 +107,10 @@ def catagory(idsdata):
         elif '.cnf access' in alert:
             idsdata['catagory'] = 'read_file'
         elif 'Tomcat directory traversal attempt' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'phpinfo access' in alert:
+            idsdata['catagory'] = 'read_file'
+        elif 'cnf access' in alert:
             idsdata['catagory'] = 'read_file'
         # xxe
         elif 'XXE' in alert:
