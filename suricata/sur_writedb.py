@@ -21,32 +21,43 @@ def writedb(data):
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         # sql = 'desc ids_info'
-        attacktype = data[u'attack_type']
-        hostname = data[u'hostname']
-        status = int(data[u'status'])
-        method = data[u'method']
-        url = data[u'url']
-        baseurl = base64.b64encode(url)
-        if method.lower() == 'post':
-            post = data[u'post']
-            basepost = base64.b64encode(post)
-        # write to db
-        if method.lower() == 'get':
-            insertsql1 = 'insert into  ids_info(attack_type, hostname, status, method, url ) ' \
-                         'values("%s", "%s", %d, "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
-            cur.execute(insertsql1)
-            conn.commit()
-        elif method.lower() == 'post':
-            insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
-                         'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
-            # print insertsql2
-            cur.execute(insertsql2)
-            conn.commit()
-        else:
-            print 'what?'
-        # result_set = cur.fetchall()
-        # print result_set
-        conn.close()
+        # url, useragent, postdata, need base64code
+        status = data['status']
+        catagory = data['catagory']
+        postdata = base64.b64encode(data['postdata'])
+        url = base64.b64encode(data['url'])
+        hostname = data['hostname']
+        datetime = data['datetime']
+        method = data['method']
+        srcip = data['src_ip']
+        srcport = data['src_port']
+        dstip = data['dest_ip']
+        dstport = data['dest_port']
+        length = data['length']
+        useragent = base64.b64encode(data['useragent'])
+        xff = data['xff']
+        payload = data['payload']
+        print catagory, postdata, url, useragent
+        # if method.lower() == 'post':
+        #     post = data[u'post']
+        #     basepost = base64.b64encode(post)
+        # # write to db
+        # if method.lower() == 'get':
+        #     insertsql1 = 'insert into  ids_info(attack_type, hostname, status, method, url ) ' \
+        #                  'values("%s", "%s", %d, "%s", "%s")' % (attacktype, hostname, status, method, baseurl)
+        #     cur.execute(insertsql1)
+        #     conn.commit()
+        # elif method.lower() == 'post':
+        #     insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
+        #                  'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
+        #     # print insertsql2
+        #     cur.execute(insertsql2)
+        #     conn.commit()
+        # else:
+        #     print 'what?'
+        # # result_set = cur.fetchall()
+        # # print result_set
+        # conn.close()
     except Exception as e:
         record_err.logrecord()
 
@@ -74,7 +85,8 @@ def filename(logfile, file_count, startline):
         # 控制读取次数
         for i in range(file_count-startline + 1):
             content = linecache.getline(logfile, startline)
-            readfile(content)
+            writedb(content)
+            # readfile(content)
             startline += 1
         # 已处理到多少行
         linecache.clearcache()
