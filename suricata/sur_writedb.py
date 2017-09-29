@@ -99,7 +99,7 @@ def fileinfo(logfile, start_line=1):
         file_count = filecount(logfile)
         processed_line = filename(logfile, file_count, start_line)
         while 1:
-            file_record = open('logs/file_no.txt', 'a')
+            file_record = open('logs/file_dbno.txt', 'a')
             file_count = filecount(logfile)
             file_record.write(str(processed_line))
             file_record.write('\n')
@@ -116,6 +116,6 @@ if __name__ == '__main__':
     # print __name__
     filename = 'ids_mysql.conf'
     logfile = 'logs/duplicate_attack.txt'
-    fileinfo(logfile, )
+    fileinfo(logfile, 1)
 
     # writedb('ids_mysql.conf')
