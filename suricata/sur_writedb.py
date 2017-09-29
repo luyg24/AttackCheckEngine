@@ -29,7 +29,7 @@ def writedb(data):
         alert = data['alert']
         postdata = base64.b64encode(data['postdata'])
         url = base64.b64encode(data['url'])
-        hostname = data['hostname']
+        hostname = base64.b64decode(data['hostname'])
         # datetime = data['datetime']
         method = data['method']
         # srcip = data['src_ip']
@@ -43,7 +43,6 @@ def writedb(data):
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
         postdata, payload, status),  values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
         %(catagory, dstport, hostname, url, method, length, useragent, postdata, payload, status)
-        print insertsql
         cur.execute(insertsql)
         conn.commit()
         # elif method.lower() == 'post':
