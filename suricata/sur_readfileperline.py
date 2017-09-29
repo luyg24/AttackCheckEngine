@@ -168,6 +168,7 @@ def readfile(content):
         new_dict['postdata'] = ''
         new_dict['payload'] = ''
         new_dict['method'] = ''
+        new_dict['length'] = ''
         # if content is json str, convert to dict
         con_dict = json.loads(content)
         # check if content is http or not
@@ -203,7 +204,7 @@ def readfile(content):
             if u'payload' in conkey:
                 new_dict['payload'] = str(con_dict[u'payload'])
             if u'length' in conkey:
-                new_dict['payload'] = str(con_dict[u'length'])
+                new_dict['length'] = str(con_dict[u'length'])
             new_dict.pop('http')
             catagory(new_dict)
         else:
