@@ -189,6 +189,8 @@ def readfile(content):
                 new_dict['method'] = str(new_dict[u'http'][u'http_method'])
             if u'request_body' in new_dict['http'].keys():
                 new_dict['postdata'] = str(new_dict[u'http'][u'request_body'])
+            if u'length' in new_dict['http'].keys():
+                new_dict['length'] = str(new_dict[u'http'][u'length'])
             if u'src_ip' in conkey:
                 new_dict['src_ip'] = str(con_dict[u'src_ip'])
             if u'src_port' in conkey:
@@ -203,8 +205,7 @@ def readfile(content):
                 new_dict['alert'] = str(con_dict[u'alert'][u'signature'])
             if u'payload' in conkey:
                 new_dict['payload'] = str(con_dict[u'payload'])
-            if u'length' in conkey:
-                new_dict['length'] = str(con_dict[u'length'])
+
             new_dict.pop('http')
             catagory(new_dict)
         else:
