@@ -17,7 +17,7 @@ import time
 
 def writedb(data):
     try:
-        config = getinfo(filename)
+        config = getinfo(myfile)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
         # sql = 'desc ids_info'
@@ -51,9 +51,9 @@ def writedb(data):
         record_err.logrecord()
 
 
-def getinfo(filename):
+def getinfo(myfile):
     try:
-        file = open(filename, 'r')
+        file = open(myfile, 'r')
         config = {}
         content = file.readlines()
         for i in range(len(content)):
@@ -72,7 +72,7 @@ def readfile(content):
 def filename(logfile, file_count, startline):
     try:
         # 控制读取次数
-        for i in range(file_count-startline+1):
+        for i in range(file_count-startline + 1):
             content = linecache.getline(logfile, startline)
             readfile(content)
             startline += 1
@@ -115,7 +115,7 @@ def fileinfo(logfile, start_line=1):
 
 if __name__ == '__main__':
     # print __name__
-    # filename = 'ids_mysql.conf'
+    myfile = 'ids_mysql.conf'
     logfile = 'logs/duplicate_attack.txt'
     fileinfo(logfile, 1)
 
