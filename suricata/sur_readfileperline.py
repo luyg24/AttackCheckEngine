@@ -26,7 +26,6 @@ def deldupl(idsdata):
         # load list
         # print load_write_listfile.checkfile(), here get a large list!
         attackedlist = sur_load_listfile.checkfile()
-        print attackedlist
         # filereadlist, xsslist, sqlilist, cvelist, iislist, urlscanlist, cmdexelist, scanlist, xxelist = \
         #    sur_load_listfile.checkfile()
 
