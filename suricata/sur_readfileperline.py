@@ -69,6 +69,7 @@ def deldupl(idsdata):
 def catagory(idsdata):
     try:
         other_alert = open('logs/other_alert.txt', 'a')
+        httpcatafile = open('logs/http_cat.txt', 'a')
         idsdata['catagory'] = ''
         alert = idsdata['alert']
         # CVE
@@ -153,7 +154,9 @@ def catagory(idsdata):
             other_alert.write('\n')
             return
             # here need back to the next line
-        deldupl(idsdata)
+        httpcatafile.write(str(idsdata))
+        httpcatafile.write('\n')
+        # deldupl(idsdata)
 
     except Exception as e:
         record_err.logrecord()
@@ -163,7 +166,6 @@ def readfile(content):
     # change str to dict
     try:
         otherattackfile = open('logs/other_attack.txt', 'a')
-        httpattackfile = open('logs/http_attack.txt', 'a')
         new_dict = {}
         new_dict['status'] = ''
         new_dict['postdata'] = ''
@@ -211,10 +213,11 @@ def readfile(content):
 
             new_dict.pop('http')
             # debug test
-            # catagory(new_dict)
-            httpattackfile.write(str(con_dict))
-            httpattackfile.write('\n')
-            httpattackfile.close()
+            catagory(new_dict)
+            # debug leave @ 20170930
+            # httpattackfile.write(str(con_dict))
+            # httpattackfile.write('\n')
+            # httpattackfile.close()
         else:
             pass
             # print con_dict
