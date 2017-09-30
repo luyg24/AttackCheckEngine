@@ -39,8 +39,9 @@ def deldupl(idsdata):
                 dupedfile.close()
                 sur_load_listfile.writelist(attackedlist)
         else:
-            duplicateother.write(str(idsdata) + '\n')
-            duplicateother.close()
+            dupofile = open(duplicateother, 'a')
+            dupofile.write(str(idsdata) + '\n')
+            dupofile.close()
 
 
     except Exception as e:
