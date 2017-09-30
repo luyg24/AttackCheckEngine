@@ -172,8 +172,8 @@ def readfile(content):
         new_dict['length'] = ''
         # if content is json str, convert to dict
         con_dict = json.loads(content)
-        otherattackfile.write(str(con_dict))
-        otherattackfile.write('\n')
+        # otherattackfile.write(str(con_dict))
+        # otherattackfile.write('\n')
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
