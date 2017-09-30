@@ -32,8 +32,8 @@ def deldupl(idsdata):
             tmp = idsdata['hostname'] + idsdata['url']
 
         # use status check success is success or not
-        # if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
-        if idsdata['catagory'] == 'read_file':
+        if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
+        # if idsdata['catagory'] == 'read_file':
             # global filereadlist
             if tmp not in filereadlist:
                 filereadlist.append(tmp)
@@ -60,7 +60,7 @@ def deldupl(idsdata):
             duplicateother = open('logs/duplicate_otheratt.txt', 'a')
             duplicateother.write(str(idsdata))
             duplicateother.write('\n')
-            duplicatedfile.close()
+            duplicateother.close()
         if count > 0:
             # write the new list to file
             dupedfile.close()
