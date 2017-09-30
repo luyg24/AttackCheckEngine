@@ -21,6 +21,7 @@ sys.setdefaultencoding('utf8')
 def deldupl(idsdata):
     try:
         duplicatedfile = 'logs/duplicate_attack.txt'
+        duplicateother = 'logs/duplicate_otheratt.txt'
         dupedfile = open(duplicatedfile, 'a')
         # load list
         # print load_write_listfile.checkfile()
@@ -56,7 +57,10 @@ def deldupl(idsdata):
                 dupedfile.write(str(idsdata) + '\n')
                 count += 1
         else:
-            pass
+            duplicateother = open('logs/duplicate_otheratt.txt', 'a')
+            duplicateother.write(str(idsdata))
+            duplicateother.write('\n')
+            duplicatedfile.close()
         if count > 0:
             # write the new list to file
             dupedfile.close()
@@ -156,7 +160,7 @@ def catagory(idsdata):
             # here need back to the next line
         httpcatafile.write(str(idsdata))
         httpcatafile.write('\n')
-        # deldupl(idsdata)
+        deldupl(idsdata)
 
     except Exception as e:
         record_err.logrecord()
