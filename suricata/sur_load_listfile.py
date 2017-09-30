@@ -11,10 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
-readfilepath = 'logs/readfile.txt'
-xssfilepath = 'logs/xss.txt'
-sqlfilepath = 'logs/sqli.txt'
-filelist = [readfilepath, xssfilepath, sqlfilepath]
+filelist = 'logs/attackedlist.txt'
 
 
 def checkfile():
@@ -22,10 +19,10 @@ def checkfile():
         count = 0
         filecount = len(filelist)
         for i in range(len(filelist)):
-            result = os.path.exists(filelist[i])
+            result = os.path.exists(filelist)
             if result is False:
-                commands.getstatusoutput('touch %s' % filelist[i])
-                result = os.path.exists(filelist[i])
+                commands.getstatusoutput('touch %s' % filelist)
+                result = os.path.exists(filelist)
                 if result is True:
                     count += 1
             elif result is True:
@@ -37,43 +34,24 @@ def checkfile():
 
 def loadlist(filelist):
     try:
-        readfilelist = []
-        xsslist = []
-        sqlilist = []
+        attackedlist = []
         # print filelist
-        for i in range(len(filelist)):
-            file1 = open(filelist[i])
-            content = file1.readlines()
-            if len(content) != 0:
-                tmp = content[0]
-                urllist = eval(tmp)
-                if i == 0:
-                    readfilelist = urllist
-                elif i == 1:
-                    xsslist = urllist
-                elif i == 2:
-                    sqlilist = urllist
-                else:
-                    pass
-        return readfilelist, xsslist, sqlilist
+        file1 = open(filelist)
+        content = file1.readlines()
+        if len(content) != 0:
+            tmp = content[0]
+            attackedlist = eval(tmp)
+        return attackedlist
     except Exception as e:
         record_err.logrecord()
 
-def writelist(readfilelist, xsslist, sqlilist):
+def writelist(attackedlist):
     """
     write the new list to file!
     """
     try:
-        for i in range(len(filelist)):
-            file1 = open(filelist[i], 'w')
-            if i == 0:
-                file1.write(str(readfilelist))
-            elif i == 1:
-                file1.write(str(xsslist))
-            elif i == 2:
-                file1.write(str(sqlilist))
-            else:
-                pass
+        file1 = open(filelist, 'w')
+        file1.write(str(attackedlist))
     except Exception as e:
         record_err.logrecord()
     # print content

@@ -24,47 +24,30 @@ def deldupl(idsdata):
         duplicateother = 'logs/duplicate_otheratt.txt'
         dupedfile = open(duplicatedfile, 'a')
         # load list
-        # print load_write_listfile.checkfile()
-        filereadlist, xsslist, sqlilist = sur_load_listfile.checkfile()
+        # print load_write_listfile.checkfile(), here get a large list!
+        attackedlist = sur_load_listfile.checkfile()
+        print attackedlist
+        # filereadlist, xsslist, sqlilist, cvelist, iislist, urlscanlist, cmdexelist, scanlist, xxelist = \
+        #    sur_load_listfile.checkfile()
+
         count = 0
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
         if 'hostname' in idsdata.keys() and 'url' in idsdata.keys():
             tmp = idsdata['hostname'] + idsdata['url']
+        if tmp not in attackedlist:
+            attackedlist.append(tmp)
+            dupedfile.write(str(idsdata) + '\n')
+            dupedfile.close()
 
         # use status check success is success or not
         if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
         # if idsdata['catagory'] == 'read_file':
             # global filereadlist
-            if tmp not in filereadlist:
-                filereadlist.append(tmp)
+            if tmp not in attackedlist:
+                attackedlist.append(tmp)
                 # write_todb.writedb(attack_data)
                 dupedfile.write(str(idsdata) + '\n')
-                count += 1
-        elif idsdata['catagory'] == 'xss_attack' and idsdata['status'] == '200':
-            # global filereadlist
-            if tmp not in xsslist:
-                xsslist.append(tmp)
-                # write_todb.writedb(attack_data)
-                dupedfile.write(str(idsdata) + '\n')
-                count += 1
-
-        # can not use status check attack is success or not
-        elif idsdata['catagory'] == 'sql_inject' :
-            # global filereadlist
-            if tmp not in sqlilist:
-                sqlilist.append(tmp)
-                # write_todb.writedb(attack_data)
-                dupedfile.write(str(idsdata) + '\n')
-                count += 1
-        else:
-            duplicateother = open('logs/duplicate_otheratt.txt', 'a')
-            duplicateother.write(str(idsdata))
-            duplicateother.write('\n')
-            duplicateother.close()
-        if count > 0:
-            # write the new list to file
-            dupedfile.close()
-            sur_load_listfile.writelist(filereadlist, xsslist, sqlilist)
+                sur_load_listfile.writelist(attackedlist)
 
     except Exception as e:
         record_err.logrecord()
