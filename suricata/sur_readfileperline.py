@@ -207,7 +207,11 @@ def readfile(content):
                 new_dict['payload'] = str(con_dict[u'payload'])
 
             new_dict.pop('http')
-            catagory(new_dict)
+            # debug test
+            # catagory(new_dict)
+            otherattackfile.write(str(con_dict))
+            otherattackfile.write('\n')
+            otherattackfile.close()
         else:
             # print con_dict
             otherattackfile.write(str(con_dict))

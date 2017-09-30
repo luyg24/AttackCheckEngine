@@ -4,8 +4,8 @@
 read from mysql
 """
 
-import update_msyql_vul
-import check_fileread_attack
+# import update_msyql_vul
+# import check_fileread_attack
 import mysql.connector
 import record_err
 import base64
@@ -15,9 +15,11 @@ import base64
 def catfileread(id, hostname, url, method, status, postdata):
     # unicode change to str
     hostname = str(hostname)
-    url = str(url)
+    url = str(base64.b64decode(url))
     method = str(method)
-    postdata = str(postdata)
+    if method.lower() == 'post':
+        if len(method)>0:
+            postdata = str(base64.b64decode(postdata))
     if status == 200:
         check_fileread_attack.check(id, hostname, url, method, status, postdata)
         # status is 200 check or no check!
@@ -36,22 +38,33 @@ def readfile(startid = 1):
         config = getinfo(myconf)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        readsql = 'select  catagory, hostname, url, method, status, postdata, payload from httpattack where id = %d' % startid
+        readsql = 'select  catagory, hostname, url, method, status, postdata, payload, dstport from httpattack where id = %d' % startid
         cur.execute(readsql)
         # get info
         result = cur.fetchall()
-        print result
         if len(result) > 0:
-            attack_type = result[0][0]
-            hostname = result[0][1]
-            url = result[0][2]
-            method = result[0][3]
-            status = result[0][4]
-            postdata = result[0][5]
+            # "get data from db is unicode"
+            catagory = str(result[0][0])
+            hostname = str(base64.b64decode(result[0][1]))
+            url = str(base64.b64decode(result[0][2]))
+            method = str(result[0][3])
+            status = str(result[0][4])
+            postdata = str(result[0][5])
+            payload = str(result[0][6])
+            dstport = str(result[0][7])
+            if len(payload) > 0:
+                payload = str(base64.b64decode(payload))
+            if method.lower() == 'post':
+                if len(postdata) > 0:
+                    postdata = str(base64.b64decode(postdata))
         else:
             print 'mysql info error'
-        if attack_type == u'文件读取':
-            pass
+        if catagory == u'read_file':
+            if method.lower() == 'get':
+                pass
+            # print hostname, url, dstport, method, postdata, payload, status
+            print url
+            print method
             # catfileread(id, hostname, url, method, status, postdata)
         else:
             # process other attack_type
@@ -80,9 +93,10 @@ def getcount():
         config = getinfo(myconf)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        linecount = 'select count(id) from ids_info '
+        linecount = 'select count(id) from httpattack '
         cur.execute(linecount)
         result = cur.fetchall()
+        print result
         return int(result[0][0])
         cur.close()
         conn.close()
@@ -98,7 +112,7 @@ def getuntestline():
             config = getinfo(myconf)
             conn = mysql.connector.connect(**config)
             cur = conn.cursor()
-            readsql = 'select id from ids_info where attack_status is NULL limit %d,1' % i
+            readsql = 'select id from httpattack where attack_status is NULL limit %d,1' % i
             cur.execute(readsql)
             result = cur.fetchall()
             id = result[0][0]
@@ -115,4 +129,3 @@ if __name__ == '__main__':
     # print __name__
     getuntestline()
     # print startid
-
