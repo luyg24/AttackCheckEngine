@@ -163,6 +163,7 @@ def readfile(content):
     # change str to dict
     try:
         otherattackfile = open('logs/other_attack.txt', 'a')
+        httpattackfile = open('logs/http_attack.txt', 'a')
         new_dict = {}
         new_dict['status'] = ''
         new_dict['postdata'] = ''
@@ -211,15 +212,15 @@ def readfile(content):
             new_dict.pop('http')
             # debug test
             # catagory(new_dict)
-            # otherattackfile.write(str(con_dict))
-            # otherattackfile.write('\n')
-            # otherattackfile.close()
+            httpattackfile.write(str(con_dict))
+            httpattackfile.write('\n')
+            httpattackfile.close()
         else:
             pass
             # print con_dict
-            # otherattackfile.write(str(con_dict))
-            # otherattackfile.write('\n')
-            # otherattackfile.close()
+            otherattackfile.write(str(con_dict))
+            otherattackfile.write('\n')
+            otherattackfile.close()
             # return
     except Exception as e:
         record_err.logrecord()
