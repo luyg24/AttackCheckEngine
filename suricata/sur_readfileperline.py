@@ -34,20 +34,15 @@ def deldupl(idsdata):
         # tmp means hostname and url, join the new url+host and match if it is in the loaded list
         if 'hostname' in idsdata.keys() and 'url' in idsdata.keys():
             tmp = idsdata['hostname'] + idsdata['url']
-        if tmp not in attackedlist:
-            attackedlist.append(tmp)
-            dupedfile.write(str(idsdata) + '\n')
-            dupedfile.close()
-
-        # use status check success is success or not
-        if idsdata['catagory'] == 'read_file' and idsdata['status'] == '200':
-        # if idsdata['catagory'] == 'read_file':
-            # global filereadlist
             if tmp not in attackedlist:
                 attackedlist.append(tmp)
-                # write_todb.writedb(attack_data)
                 dupedfile.write(str(idsdata) + '\n')
+                dupedfile.close()
                 sur_load_listfile.writelist(attackedlist)
+        else:
+            duplicateother.write(str(idsdata) + '\n')
+            duplicateother.close()
+
 
     except Exception as e:
         record_err.logrecord()
