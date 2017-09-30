@@ -171,6 +171,8 @@ def readfile(content):
         new_dict['length'] = ''
         # if content is json str, convert to dict
         con_dict = json.loads(content)
+        otherattackfile.write(str(con_dict))
+        otherattackfile.write('\n')
         # check if content is http or not
         conkey = con_dict.keys()
         if u'http' in conkey:
@@ -209,15 +211,16 @@ def readfile(content):
             new_dict.pop('http')
             # debug test
             # catagory(new_dict)
-            otherattackfile.write(str(con_dict))
-            otherattackfile.write('\n')
-            otherattackfile.close()
+            # otherattackfile.write(str(con_dict))
+            # otherattackfile.write('\n')
+            # otherattackfile.close()
         else:
+            pass
             # print con_dict
-            otherattackfile.write(str(con_dict))
-            otherattackfile.write('\n')
-            otherattackfile.close()
-            return
+            # otherattackfile.write(str(con_dict))
+            # otherattackfile.write('\n')
+            # otherattackfile.close()
+            # return
     except Exception as e:
         record_err.logrecord()
 
