@@ -39,6 +39,8 @@ def writedb(data):
         length = data['length']
         if 'useragent' in data.keys():
             useragent = base64.b64encode(data['useragent'])
+        else:
+            useragent = ''
         xff = data['xff']
         payload = data['payload']
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
