@@ -12,14 +12,17 @@ import re
 
 def checkstatus(id, hostname, url, method, status, postdata):
     hostname = str(hostname)
-    url = str(base64.b64decode(url))
+    #url = str(base64.b64decode(url))
     method = str(method)
     if method.lower() == 'post':
         if len(method) > 0:
-            postdata = str(base64.b64decode(postdata))
+            postdata = postdata
+            #postdata = str(base64.b64decode(postdata))
     if len(status) > 0:
         if status != 200:
-            print method, 'attack failed'
+            pass
+            # 这里可以直接输出结果信息了
+            # print method, 'attack failed'
         else :
             print id, hostname, url, method, status, postdata
             pass
