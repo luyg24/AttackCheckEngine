@@ -60,12 +60,13 @@ def readfile(startid = 1):
         else:
             print 'mysql info error'
         if catagory == u'read_file':
+            #需要判断是否需要登录
+            print hostname, url, dstport, method, postdata, payload, status
             if method.lower() == 'get':
                 pass
-            # print hostname, url, dstport, method, postdata, payload, status
-            print url
-            print method
-            # catfileread(id, hostname, url, method, status, postdata)
+                # catfileread(id, hostname, url, method, status, postdata)
+            elif method.lower() == 'post':
+                pass
         else:
             # process other attack_type
             pass
