@@ -18,8 +18,8 @@ import json
 
 def writedb(data):
     try:
+        #"注意一些字段担心有特殊字符无法写入db，进行了base64编码"
         data = eval(data)
-        print data
         config = getinfo(myfile)
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()

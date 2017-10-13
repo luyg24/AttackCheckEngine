@@ -25,6 +25,8 @@ def checkstatus(id, hostname, url, method, status, postdata):
             pass
             # need to be check
     else:
+        # may be need to be check
+        print id, hostname, url, method, postdata
         print 'no status'
 
 def check(id, hostname, url, method, status, postdata):
