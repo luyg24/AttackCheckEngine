@@ -61,7 +61,7 @@ def readfile(startid = 1):
             print 'mysql info error'
         if catagory == u'read_file':
             #需要判断是否需要登录
-            print hostname, url, dstport, method, postdata, payload, status
+            print hostname, url, dstport, method, postdata, status
             if method.lower() == 'get':
                 pass
                 # catfileread(id, hostname, url, method, status, postdata)
