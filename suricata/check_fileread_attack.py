@@ -19,7 +19,7 @@ def checkstatus(id, hostname, url, method, status, postdata):
             postdata = str(base64.b64decode(postdata))
     if len(status) > 0:
         if status != 200:
-            print 'attack failed'
+            print method, 'attack failed'
         else :
             print id, hostname, url, method, status, postdata
             pass
