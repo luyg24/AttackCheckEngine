@@ -6,30 +6,11 @@ read from mysql
 
 # import update_msyql_vul
 # import check_fileread_attack
+import check_fileread_attack
 import mysql.connector
 import record_err
 import base64
 
-
-
-def catfileread(id, hostname, url, method, status, postdata):
-    # unicode change to str
-    hostname = str(hostname)
-    url = str(base64.b64decode(url))
-    method = str(method)
-    if method.lower() == 'post':
-        if len(method)>0:
-            postdata = str(base64.b64decode(postdata))
-    if status == 200:
-        check_fileread_attack.check(id, hostname, url, method, status, postdata)
-        # status is 200 check or no check!
-    elif status != 200:
-        print status
-        vul = 'N'
-        update_msyql_vul.updatevul(id, vul)
-
-    else:
-        print 'what?'
 
 
 def readfile(startid = 1):
@@ -61,12 +42,9 @@ def readfile(startid = 1):
             print 'mysql info error'
         if catagory == u'read_file':
             #需要判断是否需要登录
-            print hostname, url, dstport, method, postdata, status
-            if method.lower() == 'get':
-                pass
-                # catfileread(id, hostname, url, method, status, postdata)
-            elif method.lower() == 'post':
-                pass
+            # print hostname, url, dstport, method, postdata, status
+            check_fileread_attack.checkstatus(id, hostname, url, method, status, postdata)
+            # catfileread(id, hostname, url, method, status, postdata)
         else:
             # process other attack_type
             pass
