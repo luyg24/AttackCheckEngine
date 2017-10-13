@@ -14,6 +14,7 @@ import time
 import json
 import datetime
 import sys
+import sur_writedb
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -134,6 +135,7 @@ def catagory(idsdata):
 
         else:
             attack_type = 1
+            #"这里记录的是没有被规则命中的"
             other_alert.write(str(idsdata))
             other_alert.write('\n')
             return
@@ -150,6 +152,7 @@ def catagory(idsdata):
 def readfile(content):
     # change str to dict
     try:
+        #"otherattackfile 记录的是非http流量"
         otherattackfile = open('logs/other_attack.txt', 'a')
         new_dict = {}
         new_dict['status'] = ''

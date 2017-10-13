@@ -43,9 +43,9 @@ def writedb(data):
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
         postdata, payload, status) values("%s" ,"%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s", "%s")' \
         %(catagory, dstport, hostname, url, method, length, useragent, postdata, payload, status)
-        # print insertsql
-        cur.execute(insertsql)
-        conn.commit()
+        print insertsql
+        # cur.execute(insertsql)
+        # conn.commit()
         # elif method.lower() == 'post':
         #     insertsql2 = 'insert into  ids_info(attack_type, hostname, status, method, url, postdata ) ' \
         #                  'values("%s", "%s", %d, "%s", "%s", "%s")' % (attacktype, hostname, status, method, baseurl, basepost)
@@ -127,7 +127,6 @@ def fileinfo(logfile, start_line=1):
 if __name__ == '__main__':
     # print __name__
     myfile = 'ids_mysql.conf'
-    logfile = 'logs/duplicate_attack.txt'
+    logfile = 'logs/http_cat.txt'
     fileinfo(logfile, 1)
-
-    # writedb('ids_mysql.conf')
+    writedb('ids_mysql.conf')
