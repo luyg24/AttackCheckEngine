@@ -37,7 +37,8 @@ def writedb(data):
         # dstip = data['dest_ip']
         dstport = data['dest_port']
         length = data['length']
-        useragent = base64.b64encode(data['useragent'])
+        if data['useragent']:
+            useragent = base64.b64encode(data['useragent'])
         xff = data['xff']
         payload = data['payload']
         insertsql = 'insert into httpattack(catagory, dstport, hostname, url, method, length, useragent, \
