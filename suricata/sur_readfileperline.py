@@ -50,6 +50,7 @@ def deldupl(idsdata):
 
 def catagory(idsdata):
     try:
+        attack_type = 0
         other_alert = open('logs/other_alert.txt', 'a')
         httpcatafile = open('logs/http_cat.txt', 'a')
         idsdata['catagory'] = ''
@@ -132,13 +133,15 @@ def catagory(idsdata):
 
 
         else:
+            attack_type = 1
             other_alert.write(str(idsdata))
             other_alert.write('\n')
             return
             # here need back to the next line
-        httpcatafile.write(str(idsdata))
-        httpcatafile.write('\n')
-        deldupl(idsdata)
+        if attack_type == 0:
+            httpcatafile.write(str(idsdata))
+            httpcatafile.write('\n')
+        # deldupl(idsdata)
 
     except Exception as e:
         record_err.logrecord()
