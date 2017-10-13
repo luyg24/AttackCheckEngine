@@ -97,7 +97,6 @@ def getcount():
         linecount = 'select count(id) from httpattack '
         cur.execute(linecount)
         result = cur.fetchall()
-        print result
         return int(result[0][0])
         cur.close()
         conn.close()
