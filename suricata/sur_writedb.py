@@ -37,7 +37,7 @@ def writedb(data):
         # dstip = data['dest_ip']
         dstport = data['dest_port']
         length = data['length']
-        if data['useragent']:
+        if 'useragent' in data.keys():
             useragent = base64.b64encode(data['useragent'])
         xff = data['xff']
         payload = data['payload']
