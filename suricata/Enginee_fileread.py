@@ -10,7 +10,8 @@ def check_vul(**data):
     file = open('/tmp/http_content.txt', 'a')
     useragent = ''
     if 'url' in data.keys() and 'hostname' in data.keys():
-        data['url'] =
+        data['url'] = data['url'].replace('"', '%22')
+        data['url'] = data['url'].replace("'", '%27')
         # 判断url里面是否包含'或者",如果包含需要进行编码转换
         httpurl = 'http://'+data['hostname'] + data['url']
         httpsurl = 'https://'+data['hostname'] + data['url']
