@@ -46,4 +46,4 @@ if __name__ == '__main__':
     port = ''
     postdata = ''
     method = 'GET'
-    check_vul(url = url, hostname = hostname, port = port, postdata = postdata, header = header, method = method )
+    check_vul(url = url, port = port, postdata = postdata, header = header, method = method )
