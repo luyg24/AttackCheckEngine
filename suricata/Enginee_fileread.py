@@ -8,14 +8,17 @@ import requests
 def check_vul(**data):
     useragent = ''
     if 'url' in data.keys() and 'hostname' in data.keys():
-        httpurl = data['hostname'] + data['url']
+        httpurl = 'http://'+data['hostname'] + data['url']
+        httpsurl = 'https://'+data['hostname'] + data['url']
     else:
         return 'no hostname or url'
     if 'method' in data.keys():
         if data['method'].lower() == 'get':
             # get 方式进行验证
-            content = requests.get(httpurl, headers=headers)
-            print content
+            http_content = requests.get(httpurl, headers=headers)
+            https_content = requests.get(httpsurl, headers=headers)
+            print http_content
+            print https_content
 
     pass
 
