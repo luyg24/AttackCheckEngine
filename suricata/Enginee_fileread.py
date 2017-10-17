@@ -2,13 +2,11 @@
 # -*- coding:utf-8 -*-
 
 
-# import requests
+import requests
 
 
 def check_vul(**data):
     useragent = ''
-    print data
-    print data.keys()
     if 'url' in data.keys() and 'hostname' in data.keys():
         httpurl = data['hostname'] + data['url']
     else:
