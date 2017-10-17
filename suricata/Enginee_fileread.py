@@ -6,6 +6,7 @@ import requests
 
 
 def check_vul(**data):
+    file = open('/tmp/http_content.txt', 'a')
     useragent = ''
     if 'url' in data.keys() and 'hostname' in data.keys():
         httpurl = 'http://'+data['hostname'] + data['url']
@@ -15,16 +16,27 @@ def check_vul(**data):
     if 'method' in data.keys():
         if data['method'].lower() == 'get':
             # get 方式进行验证
-            r_http = requests.get(httpurl, headers = headers)
-            r_https = requests.get(httpsurl, headers = headers, verify = False)
+            r_http = requests.get(httpurl, headers = headers, timeout = 5)
+            r_https = requests.get(httpsurl, headers = headers, timeout = 5, verify = False)
             if r_http.status_code == 200:
-                print len(r_http.text)
-                r_http.text, r_http.content
+                file.write('-'*30)
+                file.write('\n')
+                file.write(r_http + '\n')
+                file.write(r_http.content + '\n')
+            else:
+                file.write('-' * 30)
+                file.write('\n')
+                file.write(r_http + 'cannot open !\n')
             if r_https.status_code == 200:
-                print len(r_https.text)
-                print r_https.status_code, r_https.text, r_https.content
+                file.write('-' * 30)
+                file.write('\n')
+                file.write(r_https + '\n')
+                file.write(r_https.content + '\n')
+            else:
+                file.write('-' * 30)
+                file.write('\n')
+                file.write(r_https + 'cannot open !\n')
 
-    pass
 
 
 if __name__ == '__main__':
