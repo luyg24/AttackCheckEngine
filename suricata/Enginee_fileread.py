@@ -18,9 +18,10 @@ def check_vul(**data):
             r_http = requests.get(httpurl, headers = headers)
             r_https = requests.get(httpsurl, headers = headers, verify = False)
             if r_http.status_code == 200:
-
-                print r_http.status_code, r_http.text, r_http.content
+                print len(r_http.text)
+                r_http.text, r_http.content
             if r_https.status_code == 200:
+                print len(r_https.text)
                 print r_https.status_code, r_https.text, r_https.content
 
     pass
