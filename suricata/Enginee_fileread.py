@@ -21,21 +21,21 @@ def check_vul(**data):
             if r_http.status_code == 200:
                 file.write('-'*30)
                 file.write('\n')
-                file.write(r_http + '\n')
-                file.write(r_http.content + '\n')
+                file.write(str(r_http) + '\n')
+                file.write(str(r_http.content) + '\n')
             else:
                 file.write('-' * 30)
                 file.write('\n')
-                file.write(r_http + 'cannot open !\n')
+                file.write(str(r_http) + 'cannot open !\n')
             if r_https.status_code == 200:
                 file.write('-' * 30)
                 file.write('\n')
-                file.write(r_https + '\n')
-                file.write(r_https.content + '\n')
+                file.write(str(r_https) + '\n')
+                file.write(str(r_https.content) + '\n')
             else:
                 file.write('-' * 30)
                 file.write('\n')
-                file.write(r_https + 'cannot open !\n')
+                file.write(str(r_https) + 'cannot open !\n')
 
 
 
