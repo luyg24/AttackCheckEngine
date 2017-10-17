@@ -21,7 +21,7 @@ def check_vul(**data):
             if r_http.status_code == 200:
                 file.write('-'*30)
                 file.write('\n')
-                file.write(str(r_http) + '\n')
+                file.write(str(httpurl) + '\n')
                 file.write(str(r_http.content) + '\n')
             else:
                 file.write('-' * 30)
@@ -30,7 +30,7 @@ def check_vul(**data):
             if r_https.status_code == 200:
                 file.write('-' * 30)
                 file.write('\n')
-                file.write(str(r_https) + '\n')
+                file.write(str(httpsurl) + '\n')
                 file.write(str(r_https.content) + '\n')
             else:
                 file.write('-' * 30)
