@@ -17,8 +17,11 @@ def check_vul(**data):
             # get 方式进行验证
             r_http = requests.get(httpurl, headers = headers)
             r_https = requests.get(httpsurl, headers = headers, verify = False)
-            print r_http.status_code, r_http.text, r_http.content
-            print r_https.status_code, r_https.text, r_https.content
+            if r_http.status_code == 200:
+
+                print r_http.status_code, r_http.text, r_http.content
+            if r_https.status_code == 200:
+                print r_https.status_code, r_https.text, r_https.content
 
     pass
 
