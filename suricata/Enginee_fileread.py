@@ -15,8 +15,8 @@ def check_vul(**data):
     if 'method' in data.keys():
         if data['method'].lower() == 'get':
             # get 方式进行验证
-            http_content = requests.get(httpurl, headers=headers)
-            https_content = requests.get(httpsurl, headers=headers)
+            http_content = requests.get(httpurl, headers = headers)
+            https_content = requests.get(httpsurl, headers = headers, verify = False)
             print http_content
             print https_content
 
