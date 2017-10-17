@@ -15,10 +15,10 @@ def check_vul(**data):
     if 'method' in data.keys():
         if data['method'].lower() == 'get':
             # get 方式进行验证
-            http_content = requests.get(httpurl, headers = headers)
-            https_content = requests.get(httpsurl, headers = headers, verify = False)
-            print http_content
-            print https_content
+            r_http = requests.get(httpurl, headers = headers)
+            r_https = requests.get(httpsurl, headers = headers, verify = False)
+            print r_http.status, r_http.text, r_http.content
+            print r_https.status, r_https.text, r_https.content
 
     pass
 
