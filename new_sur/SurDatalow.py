@@ -29,7 +29,7 @@ class File(object):
 
     def count(self):
         status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
-        print status, output
+        return output
 
     def read(self):
         print 'reading file per line'
@@ -38,7 +38,7 @@ class File(object):
 syspath = '/tmp/test1.json'
 fromline = 1
 readfile = File(syspath, fromline)
-readfile.count()
+print readfile.count()
 readfile.read()
 
 
