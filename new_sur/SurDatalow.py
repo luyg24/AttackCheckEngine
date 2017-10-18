@@ -51,7 +51,7 @@ while True:
         for fromline in range(fromline + 1, filelines + 1, ):
             readfile = File(syspath, fromline)
             content = readfile.read()
-            print type(content)
+            content = eval(content)
             #进行下一步处理，流量整形,获取到最新的数据
             newcontent = DataFlow(content)
     else:
