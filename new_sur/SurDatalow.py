@@ -74,6 +74,10 @@ class DataFlow(object):
             print 'not dict type!'
         return self.newdict
 
+    def catagory(self):
+        print self.newdict.keys()
+
+
 
 class File(object):
     def __init__(self, filepath, startline=0):
@@ -114,8 +118,7 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
-                    if newcontent['type'] == 'other_attack':
-                        print newcontent
+                    dataflow.catagory()
                     log.write(str(fromline) + 'line is finished!\n')
                 except:
                     continue
