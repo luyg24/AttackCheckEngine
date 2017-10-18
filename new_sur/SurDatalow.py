@@ -75,7 +75,7 @@ class DataFlow(object):
         return self.newdict
 
     def catagory(self):
-        print self.newdict.keys()
+        print self.newdict['signature']
 
 
 
