@@ -75,8 +75,10 @@ class DataFlow(object):
         return self.newdict
 
     def catagory(self):
+
         attackcat = open('conf/attack_method.txt', 'r')
         matchrule = eval(attackcat.read())
+        print matchrule
         match = 0
         for k, v in matchrule.items():
             print k, v
