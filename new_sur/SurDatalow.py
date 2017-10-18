@@ -80,6 +80,7 @@ class DataFlow(object):
         match = 0
         for k, v in matchrule.items():
             for i in range(len(v)):
+                print v[i]
                 if v[i] in self.newdict['signature']:
                     self.newdict['attacktype'] = k
                     print self.newdict['attacktype'], self.newdict['signature']
