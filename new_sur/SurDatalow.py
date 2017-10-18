@@ -59,10 +59,13 @@ try:
                 readfile = File(syspath, fromline)
                 content = readfile.read()
                 #使用eval将原本数据外面的引号去除，这里因为原来的数据是dict，所以新的content现在是dict
-                content = eval(content)
-                #进行下一步处理，流量整形,获取到最新的数据
-                newcontent = DataFlow(content)
-                log.write(str(fromline) + 'line is finished!\n')
+                try:
+                    content = eval(content)
+                    #进行下一步处理，流量整形,获取到最新的数据
+                    newcontent = DataFlow(content)
+                    log.write(str(fromline) + 'line is finished!\n')
+                except:
+                    continue
             log.close()
         else:
             print fromline
