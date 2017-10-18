@@ -29,7 +29,8 @@ class File(object):
 
     def count(self):
         status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
-        return output
+        output = output.split('')
+        return int(output[0])
 
     def read(self):
         print 'reading file per line'
