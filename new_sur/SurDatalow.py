@@ -35,10 +35,8 @@ class File(object):
 
     def read(self):
         #每次读取一行内容
-        content=linecache.getline(self.filepath)
-
-        print 'reading file per line'
-
+        content=linecache.getline(self.filepath, self.startline)
+        print content
 
 syspath = '/tmp/test1.json'
 fromline = 1
@@ -49,6 +47,7 @@ while True:
         #证明文件有新增内容需要继续读取
         for fromline in range(fromline, filelines + 1, ):
             readfile = File(syspath, fromline)
+            readfile.read()
     else:
         print fromline
         time.sleep(10)
