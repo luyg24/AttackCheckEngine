@@ -32,9 +32,12 @@ class File(object):
 
     def count(self):
         #返回文件行数
-        status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
-        output = output.split()
-        return int(output[0])
+        try:
+            status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
+            output = output.split()
+            return int(output[0])
+        except Exception as e:
+            record_err.logrecord()
 
     def read(self):
         #更新一下缓存,避免新增内容获取不到
@@ -47,20 +50,23 @@ syspath = '/tmp/test1.json'
 fromline = 0
 readfile = File(syspath, fromline)
 filelines = readfile.count()
-while True:
-    if filelines > fromline:
-        #证明文件有新增内容需要继续读取,fromline＋1代表上次执行到了fromline行，这次从＋1行开始
-        for fromline in range(fromline + 1, filelines + 1, ):
+try:
+    while True:
+        if filelines > fromline:
+            #证明文件有新增内容需要继续读取,fromline＋1代表上次执行到了fromline行，这次从＋1行开始
+            for fromline in range(fromline + 1, filelines + 1, ):
+                readfile = File(syspath, fromline)
+                content = readfile.read()
+                #使用eval将原本数据外面的引号去除，这里因为原来的数据是dict，所以新的content现在是dict
+                content = eval(content)
+                #进行下一步处理，流量整形,获取到最新的数据
+                newcontent = DataFlow(content)
+        else:
+            print fromline
+            time.sleep(10)
             readfile = File(syspath, fromline)
-            content = readfile.read()
-            #使用eval将原本数据外面的引号去除，这里因为原来的数据是dict，所以新的content现在是dict
-            content = eval(content)
-            #进行下一步处理，流量整形,获取到最新的数据
-            newcontent = DataFlow(content)
-    else:
-        print fromline
-        time.sleep(10)
-        readfile = File(syspath, fromline)
-        filelines = readfile.count()
+            filelines = readfile.count()
+except Exception as e:
+    record_err.logrecord()
 
 
