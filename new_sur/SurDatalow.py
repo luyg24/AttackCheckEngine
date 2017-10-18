@@ -6,6 +6,7 @@ read from suricata log file use data flow
 
 import record_err
 import commands
+import linecache
 import time
 import datetime
 import sys
@@ -28,18 +29,22 @@ class File(object):
         print filepath, startline
 
     def count(self):
+        #返回文件行数
         status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
         output = output.split()
         return int(output[0])
 
     def read(self):
+        #每次读取一行内容
+        content linecache.getline(self.filepath, 'linenumber')
+
         print 'reading file per line'
 
 
 syspath = '/tmp/test1.json'
 fromline = 1
 readfile = File(syspath, fromline)
-print readfile.count()
-readfile.read()
-
+filelines = readfile.count()
+for i in range(fromline, filelines, ):
+    print i
 
