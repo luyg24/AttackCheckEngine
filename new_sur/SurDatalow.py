@@ -20,19 +20,15 @@ class DataFlow(object):
     def __init__(self, data):
         try:
             #生成一个新的dict
-            newdict = {}
+            self.newdict = {}
             if isinstance(data, dict):
                 if len(data) > 1:
                     if 'http' in data.keys():
-                        newdict['http'] = data['http']
+                        self.newdict['http'] = data['http']
                     if 'timestamp' in data.keys():
-                        newdict['timestamp'] = data['timestamp']
+                        self.newdict['timestamp'] = data['timestamp']
                     if 'alert' in data.keys():
-                        newdict['alert'] = data['alert']
-                    if len(newdict) > 0:
-                        return newdict
-                    else:
-                        return None
+                        self.newdict['alert'] = data['alert']
             else:
                 print 'not dict type!'
         except:
@@ -40,7 +36,7 @@ class DataFlow(object):
 
 
     def createdict(self):
-        pass
+        print self.newdict
 
 
 
@@ -82,6 +78,7 @@ try:
                     content = eval(content)
                     #进行下一步处理，流量整形,获取到最新的数据
                     newcontent = DataFlow(content)
+                    newcontent.createdict()
                     log.write(str(fromline) + 'line is finished!\n')
                     print newcontent
                 except:
