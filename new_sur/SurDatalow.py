@@ -32,6 +32,7 @@ class DataFlow(object):
         if isinstance(self.data, dict):
             if len(self.data) > 1:
                 if 'http' in self.data.keys():
+                    self.newdict['type'] = 'http_attack'
                     if 'status' in self.data['http'].keys():
                         self.newdict['status'] = self.data['http']['status']
                     if 'length' in self.data['http'].keys():
@@ -51,6 +52,8 @@ class DataFlow(object):
                     if 'xff' in self.data['http'].keys():
                         self.newdict['xffip'] = self.data['http']['xff']
                     # self.newdict['http'] = self.data['http']
+                else:
+                    self.newdict['type'] = 'other_attack'
                 if 'timestamp' in self.data.keys():
                     self.newdict['timestamp'] = self.data['timestamp']
                 if 'alert' in self.data.keys():
@@ -101,7 +104,8 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
-                    print type(newcontent), newcontent['hostname']
+                    if newcontent['type'] == 'other_attack':
+                        print newcontent
                     log.write(str(fromline) + 'line is finished!\n')
                 except:
                     continue
