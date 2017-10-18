@@ -86,12 +86,12 @@ class DataFlow(object):
                     match = 1
                     break
             if match == 1:
-                print self.newdict
-                break
+                return 1
             else:
                 continue
         if match == 0:
-            print self.newdict['signature']
+            return 0
+            # print self.newdict['signature']
 
 
 
@@ -136,7 +136,10 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
-                    dataflow.catagory()
+                    # 判断分类之后的数据，如果分类完毕返回1，否则返回0！
+                    check_cat = dataflow.catagory()
+                    if check_cat == 0:
+                        print newcontent
                     log.write(str(fromline) + 'line is finished!\n')
                 except:
                     continue
