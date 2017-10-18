@@ -82,6 +82,7 @@ class DataFlow(object):
             for i in range(len(v)):
                 if v[i] in self.newdict['signature']:
                     self.newdict['attacktype'] = k
+                    print self.newdict['attacktype'], self.newdict['signature']
                     match = 1
                     break
             if match == 1:
