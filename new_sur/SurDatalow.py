@@ -23,7 +23,7 @@ class DataFlow(object):
 
 
 class File(object):
-    def __init__(self, filepath, startline=1):
+    def __init__(self, filepath, startline=0):
         self.filepath = filepath
         self.startline = startline
 
@@ -39,13 +39,13 @@ class File(object):
         print self.startline, content
 
 syspath = '/tmp/test1.json'
-fromline = 1
+fromline = 0
 readfile = File(syspath, fromline)
 filelines = readfile.count()
 while True:
     if filelines > fromline:
-        #证明文件有新增内容需要继续读取
-        for fromline in range(fromline, filelines + 1, ):
+        #证明文件有新增内容需要继续读取,fromline＋1代表上次执行到了fromline行，这次从＋1行开始
+        for fromline in range(fromline + 1, filelines + 1, ):
             readfile = File(syspath, fromline)
             readfile.read()
     else:
