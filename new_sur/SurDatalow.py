@@ -36,7 +36,7 @@ class File(object):
 
     def read(self):
         #每次读取一行内容
-        content linecache.getline(self.filepath, 'linenumber')
+        content=linecache.getline(self.filepath)
 
         print 'reading file per line'
 
