@@ -16,6 +16,13 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
+class Attack(object):
+    def __init__(self):
+        pass
+
+
+
+
 class DataFlow(object):
     def __init__(self, data):
         self.data = data
@@ -25,11 +32,31 @@ class DataFlow(object):
         if isinstance(self.data, dict):
             if len(self.data) > 1:
                 if 'http' in self.data.keys():
-                    self.newdict['http'] = self.data['http']
+                    if 'status' in self.data['http'].keys():
+                        self.newdict['status'] = self.data['http']['status']
+                    if 'length' in self.data['http'].keys():
+                        self.newdict['length'] = self.data['http']['length']
+                    if 'http_user_agent' in self.data['http'].keys():
+                        self.newdict['user_agent'] = self.data['http']['http_user_agent']
+                    if 'http_method' in self.data['http'].keys():
+                        self.newdict['method'] = self.data['http']['http_method']
+                    if 'request_body' in self.data['http'].keys():
+                        self.newdict['request_body'] = self.data['http']['request_body']
+                    if 'http_refer' in self.data['http'].keys():
+                        self.newdict['http_refer'] = self.data['http']['http_refer']
+                    if 'url' in self.data['http'].keys():
+                        self.newdict['url'] = self.data['http']['url']
+                    if 'hostname' in self.data['http'].keys():
+                        self.newdict['hostname'] = self.data['http']['hostname']
+                    if 'xff' in self.data['http'].keys():
+                        self.newdict['xffip'] = self.data['http']['xff']
+                    # self.newdict['http'] = self.data['http']
                 if 'timestamp' in self.data.keys():
                     self.newdict['timestamp'] = self.data['timestamp']
                 if 'alert' in self.data.keys():
-                    self.newdict['alert'] = self.data['alert']
+                    # self.newdict['alert'] = self.data['alert']
+                    if 'signature' in self.data['alert'].keys():
+                        self.newdict['signature'] = self.data['alert']['signature']
         else:
             print 'not dict type!'
         print self.newdict
