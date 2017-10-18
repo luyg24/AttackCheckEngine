@@ -77,7 +77,7 @@ class DataFlow(object):
     def catagory(self):
         attackcat = open('conf/attack_method.txt', 'r')
         print attackcat
-        matchrule = eval(attackcat.readlines())
+        matchrule = eval(attackcat.read())
         print matchrule
         print matchrule.keys()
         if 'CVE' in self.newdict['signature']:
