@@ -34,6 +34,8 @@ class File(object):
         return int(output[0])
 
     def read(self):
+        #更新一下缓存,避免新增内容获取不到
+        linecache.checkcache(self.filepath)
         #每次读取一行内容
         content=linecache.getline(self.filepath, self.startline)
         print self.startline, content
