@@ -115,7 +115,8 @@ class File(object):
         content=linecache.getline(self.filepath, self.startline)
         return content
 
-syspath = '/tmp/test1.json'
+# syspath = '/tmp/test1.json'
+syspath = '/data/public/suricata/log/eve-httpids.json'
 fromline = 0
 readfile = File(syspath, fromline)
 filelines = readfile.count()
