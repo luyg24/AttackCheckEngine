@@ -148,5 +148,3 @@ try:
             filelines = readfile.count()
 except Exception as e:
     record_err.logrecord()
-
-
