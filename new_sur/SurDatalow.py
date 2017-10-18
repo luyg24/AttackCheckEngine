@@ -52,8 +52,8 @@ readfile = File(syspath, fromline)
 filelines = readfile.count()
 try:
     while True:
-        log = file.open('logs/log.txt', 'a')
         if filelines > fromline:
+            log = open('logs/log.txt', 'a')
             #证明文件有新增内容需要继续读取,fromline＋1代表上次执行到了fromline行，这次从＋1行开始
             for fromline in range(fromline + 1, filelines + 1, ):
                 readfile = File(syspath, fromline)
@@ -63,6 +63,7 @@ try:
                 #进行下一步处理，流量整形,获取到最新的数据
                 newcontent = DataFlow(content)
                 log.write(str(fromline) + 'line is finished!\n')
+            log.close()
         else:
             print fromline
             time.sleep(10)
