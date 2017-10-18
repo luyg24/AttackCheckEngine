@@ -77,12 +77,20 @@ class DataFlow(object):
     def catagory(self):
         attackcat = open('conf/attack_method.txt', 'r')
         matchrule = eval(attackcat.read())
+        match = 0
         for k, v in matchrule.items():
             print k, v
-        if 'CVE' in self.newdict['signature']:
-            self.newdict['attacktype'] = u'CVE攻击'
-        if 'User-Agent' in self.newdict['signature']:
-            self.newdict['attacktype'] = u'Useragent异常'
+            for i in range(len(v)):
+                if v[i] in self.newdict['signature']:
+                    self.newdict['attacktype'] = k
+                    match = 1
+                    break
+            if match == 1:
+                break
+            else:
+                continue
+        if match == 0:
+            print self.newdict['signature']
 
 
 
