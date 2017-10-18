@@ -29,7 +29,7 @@ class File(object):
 
     def count(self):
         status, output = commands.getstatusoutput('wc -l %s' %self.filepath)
-        output = output.split('')
+        output = output.split()
         return int(output[0])
 
     def read(self):
