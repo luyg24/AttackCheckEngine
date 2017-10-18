@@ -23,6 +23,8 @@ class DataFlow(object):
 
 class File(object):
     def __init__(self, filepath, startline=1):
+        self.filepath = filepath
+        self.startline = startline
         print filepath, startline
 
     def count(self):
