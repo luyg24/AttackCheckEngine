@@ -18,6 +18,7 @@ sys.setdefaultencoding('utf8')
 
 class DataFlow(object):
     def __init__(self, data):
+        #判断是否是字典类型
 
         print data.keys()
 
@@ -38,7 +39,7 @@ class File(object):
         linecache.checkcache(self.filepath)
         #每次读取一行内容
         content=linecache.getline(self.filepath, self.startline)
-        print self.startline, content
+        return content
 
 syspath = '/tmp/test1.json'
 fromline = 0
@@ -49,7 +50,10 @@ while True:
         #证明文件有新增内容需要继续读取,fromline＋1代表上次执行到了fromline行，这次从＋1行开始
         for fromline in range(fromline + 1, filelines + 1, ):
             readfile = File(syspath, fromline)
-            readfile.read()
+            content = readfile.read()
+            print type(content)
+            #进行下一步处理，流量整形,获取到最新的数据
+            newcontent = DataFlow(content)
     else:
         print fromline
         time.sleep(10)
