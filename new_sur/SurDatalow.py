@@ -18,7 +18,7 @@ sys.setdefaultencoding('utf8')
 
 class DataFlow(object):
     def __init__(self, data):
-        if type(data) == "<type 'dict'>":
+        if isinstance(data, dict):
             if len(data) > 1:
                 print data.keys()
         else:
