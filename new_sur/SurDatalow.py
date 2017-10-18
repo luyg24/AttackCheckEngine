@@ -59,7 +59,7 @@ class DataFlow(object):
                         self.newdict['signature'] = self.data['alert']['signature']
         else:
             print 'not dict type!'
-        print self.newdict
+        return self.newdict
 
 
 class File(object):
@@ -99,8 +99,9 @@ try:
                 try:
                     content = eval(content)
                     #进行下一步处理，流量整形,获取到最新的数据
-                    newcontent = DataFlow(content)
-                    newcontent.createdict()
+                    dataflow = DataFlow(content)
+                    newcontent = dataflow.createdict()
+                    print type(newcontent), newcontent['hostname']
                     log.write(str(fromline) + 'line is finished!\n')
                 except:
                     continue
