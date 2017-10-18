@@ -36,7 +36,7 @@ class File(object):
     def read(self):
         #每次读取一行内容
         content=linecache.getline(self.filepath, self.startline)
-        print content
+        print self.startline, content
 
 syspath = '/tmp/test1.json'
 fromline = 1
