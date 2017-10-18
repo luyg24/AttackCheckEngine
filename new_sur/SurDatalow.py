@@ -75,20 +75,18 @@ class DataFlow(object):
         return self.newdict
 
     def catagory(self):
-        print self.newdict
         attackcat = open('conf/attack_method.txt', 'r')
         matchrule = eval(attackcat.read())
-        print matchrule
         match = 0
         for k, v in matchrule.items():
-            print k, v
             for i in range(len(v)):
                 if v[i] in self.newdict['signature']:
                     self.newdict['attacktype'] = k
-                    print self.newdict['attacktype'], self.newdict['signature']
+                    # print self.newdict['attacktype'], self.newdict['signature']
                     match = 1
                     break
             if match == 1:
+                print self.newdict
                 break
             else:
                 continue
