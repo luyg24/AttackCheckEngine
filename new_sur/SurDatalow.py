@@ -56,6 +56,16 @@ class DataFlow(object):
                     self.newdict['type'] = 'other_attack'
                 if 'timestamp' in self.data.keys():
                     self.newdict['timestamp'] = self.data['timestamp']
+                if 'payload' in self.data.keys():
+                    self.newdict['payload'] = self.data['payload']
+                if 'src_ip' in self.data.keys():
+                    self.newdict['srcip'] = self.data['src_ip']
+                if 'src_port' in self.data.keys():
+                    self.newdict['srcport'] = self.data['src_port']
+                if 'dest_ip' in self.data.keys():
+                    self.newdict['destip'] = self.data['dest_ip']
+                if 'dest_port' in self.data.keys():
+                    self.newdict['destport'] = self.data['dest_port']
                 if 'alert' in self.data.keys():
                     # self.newdict['alert'] = self.data['alert']
                     if 'signature' in self.data['alert'].keys():
