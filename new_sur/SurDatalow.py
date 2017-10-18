@@ -45,6 +45,15 @@ syspath = '/tmp/test1.json'
 fromline = 1
 readfile = File(syspath, fromline)
 filelines = readfile.count()
-for i in range(fromline, filelines + 1, ):
-    print i
+while True:
+    if filelines > fromline:
+        #证明文件有新增内容需要继续读取
+        for fromline in range(fromline, filelines + 1, ):
+            readfile = File(syspath, fromline)
+    else:
+        print fromline
+        time.sleep(10)
+        readfile = File(syspath, fromline)
+        filelines = readfile.count()
+
 
