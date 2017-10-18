@@ -18,11 +18,30 @@ sys.setdefaultencoding('utf8')
 
 class DataFlow(object):
     def __init__(self, data):
-        if isinstance(data, dict):
-            if len(data) > 1:
-                print data.keys()
-        else:
-            print 'not dict type!'
+        try:
+            #生成一个新的dict
+            newdict = {}
+            if isinstance(data, dict):
+                if len(data) > 1:
+                    if 'http' in data.keys():
+                        newdict['http'] = data['http']
+                    if 'timestamp' in data.keys():
+                        newdict['timestamp'] = data['timestamp']
+                    if 'alert' in data.keys():
+                        newdict['alert'] = data['alert']
+                    if len(newdict) > 0:
+                        return newdict
+                    else:
+                        return None
+            else:
+                print 'not dict type!'
+        except:
+            return None
+
+
+    def createdict(self):
+        pass
+
 
 
 class File(object):
@@ -64,6 +83,7 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     newcontent = DataFlow(content)
                     log.write(str(fromline) + 'line is finished!\n')
+                    print newcontent
                 except:
                     continue
             log.close()
