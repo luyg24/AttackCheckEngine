@@ -18,26 +18,21 @@ sys.setdefaultencoding('utf8')
 
 class DataFlow(object):
     def __init__(self, data):
-        try:
-            #生成一个新的dict
-            self.newdict = {}
-            if isinstance(data, dict):
-                if len(data) > 1:
-                    if 'http' in data.keys():
-                        self.newdict['http'] = data['http']
-                    if 'timestamp' in data.keys():
-                        self.newdict['timestamp'] = data['timestamp']
-                    if 'alert' in data.keys():
-                        self.newdict['alert'] = data['alert']
-            else:
-                print 'not dict type!'
-        except:
-            return None
-
+        self.data = data
 
     def createdict(self):
+        self.newdict = {}
+        if isinstance(self.data, dict):
+            if len(self.data) > 1:
+                if 'http' in self.data.keys():
+                    self.newdict['http'] = self.data['http']
+                if 'timestamp' in self.data.keys():
+                    self.newdict['timestamp'] = self.data['timestamp']
+                if 'alert' in self.data.keys():
+                    self.newdict['alert'] = self.data['alert']
+        else:
+            print 'not dict type!'
         print self.newdict
-
 
 
 class File(object):
@@ -80,7 +75,6 @@ try:
                     newcontent = DataFlow(content)
                     newcontent.createdict()
                     log.write(str(fromline) + 'line is finished!\n')
-                    print newcontent
                 except:
                     continue
             log.close()
