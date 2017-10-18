@@ -139,7 +139,7 @@ try:
                     # 判断分类之后的数据，如果分类完毕返回1，否则返回0！
                     check_cat = dataflow.catagory()
                     if check_cat == 0:
-                        print newcontent
+                        print newcontent['signature']
                     log.write(str(fromline) + 'line is finished!\n')
                 except:
                     continue
