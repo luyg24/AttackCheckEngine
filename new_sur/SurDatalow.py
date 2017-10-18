@@ -79,8 +79,8 @@ class DataFlow(object):
         matchrule = eval(attackcat.read())
         match = 0
         for k, v in matchrule.items():
+            print k, v
             for i in range(len(v)):
-                print v[i]
                 if v[i] in self.newdict['signature']:
                     self.newdict['attacktype'] = k
                     print self.newdict['attacktype'], self.newdict['signature']
