@@ -45,6 +45,6 @@ syspath = '/tmp/test1.json'
 fromline = 1
 readfile = File(syspath, fromline)
 filelines = readfile.count()
-for i in range(fromline, filelines, ):
+for i in range(fromline, filelines + 1, ):
     print i
 
