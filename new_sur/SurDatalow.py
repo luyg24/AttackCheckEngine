@@ -117,7 +117,7 @@ class File(object):
 
 # syspath = '/tmp/test1.json'
 syspath = '/data/public/suricata/log/eve-httpids.json'
-fromline = 0
+fromline = 5000000
 readfile = File(syspath, fromline)
 filelines = readfile.count()
 try:
