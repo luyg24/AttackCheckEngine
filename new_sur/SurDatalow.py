@@ -155,7 +155,7 @@ try:
                         #初始化攻击类
                         attack = Attackengine.Attack(newcontent)
                         #如果匹配成功，则返回结果和新的数据，否则只返回result
-                        checkresult, newcontent = attack.whitecheck()
+                        checkresult, content_data = attack.whitecheck()
                         #result = 0 代表没有匹配白名单
                         if checkresult == 0:
                             if newcontent['attacktype'] == u'扫描器':
@@ -177,6 +177,7 @@ try:
                             elif newcontent['attacktype'] == u'命令执行':
                                 pass
                             elif newcontent['attacktype'] == u'文件读取':
+                                print newcontent['attacktype']
                                 pass
                             elif newcontent['attacktype'] == u'sql注入':
                                 pass
@@ -186,7 +187,8 @@ try:
                                 pass
                         else:
                             #这里代表检测完毕，可以输出到文本了
-                            print newcontent
+                            pass
+                            # print content_data
 
                         # Attackengine.Attack(newcontent)
                 except:
