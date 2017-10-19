@@ -153,6 +153,7 @@ try:
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
                         #如果匹配成功，则返回结果和新的数据，否则只返回result
+                        print newcontent['hostname']
                         checkresult, newcontent = Attackengine.Attack.whitecheck(newcontent)
                         print checkresult, newcontent
                         #result = 0 代表没有匹配白名单
