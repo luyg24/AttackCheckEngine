@@ -156,7 +156,6 @@ try:
                         attack = Attackengine.Attack(newcontent)
                         #如果匹配成功，则返回结果和新的数据，否则只返回result
                         checkresult, newcontent = attack.whitecheck()
-                        print checkresult, newcontent
                         #result = 0 代表没有匹配白名单
                         if checkresult == 0:
                             if newcontent['attacktype'] == u'扫描器':
