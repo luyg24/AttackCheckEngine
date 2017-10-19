@@ -156,7 +156,6 @@ try:
                         attack = Attackengine.Attack(newcontent)
                         #如果匹配成功，则返回结果和新的数据，否则只返回result
                         checkresult = attack.whitecheck()
-                        print checkresult
                         #result = 0 代表没有匹配白名单,否则返回数据
                         if checkresult == 0:
                             print newcontent['attacktype']
@@ -190,7 +189,7 @@ try:
                         else:
                             #这里代表检测完毕，可以输出到文本了
                             pass
-                            # print content_data
+                            # print checkresult
 
                         # Attackengine.Attack(newcontent)
                 except:
