@@ -50,9 +50,8 @@ class Attack(object):
         def readfile(self):
             if self.data['status'] > 199 and self.data['status'] < 300:
                 self.data['result'] = 'failed'
-                print self.data
+                print self.data['hostname'], self.data['result']
             else:
-                print 'need check'
                 self.data['result'] = 'uncheck'
             #return self.data
 
