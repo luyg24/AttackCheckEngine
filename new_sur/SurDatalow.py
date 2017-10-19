@@ -187,7 +187,7 @@ try:
                         else:
                             #这里代表检测完毕，可以输出到文本了
                             pass
-                            print checkresult
+                            # print checkresult
 
                         # Attackengine.Attack(newcontent)
                 except:
