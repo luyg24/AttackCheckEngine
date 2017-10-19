@@ -139,9 +139,9 @@ try:
                     # 判断分类之后的数据，如果分类完毕返回1，否则返回0！
                     check_cat = dataflow.catagory()
                     if check_cat == 0:
-                        print newcontent['signature']
-                    log.write(str(fromline) + 'line is finished!\n')
+                        log.write('uncatagory attack: '+ str(newcontent['signature']))
                 except:
+                    log.write(str(fromline) + 'line is finished!\n')
                     continue
             log.close()
         else:
