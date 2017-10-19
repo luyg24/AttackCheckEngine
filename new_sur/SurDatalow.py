@@ -5,6 +5,7 @@ read from suricata log file use data flow
 """
 
 import record_err
+import Attackengine
 import commands
 import linecache
 import time
@@ -144,11 +145,14 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
-                    print newcontent['xffip']
+                    # print newcontent['xffip']
                     # 判断分类之后的数据，如果分类完毕返回1，否则返回0！
                     check_cat = dataflow.catagory()
                     if check_cat == 0:
                         log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
+                    #开始进行攻击检测,未进行攻击分类的不检测
+                    else:
+                        Attackengine(newcontent)
                 except:
                     log.write(str(fromline) + 'line is finished!\n')
                     continue
