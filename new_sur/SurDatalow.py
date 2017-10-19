@@ -152,7 +152,40 @@ try:
                         log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
-                        Attackengine.Attack(newcontent)
+                        checkresult = Attackengine.Attack.whitecheck(newcontent)
+                        #result = 0 代表没有匹配白名单
+                        if checkresult == 0:
+                            if newcontent['attacktype'] == u'扫描器':
+                                pass
+                            elif newcontent['attacktype'] == u'CVE攻击':
+                                pass
+                            elif newcontent['attacktype'] == u'iis攻击':
+                                pass
+                            elif newcontent['attacktype'] == u'xxe攻击':
+                                pass
+                            elif newcontent['attacktype'] == u'Useragent异常':
+                                pass
+                            elif newcontent['attacktype'] == u'xss攻击':
+                                pass
+                            elif newcontent['attacktype'] == u'method异常':
+                                pass
+                            elif newcontent['attacktype'] == u'url扫描':
+                                pass
+                            elif newcontent['attacktype'] == u'命令执行':
+                                pass
+                            elif newcontent['attacktype'] == u'文件读取':
+                                pass
+                            elif newcontent['attacktype'] == u'sql注入':
+                                pass
+                            elif newcontent['attacktype'] == u'url扫描':
+                                pass
+                            else:
+                                pass
+                        else:
+                            #这里代表检测完毕，可以输出到文本了
+                            print newcontent
+
+                        # Attackengine.Attack(newcontent)
                 except:
                     log.write(str(fromline) + 'line is finished!\n')
                     continue

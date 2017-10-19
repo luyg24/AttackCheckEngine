@@ -20,7 +20,41 @@ class Attack(object):
     try:
         def __init__(self, data):
             self.data = data
-            print type(self.data), self.data
+            self.data['result'] = ''
+            # 结果有攻击成功(succesd)、攻击失败(failed)、未检测(uncheck)
+
+        def whitecheck(self):
+            file = open('conf/whitelist.txt','r')
+            rule = eval(file.readline())
+            if 'hostname' in self.data.keys():
+                if self.data['hostname'] in rule['whitelist']:
+                    self.data['result'] = 'uncheck'
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+
+            # print type(self.data), self.data
+        def result(self):
+            pass
+            #返回检测结果
+        def scancheck(self):
+            pass
+        def cvecheck(self):
+            pass
+        def iischeck(self):
+            pass
+        def xsscheck(self):
+            pass
+        def readfile(self):
+            pass
+
+
+
+
+
+
 
 
 
