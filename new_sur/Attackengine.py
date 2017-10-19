@@ -27,7 +27,6 @@ class Attack(object):
             file = open('conf/whitelist.txt','r')
             rule = eval(file.readline())
             if 'hostname' in self.data.keys():
-                print rule['whitelist']
                 if self.data['hostname'] in rule['whitelist']:
                     self.data['result'] = 'uncheck'
                     return 1, self.data
