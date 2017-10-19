@@ -155,7 +155,10 @@ try:
                         #初始化攻击类
                         attack = Attackengine.Attack(newcontent)
                         #如果匹配成功，则返回结果和新的数据，否则只返回result
-                        checkresult, content_data = attack.whitecheck()
+                        result = attack.whitecheck()
+                        checkresult = result[0]
+                        content_data = result[1]
+                        print checkresult
                         #result = 0 代表没有匹配白名单
                         if checkresult == 0:
                             print newcontent['attacktype']
