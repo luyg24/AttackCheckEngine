@@ -152,7 +152,8 @@ try:
                         log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
-                        checkresult = Attackengine.Attack.whitecheck(newcontent)
+                        #如果匹配成功，则返回结果和新的数据，否则只返回result
+                        checkresult, newcontent = Attackengine.Attack.whitecheck(newcontent)
                         #result = 0 代表没有匹配白名单
                         if checkresult == 0:
                             if newcontent['attacktype'] == u'扫描器':
