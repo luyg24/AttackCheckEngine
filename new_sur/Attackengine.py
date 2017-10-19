@@ -29,7 +29,7 @@ class Attack(object):
             if 'hostname' in self.data.keys():
                 if self.data['hostname'] in rule['whitelist']:
                     self.data['result'] = 'uncheck'
-                    return 1, self.data
+                    return self.data
                 else:
                     return 0
             else:
