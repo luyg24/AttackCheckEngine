@@ -152,7 +152,7 @@ try:
                         log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
-                        Attackengine(newcontent)
+                        Attackengine.Attack(newcontent)
                 except:
                     log.write(str(fromline) + 'line is finished!\n')
                     continue
