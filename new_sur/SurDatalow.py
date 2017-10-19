@@ -177,8 +177,7 @@ try:
                             elif newcontent['attacktype'] == u'命令执行':
                                 pass
                             elif newcontent['attacktype'] == u'文件读取':
-                                print newcontent['attacktype']
-                                pass
+                                checkresult = attack.readfile()
                             elif newcontent['attacktype'] == u'sql注入':
                                 pass
                             elif newcontent['attacktype'] == u'url扫描':
@@ -186,9 +185,11 @@ try:
                             else:
                                 pass
                         else:
-                            #这里代表检测完毕，可以输出到文本了
-                            pass
-                            # print checkresult
+                            if checkresult != 0:
+                                #这里代表检测完毕，可以输出到文本了
+                                print checkresult['hostname'], checkresult['result']
+                                pass
+                                # print checkresult
 
                         # Attackengine.Attack(newcontent)
                 except:

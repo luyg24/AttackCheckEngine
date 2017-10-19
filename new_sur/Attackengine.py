@@ -48,7 +48,12 @@ class Attack(object):
         def xsscheck(self):
             pass
         def readfile(self):
-            pass
+            if self.data['status'] > 199 and self.data['status'] < 300:
+                self.data['result'] = 'failed'
+            else:
+                print 'need check'
+                self.data['result'] = 'uncheck'
+            return self.data
 
 
 
