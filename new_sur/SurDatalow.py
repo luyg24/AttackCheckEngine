@@ -136,6 +136,7 @@ try:
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
+                    print newcontent['xffip']
                     # 判断分类之后的数据，如果分类完毕返回1，否则返回0！
                     check_cat = dataflow.catagory()
                     if check_cat == 0:
