@@ -50,7 +50,15 @@ class DataFlow(object):
                     if 'hostname' in self.data['http'].keys():
                         self.newdict['hostname'] = self.data['http']['hostname']
                     if 'xff' in self.data['http'].keys():
-                        self.newdict['xffip'] = self.data['http']['xff']
+                        #这里要进行判断，因为有的xff有多个
+                        tmp = self.data['http']['xff']
+                        #self.newdict['xffips'] = self.data['http']['xff']
+                        if tmp.find(',') > 0 :
+                            ip1 = tmp.split(',')[0]
+                            self.newdict['xffip'] = ip1
+                            self.newdict['xffips'] = self.data['http']['xff']
+                        else:
+                            self.newdict['xffip'] = self.data['http']['xff']
                     # self.newdict['http'] = self.data['http']
                 else:
                     self.newdict['type'] = 'other_attack'
