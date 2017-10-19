@@ -158,6 +158,7 @@ try:
                         checkresult, content_data = attack.whitecheck()
                         #result = 0 代表没有匹配白名单
                         if checkresult == 0:
+                            print newcontent['attacktype']
                             if newcontent['attacktype'] == u'扫描器':
                                 pass
                             elif newcontent['attacktype'] == u'CVE攻击':
