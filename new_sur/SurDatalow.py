@@ -185,11 +185,9 @@ try:
                             else:
                                 pass
                         else:
-                            if checkresult != 0:
-                                #这里代表检测完毕，可以输出到文本了
-                                print checkresult['hostname'], checkresult['result']
-                                pass
-                                # print checkresult
+                            #这里代表检测完毕，可以输出到文本了
+                            pass
+                            print checkresult
 
                         # Attackengine.Attack(newcontent)
                 except:
