@@ -73,11 +73,10 @@ class Attack(object):
                 header = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
                 hostname = self.data['hostname']
                 httpurl = 'http://' + hostname + url
-                print httpurl
                 httpsurl = 'https://' + hostname + url
-                print httpsurl
                 #需要进行实际测试，先判断方法
                 if self.data['method'].lower() == 'get':
+                    print 'get type'
                     r1 = requests.get(httpurl, headers=header)
                     r2 = requests.get(httpsurl, headers = header, verify = False)
                     print r1.content, r2.text
