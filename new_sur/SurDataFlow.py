@@ -166,7 +166,9 @@ try:
             catfile.close()
             uncatfile.close()
         else:
-            print fromline
+            log = open('logs/log.txt', 'a')
+            log.write(str(fromline) + '\n')
+            # print fromline
             time.sleep(10)
             readfile = File(syspath, fromline)
             filelines = readfile.count()
