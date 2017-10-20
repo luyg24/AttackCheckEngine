@@ -70,6 +70,8 @@ class Attack(object):
                 return self.data
             else:
                 url = self.data['url']
+                url = url.replace('\/', '/')
+                #因为里面有转译字符，需要将转译字符取消
                 header = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
                 hostname = self.data['hostname']
                 httpurl = 'http://' + hostname + url
