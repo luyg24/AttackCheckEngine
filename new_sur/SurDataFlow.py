@@ -5,6 +5,7 @@ read from suricata log file use data flow
 """
 
 import record_err
+import base64
 import Attackengine
 import commands
 import linecache
@@ -39,17 +40,18 @@ class DataFlow(object):
                     if 'length' in self.data['http'].keys():
                         self.newdict['length'] = self.data['http']['length']
                     if 'http_user_agent' in self.data['http'].keys():
-                        self.newdict['user_agent'] = self.data['http']['http_user_agent']
+                        #注意字典赋值的时候，需要把字典转换成str，要不然遇到特殊字符会转义
+                        self.newdict['user_agent'] = str(self.data['http']['http_user_agent'])
                     if 'http_method' in self.data['http'].keys():
-                        self.newdict['method'] = self.data['http']['http_method']
+                        self.newdict['method'] = str(self.data['http']['http_method'])
                     if 'request_body' in self.data['http'].keys():
-                        self.newdict['request_body'] = self.data['http']['request_body']
+                        self.newdict['request_body'] = str(self.data['http']['request_body'])
                     if 'http_refer' in self.data['http'].keys():
-                        self.newdict['http_refer'] = self.data['http']['http_refer']
+                        self.newdict['http_refer'] = str(self.data['http']['http_refer'])
                     if 'url' in self.data['http'].keys():
-                        self.newdict['url'] = self.data['http']['url']
+                        self.newdict['url'] = str(self.data['http']['url'])
                     if 'hostname' in self.data['http'].keys():
-                        self.newdict['hostname'] = self.data['http']['hostname']
+                        self.newdict['hostname'] = str(self.data['http']['hostname'])
                     if 'xff' in self.data['http'].keys():
                         #这里要进行判断，因为有的xff有多个
                         tmp = self.data['http']['xff']
@@ -66,7 +68,10 @@ class DataFlow(object):
                 if 'timestamp' in self.data.keys():
                     self.newdict['timestamp'] = self.data['timestamp']
                 if 'payload' in self.data.keys():
-                    self.newdict['payload'] = self.data['payload']
+                    #由于payload都是base64编码的，这里需要解码
+                    if len(self.data['payload'])> 0:
+                        tmp = self.data['payload']
+                        self.newdict['payload'] = base64.b64decode(tmp).replace("'",'\'').replace('"','\"')
                 if 'src_ip' in self.data.keys():
                     self.newdict['srcip'] = self.data['src_ip']
                 if 'src_port' in self.data.keys():
