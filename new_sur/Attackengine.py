@@ -81,7 +81,9 @@ class Attack(object):
                 if self.data['method'].lower() == 'get':
                     r1 = requests.get(httpurl, headers=header)
                     r2 = requests.get(httpsurl, headers = header, verify = False)
-                    if r1.content.find('请求异常'):
+                    if r1.content.find('请求异常') >0 :
+                        print 'failed'
+                    elif r1.content.find('系统错误') > 0:
                         print 'failed'
                     else:
                         print r1.content
