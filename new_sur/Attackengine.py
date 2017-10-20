@@ -85,6 +85,8 @@ class Attack(object):
                         print 'failed'
                     elif r1.content.find('系统错误') >= 0:
                         print 'failed'
+                    elif r1.content.find('Bad Request') >= 0:
+                        print 'failed'
                     else:
                         print r1.content
                 elif self.data['method'].lower() == 'post':
