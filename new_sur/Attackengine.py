@@ -48,7 +48,6 @@ class Attack(object):
                 #判断status是否为空值
                 if self.data['status'] != '':
                     if self.data['status'] < 200 or self.data['status'] > 299:
-                        print '!Failed'
                         return 1
                     else :
                         return 0
@@ -67,7 +66,6 @@ class Attack(object):
         def readfile(self):
             status = self.statuscheck()
             if status == 1 :
-                print self.data['status'], 'attack failed'
                 self.data['result'] = 'failed'
                 return self.data
             else:
