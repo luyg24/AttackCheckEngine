@@ -153,11 +153,11 @@ try:
                     if check_cat == 0:
                         #这里给攻击一个其他攻击类型
                         newcontent['attacktype'] = 'other attack'
-                        uncatfile.write(str(newcontent['signature']) + '\n')
+                        uncatfile.write(str(newcontent) + '\n')
                         log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
-                        catfile.write(str(newcontent['signature']) + '\n')
+                        catfile.write(str(newcontent) + '\n')
                         #写入分析后的数据到redis和文本
                 except:
                     log.write(str(fromline) + 'line is finished!\n')
