@@ -46,8 +46,7 @@ class Attack(object):
             #1 代表非200等，页面无法正常返回，一般代表页面无法打开，0代表需要进一步测试
             if 'status' in self.data.keys():
                 #判断status是否为空值
-                if len(self.data['status']) > 0 :
-                    print 'not null'
+                if self.data['status'] != '':
                     if self.data['status'] < 200 or self.data['status'] > 299:
                         print '!Failed'
                         return 1
