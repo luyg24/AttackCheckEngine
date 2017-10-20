@@ -69,6 +69,7 @@ class Attack(object):
                 self.data['result'] = 'failed'
                 return self.data
             else:
+                #这里需要一个白名单，检测返回结果，在白名单里面的失败
                 url = self.data['url']
                 url = url.replace('\/', '/')
                 #因为里面有转译字符，需要将转译字符取消
@@ -78,11 +79,12 @@ class Attack(object):
                 httpsurl = 'https://' + hostname + url
                 #需要进行实际测试，先判断方法
                 if self.data['method'].lower() == 'get':
-                    print 'get type'
                     r1 = requests.get(httpurl, headers=header)
                     r2 = requests.get(httpsurl, headers = header, verify = False)
-                    print r1.content, r2.text
-                    pass
+                    if r1.content.find('请求异常'):
+                        print 'failed'
+                    else:
+                        print r1.content
                 elif self.data['method'].lower() == 'post':
                     pass
                 else:
