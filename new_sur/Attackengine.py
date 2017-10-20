@@ -69,12 +69,13 @@ class Attack(object):
                 self.data['result'] = 'failed'
                 return self.data
             else:
-                print self.data['method']
                 url = self.data['url']
                 header = {'user-agent':'Chrome/60.0.3112.113 Safarids24/537.36'}
                 hostname = self.data['hostname']
                 httpurl = 'http://' + hostname + url
+                print httpurl
                 httpsurl = 'https://' + hostname + url
+                print httpsurl
                 #需要进行实际测试，先判断方法
                 if self.data['method'].lower() == 'get':
                     r1 = requests.get(httpurl, headers=header)
