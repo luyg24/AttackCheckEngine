@@ -5,6 +5,7 @@ read from suricata log file use data flow
 """
 
 import record_err
+import json
 import base64
 import Attackengine
 import commands
@@ -41,17 +42,17 @@ class DataFlow(object):
                         self.newdict['length'] = self.data['http']['length']
                     if 'http_user_agent' in self.data['http'].keys():
                         #注意字典赋值的时候，需要把字典转换成str，要不然遇到特殊字符会转义
-                        self.newdict['user_agent'] = str(self.data['http']['http_user_agent'])
+                        self.newdict['user_agent'] = self.data['http']['http_user_agent']
                     if 'http_method' in self.data['http'].keys():
-                        self.newdict['method'] = str(self.data['http']['http_method'])
+                        self.newdict['method'] = self.data['http']['http_method']
                     if 'request_body' in self.data['http'].keys():
-                        self.newdict['request_body'] = str(self.data['http']['request_body'])
+                        self.newdict['request_body'] = self.data['http']['request_body']
                     if 'http_refer' in self.data['http'].keys():
-                        self.newdict['http_refer'] = str(self.data['http']['http_refer'])
+                        self.newdict['http_refer'] = self.data['http']['http_refer']
                     if 'url' in self.data['http'].keys():
-                        self.newdict['url'] = str(self.data['http']['url'])
+                        self.newdict['url'] = self.data['http']['url']
                     if 'hostname' in self.data['http'].keys():
-                        self.newdict['hostname'] = str(self.data['http']['hostname'])
+                        self.newdict['hostname'] = self.data['http']['hostname']
                     if 'xff' in self.data['http'].keys():
                         #这里要进行判断，因为有的xff有多个
                         tmp = self.data['http']['xff']
@@ -72,6 +73,8 @@ class DataFlow(object):
                     if len(self.data['payload'])> 0:
                         tmp = self.data['payload']
                         self.newdict['payload'] = base64.b64decode(tmp).replace("'",'\'').replace('"','\"')
+                    else :
+                        self.newdict['payload'] = self.data['payload']
                 if 'src_ip' in self.data.keys():
                     self.newdict['srcip'] = self.data['src_ip']
                 if 'src_port' in self.data.keys():
@@ -133,7 +136,7 @@ class File(object):
 
 # syspath = '/tmp/test1.json'
 syspath = '/data/public/suricata/log/eve-httpids.json'
-fromline = 5000000
+fromline = 8996317
 readfile = File(syspath, fromline)
 filelines = readfile.count()
 try:
@@ -148,7 +151,8 @@ try:
                 content = readfile.read()
                 #使用eval将原本数据外面的引号去除，这里因为原来的数据是dict，所以新的content现在是dict
                 try:
-                    content = eval(content)
+                    #content = eval(content)
+                    content = json.loads(content)
                     #进行下一步处理，流量整形,获取到最新的数据
                     dataflow = DataFlow(content)
                     newcontent = dataflow.createdict()
@@ -158,11 +162,14 @@ try:
                     if check_cat == 0:
                         #这里给攻击一个其他攻击类型
                         newcontent['attacktype'] = 'other attack'
-                        uncatfile.write(str(newcontent) + '\n')
-                        log.write('uncatagory attack: '+ str(newcontent['signature']) + '\n')
+                        #这里要把dict数据反序列化
+                        newcontent = json.dumps(newcontent)
+                        uncatfile.write(newcontent + '\n')
+                        log.write('uncatagory attack: '+ newcontent['signature'] + '\n')
                     #开始进行攻击检测,未进行攻击分类的不检测
                     else:
-                        catfile.write(str(newcontent) + '\n')
+                        newcontent = json.dumps(newcontent)
+                        catfile.write(newcontent + '\n')
                         #写入分析后的数据到redis和文本
                 except:
                     log.write(str(fromline) + 'line is finished!\n')
