@@ -22,7 +22,7 @@ class Attack(object):
         def __init__(self, data):
             self.data = data
             self.data['result'] = ''
-            # 结果有攻击成功(succesd)、攻击失败(failed)、未检测(uncheck)
+            # 结果有攻击成功(succesd)、攻击失败(failed)、未知(unknown)
 
         def whitecheck(self):
             file = open('conf/whitelist.txt','r')
