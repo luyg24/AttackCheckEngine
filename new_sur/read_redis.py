@@ -14,7 +14,8 @@ from celery_openurl import getcontent
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-pool = redis.ConnectionPool(host='100.109.70.76', port=6379, password = 'idsredis', db = 3)
+#pool = redis.ConnectionPool(host='100.109.70.76', port=6379, password = 'idsredis', db = 3)
+pool = redis.ConnectionPool(host='127.0.0.1', port=6379 , db = 3)
 r = redis.Redis(connection_pool = pool)
 keylist = r.keys()
 for i in range(len(keylist)):

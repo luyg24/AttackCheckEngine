@@ -14,19 +14,23 @@ from celery_openurl import getcontent
 # reload(sys)
 # sys.setdefaultencoding('utf8')
 
-pool = redis.ConnectionPool(host='100.109.70.76', port=6379, password = 'idsredis', db = 1)
+#pool = redis.ConnectionPool(host='100.109.70.76', port=6379, password = 'idsredis', db = 1)
+pool = redis.ConnectionPool(host='127.0.0.1', port=6379, db = 1)
+
 r = redis.Redis(connection_pool = pool)
 #print r.llen('ids')
 # length = r.llen('ids')
 # file = open('loglog.txt', 'a')
-startline = 9000
+startline = 0
 totalline = r.llen('ids')
 while True:
     if totalline > startline:
         content = r.lrange('ids', startline, startline)[0]
         ncontent = json.loads(content)
         getdata = redis_test.OpRedis(startline, totalline, ncontent)
+        # print getdata
         if getdata.getprostatus() == 'http':
+            # print ncontent
             # 调用celery获取页面内容
             getcontent.delay(ncontent)
         else:

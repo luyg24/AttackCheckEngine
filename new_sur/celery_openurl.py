@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
 
 import time
 import requests
+import py
 from celery import Celery
 
-broker =  'redis://:idsredis@100.109.70.76:6379/2'
-backend = 'redis://:idsredis@100.109.70.76:6379/3'
+#broker =  'redis://:idsredis@100.109.70.76:6379/2'
+#backend = 'redis://:idsredis@100.109.70.76:6379/3'
+broker = 'redis://127.0.0.1:6379/2'
+backend = 'redis://127.0.0.1:6379/3'
 
 app = Celery('task1', broker=broker, backend=backend)
 
@@ -56,4 +60,12 @@ def getcontent(ncontent):
         pass
     ncontent['pagestatus'] = pagestatus
     ncontent['pagecontent'] = pagecontent
+    sensitivelist = ['svn', 'root']
+    for i in range(len(sensitivelist)):
+        if sensitivelist[i] in pagecontent.lower():
+            ncontent['attackstatus'] = 'success'
+            break
+        else:
+            pass
     return ncontent
+
